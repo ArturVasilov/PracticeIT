@@ -13,16 +13,22 @@ namespace MathExpressions
         public Expression(String expr)
         {
             if (rightString(expr))
-                if (StackScobs.checkScobs(expr))
+            {
+                StackScobs stack = new StackScobs(expr);
+                if (stack.checkScobs())
                     this.expr = expr;
                 else throw new Exception("Illegal scobs in expression!!");
+            }
             else throw new Exception("Illegal Expression!!");
         }
 
 
-        private static class StackScobs
+        private class StackScobs
         {
             String str;
+            char[] scobs;
+            int pointer;
+            bool isAllOkYet;
 
             public String Str
             {
@@ -32,11 +38,40 @@ namespace MathExpressions
 
             public StackScobs(String str)
             {
+                isAllOkYet = true;
+                pointer = 0;
                 Str = str;
+                scobs = new char[Str.Length];
             }
 
-            public static bool checkScobs(String checkString) 
+            private bool isRigthScob(char sc)
             {
+                return (sc == '(' || sc == ')');
+            }
+
+            private void putScob(char sc)
+            {
+                if (sc == ')')
+                {
+                    scobs[pointer] = sc;
+                    pointer++;
+                }
+                else if (pointer == 0)
+                    isAllOkYet = false;
+                else pointer--;
+            }
+
+            public bool checkScobs() 
+            {
+                int n = str.Length;
+                for (int i = 0; i < n; i++)
+                {
+                    if (isRigthScob(str[i]))
+                        putScob(str[i]);
+
+                    if (!isAllOkYet)
+                        return false;
+                }
                 return true;
             }
         }
@@ -49,7 +84,17 @@ namespace MathExpressions
 
         private bool rightString(String checkString)
         {
+            int n = checkString.Length;
+            for (int i = 0; i < n; i++)
+                if (!isRightSymbol(checkString[i]))
+                    return false;
             return true;
+        }
+
+        private bool isRightSymbol(char c)
+        {
+            return (c >= '0' && c <= '9') || (c == '+') || (c == '-')
+                || (c == '*') || (c == '/') || (c == '(') || (c == ')');
         }
     }
 
