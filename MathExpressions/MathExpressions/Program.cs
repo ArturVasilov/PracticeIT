@@ -12,6 +12,9 @@ namespace MathExpressions
         static void Main(string[] args)
         {
             String expression = Console.ReadLine();
+            Expression expr = new Expression(expression);
+            Console.WriteLine(expr.exprResult());
+            Console.ReadLine();
         }
 
         private void test()
