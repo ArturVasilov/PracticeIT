@@ -11,9 +11,10 @@ namespace MathExpressions
     {
         static void Main(string[] args)
         {
-            String expression = Console.ReadLine();
-            Expression expr = new Expression(expression);
-            Console.WriteLine(expr.exprResult());
+            ExpressionGenerator gener = new ExpressionGenerator();
+            String[] str = gener.gen(5);
+            for (int i = 0; i < 5; i++)
+                Console.WriteLine(str[i]);
             Console.ReadLine();
         }
 
@@ -42,7 +43,7 @@ namespace MathExpressions
             {
                 str = sw.ReadLine();
                 Expression expr = new Expression(str);
-                sr.WriteLine(expr.exprResult());
+                sr.WriteLine(expr.expressionResult());
             }
             sr.Close();
             sw.Close();

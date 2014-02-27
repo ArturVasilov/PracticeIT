@@ -17,127 +17,112 @@ namespace MathExpressions
 
         public Expression(String expr)
         {
-            expr = deleteSpaces(expr);
-            if (rightString(expr))
-            {
-                StackScobs stack = new StackScobs(expr);
-                if (stack.checkScobs())
-                    this.expr = expr;
-                else throw new Exception("Illegal scobs in expression!!");
-            }
-            else throw new Exception("Illegal Expression!!");
+            this.expr = new ExpressionFormater(expr).rightExpressionString();
         }
 
-        private class StackScobs
+        private String scobExpr(String expr)
         {
-            String str;
-            char[] scobs;
-            int pointer;
-            bool isAllOkYet;
-
-            public String Str
-            {
-                get { return str; }
-                set { str = value; }
-            }
-
-            public StackScobs(String str)
-            {
-                isAllOkYet = true;
-                pointer = 0;
-                Str = str;
-                scobs = new char[Str.Length];
-            }
-
-            public StackScobs(int count)
-            {
-                pointer = 0;
-                scobs = new char[count];
-            }
-
-            private bool isRigthScob(char sc)
-            {
-                return (sc == '(' || sc == ')');
-            }
-
-            public void putScob(char sc)
-            {
-                if (sc == ')')
-                {
-                    scobs[pointer] = sc;
-                    pointer++;
-                }
-                else if (pointer == 0)
-                    isAllOkYet = false;
-                else pointer--;
-            }
-
-            public bool checkScobs() 
-            {
-                int n = str.Length;
-                for (int i = 0; i < n; i++)
-                {
-                    if (isRigthScob(str[i]))
-                        putScob(str[i]);
-
-                    if (!isAllOkYet)
-                        return false;
-                }
-                return true;
-            }
-        }
-
-
-        public double exprResult()
-        {
-            //TODO
-            //refactor
-            //made just for simple operation (a + b)
-            string[] string_values = expr.Split('(', ')', PLUS, MINUS,
-                PRODUCTION, DIVISION);
-            double[] values = new double[string_values.Length];
-            for (int i = 0; i < string_values.Length; i++)
-                values[i] = Convert.ToDouble(string_values[i]);
-
-            double result = 0;
-            int count = 0;
-
-            StackScobs stack = new StackScobs(expr.Length);
+            //delete all '(' and ')' from expression
+            String s = "";
             for (int i = 0; i < expr.Length; i++)
             {
-                if (expr[i] == '(' || expr[i] == ')')
-                    stack.putScob(expr[i]);
-                else if (isSign(expr[i]))
+                if (expr[i] == '(')
                 {
-                    //To remake
-                    result = doMathFromSymbol(expr[i], values[count], values[count + 1]);
-                    count++;
+                    String someRes = "";
+                    i++;
+                    while (i < expr.Length && expr[i] != ')')
+                    {
+                        if (expr[i] == '(')
+                        {
+                            someRes += scobExpr(expr.Substring(i));
+                            break;
+                        }
+                        someRes += expr[i];
+                        i++;
+                    }
+                    s += exprResult(someRes);    
                 }
             }
-            return result;
+            return s;
         }
 
-        private bool rightString(String checkString)
+        public double expressionResult()
         {
-            int n = checkString.Length;
-            for (int i = 0; i < n; i++) 
+            return exprResult(scobExpr(expr));
+        }
+
+        private bool stringHasScob(String expr)
+        {
+            for (int i = 0; i < expr.Length; i++)
+                if (expr[i] == '(' || expr[i] == ')')
+                    return true;
+            return false;
+        }
+
+        private double exprResult(String expr)
+        {
+            OperandsStack operandsStack = new OperandsStack(expr.Length);
+            OperatorsStack operatorsStack = new OperatorsStack(expr.Length);
+
+            double current_number = 0;
+            double result = 0;
+
+            int i = 0;
+            //first symbol - number
+            current_number = (int)expr[i] - (int)'0';
+            i++;
+            int n = expr.Length;
+            while (i < n)
             {
-                if (!isRightSymbol(checkString[i]))
-                    return false;
+                if (isNumber(expr[i]))
+                {
+                    current_number *= 10;
+                    current_number += (int)expr[i] - (int)'0';
+                    i++;
+                }
 
-                if (checkString[i] == '(' && 
-                    (isSign(checkString[i + 1]) || checkString[i+1] == MINUS))
-                    return false;
-
-                if (isSign(checkString[i]) && checkString[i] == ')')
-                    return false;
+                else //sign
+                {
+                    operandsStack.pushBack(current_number);
+                    current_number = 0;
+                    operatorsStack.pushBack(expr[i]);
+                    i++;
+                }
             }
-            return true;
-        }
+            operandsStack.pushBack(current_number);
+            //production or division
+            //a + b + c * b
+            //0 0 1 1 2 2 3
+            for (int j = 0; j < operatorsStack.getCount(); j++)
+            {
+                if (operatorsStack.getOperator(j) == PRODUCTION ||
+                    operatorsStack.getOperator(j) == DIVISION)
+                {
+                    double first = operandsStack.popOperand(j);
+                    double second = operandsStack.popOperand(j);
+                    char sign = operatorsStack.popOperator(j);
+                    operandsStack.pushOperand(doMathFromSymbol(sign, first, second), j);
+                    j--;
+                }
+            }
 
-        private bool isRightSymbol(char c)
-        {
-            return (c >= '0' && c <= '9') || isSign(c) || (c == '(') || (c == ')');
+            for (int j = 0; j < operatorsStack.getCount(); j++)
+            {
+                if (operatorsStack.getOperator(j) == MINUS)
+                {
+                    double first = operandsStack.popOperand(j);
+                    double second = operandsStack.popOperand(j);
+                    char sign = operatorsStack.popOperator(j);
+                    operandsStack.pushOperand(doMathFromSymbol(sign, first, second), j);
+                }
+            }
+
+            while (operandsStack.getCount() > 0)
+            {
+                result = doMathFromSymbol(PLUS,
+                    operandsStack.popOperand(operandsStack.getCount() - 1), result); 
+            }
+            return result;
         }
 
         private bool isSign(char c)
@@ -145,38 +130,42 @@ namespace MathExpressions
             return (c == PLUS) || (c == MINUS) || (c == PRODUCTION) || (c == DIVISION);
         }
 
-        private String deleteSpaces(String expr)
+        private bool isNumber(char c)
         {
-            for (int i = 0; i < expr.Length; i++)
-                if (expr[i] == ' ')
-                    expr = expr.Remove(i, 1);
-            return expr;
+            return (c >= '0' && c <= '9');
         }
 
-        private double doMathFromSymbol(char chOperator, double first, double second)
+        private double doMathFromSymbol(char chOperator, double second, double first)
         {
             switch (chOperator)
             {
                 case PLUS:
-                    return first + second;
+                    return second + first;
                 case MINUS:
-                    return first - second;
+                    return second - first;
                 case PRODUCTION:
-                    return first * second;
+                    return second * first;
                 case DIVISION:
-                    try
-                    {
-                        double result = first / second;
-                        return result;
-                    }
-                    catch (DivideByZeroException)
-                    {
-                        throw new Exception("Divide by zero!!");
-                    }
+                    return second / first;
                 default:
                     throw new Exception("Smth strange with operator!!");
             }
         }
+        
+        private bool isSecondHigherFirst(char firstSign, char secondSign)
+        {
+            if (firstSign == PRODUCTION || firstSign == DIVISION)
+                return false;
+
+            if (secondSign == PRODUCTION || secondSign == DIVISION)
+                return true;
+
+            if (secondSign == MINUS && firstSign == PLUS)
+                return true;
+
+            return false;
+        }
     }
 
 }
+
