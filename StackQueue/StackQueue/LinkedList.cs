@@ -89,7 +89,7 @@ namespace StackQueue
             if (isEmpty())
                 addBack(data);
 
-            if (getSize() == 1)
+            else if (getSize() == 1)
             {
                 firstElement = new Refer(data, null);
                 firstElement.Next = lastElement;
