@@ -8,7 +8,7 @@ namespace LinkedList
 {
     class LinkedList<T> : List<T>
     {
-        private class Refer
+        public class Refer
         {
             private T data;
             private Refer next;
@@ -66,14 +66,12 @@ namespace LinkedList
 
         public LinkedList(params T[] datas)
         {
-            count = datas.Length;
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < datas.Length; i++)
                 append(datas[i]);
         }
 
         public LinkedList(LinkedList<T> list)
         {
-            count = list.size();
             Refer currentElement = list.firstElement;
             while (currentElement != null)
             {
@@ -96,25 +94,40 @@ namespace LinkedList
         {
             if (isEmpty())
             {
+                count++;
                 firstElement = new Refer(data);
                 lastElement = new Refer(data);
             }
 
+            else if (size() == 1)
+            {
+                count++;
+                lastElement = new Refer(data);
+                firstElement.Next = lastElement;
+                lastElement.Previous = firstElement;
+            }
+
             else
             {
+                count++;
                 Refer insertElement = new Refer(data);
                 insertElement.Previous = lastElement;
                 lastElement.Next = insertElement;
                 lastElement = insertElement;
             }
-
-            count++;
         }
 
         public void prepend(T data)
         {
             if (size() == 0)
                 append(data);
+
+            else if (size() == 1)
+            {
+                count++;
+                lastElement = new Refer(data);
+                firstElement.Next = lastElement;
+            }
 
             else
             {
@@ -154,27 +167,36 @@ namespace LinkedList
         public void append(LinkedList<T> list)
         {
             count += list.size();
-            firstElement.Previous = list.lastElement;
-            list.lastElement.Next = firstElement;
-            firstElement = list.firstElement;
+            lastElement.Next = list.firstElement;
+            list.firstElement.Previous = lastElement;
+            lastElement = list.lastElement;
         }
 
         public void prepend(LinkedList<T> list)
         {
             count += list.size();
-            lastElement.Next = list.firstElement;
-            list.firstElement.Previous = lastElement;
-            lastElement = list.lastElement;
+            list.lastElement.Next = firstElement;
+            firstElement.Previous = list.lastElement;
+            firstElement = list.firstElement;
         }
 
         public void insert(LinkedList<T> list, int index)
         {
             if (index < 0 || index > size())
                 throw new Exception("Index out of bounds exception!");
-            count += list.size();
-            Refer currentElement = getElement(index);
-            currentElement.Previous.Next = list.firstElement;
-            currentElement.Previous = list.lastElement;
+            if (index == 0)
+                prepend(list);
+            else if (index == size())
+                append(list);
+            else
+            {
+                count += list.size();
+                Refer currentElement = getElement(index);
+                currentElement.Previous.Next = list.firstElement;
+                list.firstElement.Previous = currentElement.Previous;
+                currentElement.Previous = list.lastElement;
+                list.lastElement.Next = currentElement;
+            }
         }
 
         public void removeBack()
@@ -184,6 +206,7 @@ namespace LinkedList
             if (lastElement.Previous != null)
                 lastElement.Previous.Next = null;
             lastElement = lastElement.Previous;
+            count--;
         }
 
         public void removeFront()
@@ -252,7 +275,7 @@ namespace LinkedList
             Refer currentElement = getElement(currentIndex);
             while (currentIndex <= endIndex)
             {
-                append(currentElement.Data);
+                list.append(currentElement.Data);
                 currentElement = currentElement.Next;
                 currentIndex++;
             }
@@ -323,14 +346,14 @@ namespace LinkedList
         {
             Refer current = firstElement;
             Refer currentList = list.firstElement;
-            while (current != null || currentList != null)
+            while (current != null && currentList != null)
             {
                 if (!current.Data.Equals(currentList.Data))
                     return false;
                 current = current.Next;
                 currentList = currentList.Next;
             }
-            return true;
+            return (current == null && currentList == null);
         }
 
         public String toString()
@@ -374,5 +397,41 @@ namespace LinkedList
                 return currentElement;
             }
         }
+
+        public Iterator getIterator()
+        {
+            return new Iterator(firstElement);
+        }
+
+        public Iterator getBackIterator()
+        {
+            return new Iterator(lastElement);
+        }
+
+        public class Iterator
+        {
+            Refer current;
+
+            public Iterator(Refer current)
+            {
+                this.current = current;
+            }
+
+            public bool hasCurrent()
+            {
+                return (current != null);
+            }
+
+            public void next()
+            {
+                current = current.Next;
+            }
+
+            public void previous()
+            {
+                current = current.Previous;
+            }
+        }
+
     }
 }
