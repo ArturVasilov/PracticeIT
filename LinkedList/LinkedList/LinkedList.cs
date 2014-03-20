@@ -125,8 +125,9 @@ namespace LinkedList
             else if (size() == 1)
             {
                 count++;
-                lastElement = new Refer(data);
+                firstElement = new Refer(data);
                 firstElement.Next = lastElement;
+                lastElement.Previous = firstElement;
             }
 
             else
@@ -145,10 +146,10 @@ namespace LinkedList
                 throw new Exception("Index out of bounds exception!");
             
             if (index == 0)
-                append(data);
+                prepend(data);
 
             else if (index == size())
-                prepend(data);
+                append(data);
 
             else
             {
@@ -158,7 +159,7 @@ namespace LinkedList
                 currentElement.Previous.Next = insertElement;
                 insertElement.Previous = currentElement.Previous;
                 currentElement.Previous = insertElement;
-                insertElement.Next = insertElement;
+                insertElement.Next = currentElement;
 
                 count++;
             }
@@ -417,14 +418,19 @@ namespace LinkedList
                 this.current = current;
             }
 
-            public bool hasCurrent()
+            public bool hasNext()
             {
-                return (current != null);
+                return (current.Next != null);
             }
 
             public void next()
             {
                 current = current.Next;
+            }
+
+            public bool hasPrevious()
+            {
+                return (current.Previous != null);
             }
 
             public void previous()
