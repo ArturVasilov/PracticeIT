@@ -8,10 +8,16 @@ namespace Graph
 {
     class MinWay
     {
+        /*
+         * in this class we create matrix of ways
+         * matrix is filled by floyd or dijkstra algorithms, randomize
+         */
+
         Graph graph;
 
         int[][] matrix;
 
+        //result matrix
         Way[][] ways;
 
         int n;
@@ -38,6 +44,7 @@ namespace Graph
             }
         }
 
+        //different get ways methods
         public Way wayBeetwenTwoVertex(int firstVertex, int secondVertex)
         {
             if ((firstVertex >= n || firstVertex < 0) ||
@@ -60,8 +67,8 @@ namespace Graph
 
         private void createWays()
         {
-            //we can choose to use dijkstra or floyd, but it hard
-            if (new Random().Next(10) % 10 != 15) //lol
+            //we can choose to use dijkstra or floyd according to graph, but it hard
+            if (new Random().Next(10) % 2 == 1) //lol
                 fillByDijkstra();
             else
                 fillByFloyd();
@@ -73,16 +80,21 @@ namespace Graph
             {
                 for (int j = 0; j < n; j++)
                 {
+                    int l = -1;
                     for (int k = 0; k < n; k++)
                     {
                         int oldWeight = ways[i][j].Weight;
                         int newWeight = matrix[i][k] + matrix[k][j];
-                        if (newWeight < oldWeight) 
+                        if (newWeight <= oldWeight) 
                         {
                             ways[i][j].Weight = newWeight;
-                            addVertexToWay(i, j, k);
+                            l = k;
                         }
                     }
+                    //if there are no better way
+                    if (l == -1)
+                        continue;
+                    addVertexToWay(i, j, l);
                 }
             }
 
@@ -111,66 +123,61 @@ namespace Graph
             if (vertex < 0 || vertex >= n)
                 throw new Exception("Vertex index is out of bounds");
 
+            //visited vertexes
             bool[] used = new bool[n];
             used[vertex] = true;
+
+            //distances to vertexes
             int[] dist = new int[n];
             dist[vertex] = 0;
+
+            //ways to vertexes
+            string[] stringWays = new string[n];
             for (int i = 0; i < n; i++)
+            {
+                stringWays[i] = vertex.ToString();
                 if (i != vertex)
                 {
                     used[i] = false;
                     dist[i] = Graph.VERY_BIG_NUMBER;
                 }
-            int[] parents = new int[n];
-            parents[vertex] = vertex;
+            }
 
+            //current vertex which we are in
             int current = vertex;
             while (!isAllPassed(used))
             {
-                int currentDist;
-                int parent = parents[current];
                 int minDist = Graph.VERY_BIG_NUMBER;
                 int minVertex = current;
-                for (int i = 0; i < current; i++)
+                for (int i = 0; i < n; i++)
                 {
+                    if (i == current)
+                        continue;
                     if (!used[i]) 
                     {
-                        currentDist = dist[current] + matrix[current][i];
+                        int currentDist = dist[current] + matrix[current][i];
                         if (currentDist < minDist)
                         {
                             minDist = currentDist;
                             minVertex = i;
-                            parent = parents[minVertex];
                         }
-                        dist[i] = min(dist[i], currentDist);
-                    }
-                }
-
-                for (int i = current + 1; i < n; i++)
-                {
-                    if (!used[i])
-                    {
-                        currentDist = dist[current] + matrix[current][i];
-                        if (currentDist < minDist)
+                        if (dist[i] > currentDist)
                         {
-                            minDist = currentDist;
-                            minVertex = i;
-                            parent = parents[minVertex];
+                            //update distance and way
+                            dist[i] = currentDist;
+                            stringWays[i] = stringWays[current];
                         }
-                        dist[i] = min(dist[i], currentDist);
                     }
                 }
 
                 used[minVertex] = true;
-                parents[minVertex] = parent;
+                stringWays[minVertex] += "->" + minVertex.ToString();
                 current = minVertex;
-                addVertexToWay(parents[current], current, minVertex);
+                ways[vertex][current].Weight = dist[current];
             }
-        }
-
-        private int min(int a, int b)
-        {
-            return a < b ? a : b;
+            addVertexToWay(vertex, stringWays);
+            ways[vertex][vertex].Weight = 0;
+            ways[vertex][vertex].RealWay = vertex.ToString() + "->" + vertex.ToString();
         }
 
         private bool isAllPassed(bool[] used)
@@ -187,5 +194,12 @@ namespace Graph
             s += (s.Length == 0) ? add.ToString() : "->" + add.ToString();
             ways[first][second].RealWay = s;
         }
+
+        private void addVertexToWay(int vertex, string[] list)
+        {
+            for (int i = 0; i < n; i++)
+                ways[vertex][i].RealWay = list[i];
+        }
+
     }
 }

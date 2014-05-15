@@ -8,16 +8,33 @@ namespace Graph
 {
     class MinTree
     {
+        /*
+         * this class uses kruskal algorithm
+         * we get array of edges, sort them and then adding them
+         * by disjoint set union (union-find) algorithm
+         */
+
         private Graph graph;
+
+        private Graph resultTree;
 
         private int n;
 
         public MinTree(Graph graph)
         {
             this.graph = graph;
+            n = graph.vertexesCount();
+            resultTree = kruskalTree();
         }
 
-        public Graph kruskalTree()
+        public Graph getMinTree()
+        {
+            if (resultTree == null)
+                resultTree = kruskalTree();
+            return resultTree;
+        }
+
+        private Graph kruskalTree()
         {
             Edge[] edgesArray = graph.getEdges().ToArray();
             Graph res = GraphFactory.emptyGraph(n);
@@ -32,6 +49,7 @@ namespace Graph
             return res;
         }
 
+        //disjoint set union class
         private class GraphSets
         {
             //set of vertexes

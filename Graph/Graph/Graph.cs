@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,18 +8,33 @@ namespace Graph
 {
     class Graph
     {
+        /*
+         * graph is represented by matrix of vertexes and by list of edges
+         * graph is simple, not-oriented
+         * we can do all stuff with it, such as removing, adding vertexes or edges
+         * there are also 3 algorithms - graph connected, 
+         * spanning tree and minimum way. The last algorithm also could be 
+         * calculated by floyd or by dijkstra algorithm
+         */
+
         //very big number which will represented as infinity in some algorithms
         public const int VERY_BIG_NUMBER = 99999999;
 
+        //matrix 
         private int[][] matrix;
 
-        public LinkedList<Edge> edges;
+        //list of edges
+        public EdgesLinkedList edges;
 
         private int n = 0; //vertex count
         private int m = 0; //edges count
 
+        //calculating different algorithms is rather long operation,
+        //so we save last result and if there are no changes, we just show last result
+        //this field shows if there were some changes with graph
         private bool wasChanged;
 
+        //fields of algorithm
         private GraphConnected graphConnected;
         private MinTree minTree;
         private MinWay minWay;
@@ -30,10 +44,12 @@ namespace Graph
 
         }
 
+        //reading Matrix from file
+        //calculating edges count and creating list of edges
         public void readMatrix(StreamReader reader)
         {
             //matrix is simmetrical, 
-            //count of non-zero elements in the right top trianglу will be edges count
+            //count of non-zero elements in the right top triangle will be edges count
             n = Convert.ToInt32(reader.ReadLine());
             matrix = new int[n][];
             for (int i = 0; i < n; i++)
@@ -55,11 +71,13 @@ namespace Graph
             initAlgorithms();
         }
 
+        //reading edges list from file
+        //calculating vertexes count and creating matrix
         public void readEdges(StreamReader reader)
         {
             //max number of vertex + 1 will be count of vertexes
             this.m = Convert.ToInt32(reader.ReadLine());
-            edges = new LinkedList<Edge>();
+            edges = new EdgesLinkedList();
             int nCalc = 0;
             for (int i = 0; i < m; i++)
             {
@@ -70,7 +88,7 @@ namespace Graph
                     nCalc = verxtexFirst;
                 if (vertexSecond > nCalc)
                     nCalc = vertexSecond;
-                edges.AddLast(new Edge(verxtexFirst,
+                edges.append(new Edge(verxtexFirst,
                     vertexSecond, Convert.ToInt32(tokens[2])));
             }
             this.n = nCalc + 1;
@@ -88,23 +106,31 @@ namespace Graph
             matrix = GraphFactory.createMatrix(edges, n, m);
         }
 
+        //just going throw list and removing edges, which vertex is param
+        //then transform list to matrix
         public void deleteVertex(int index)
         {
             if (index >= n || index < 0)
                 throw new Exception("Vertex index is out of bounds exception");
             for (int i = 0; i < m; i++)
             {
-                Edge edge = edges.ElementAt(i);
+                Edge edge = edges.get(i);
                 if (edge.First == index || edge.Second == index)
                 {
-                    edges.Remove(edge);
+                    edges.remove(i);
                     m--;
+                    i--;
                 }
             }
+            n--;
+            //changing vertex indexes
+            edges.setEdgesAfterRemovingVertex(index);
             transformEdgesToMatrix();
             wasChanged = true;
         }
 
+        //add new vertex with index
+        //creating new matrix and copy old values; insert new values
         public void addVertex(int index)
         {
             if (index > n || index < 0)
@@ -113,6 +139,8 @@ namespace Graph
             int[][] newMatrix = new int[n][];
             for (int i = 0; i < n; i++)
                 newMatrix[i] = new int[n];
+
+            //a lot of cycles, but there are no any way
             for (int i = 0; i < index; i++)
                 for (int j = 0; j < index; j++)
                     newMatrix[i][j] = matrix[i][j];
@@ -135,6 +163,7 @@ namespace Graph
             wasChanged = true;
         }
 
+        //just set all vertexes ways to infinity
         public void changeVertex(int index)
         {
             if (index > n || index < 0)
@@ -145,45 +174,59 @@ namespace Graph
                 matrix[index][i] = VERY_BIG_NUMBER;
             }
             wasChanged = true;
+            transformMatrixToEdges();
         }
 
+        //check, if such edge contains, we just change it's weight, else add new
         public void addEdge(Edge edge)
         {
             if (edge.First > n || edge.Second > n)
                 throw new Exception("There are no such vertex in graph!");
-            m++;
-            edges.AddLast(edge);
-            transformEdgesToMatrix();
+            if (edges.contains(edge))
+            {
+                edges.change(edge.First, edge.Second, edge.Weigth);
+            }
+            else
+            {
+                m++;
+                edges.append(edge);
+                transformEdgesToMatrix();
+            }
             wasChanged = true;
         }
 
+        //go through the list while such edge not found; then remove it
         public void deleteEdge(int firstVertex, int secondVertex)
         {
             if ((firstVertex >= n || firstVertex < 0) ||
                 (secondVertex >= n || secondVertex < 0))
                 throw new Exception("Edge index is out of bounds exception");
-            foreach (Edge edge in edges)
-                if (edge.First == firstVertex &&  edge.Second == secondVertex)
+            for (int i = 0; i < m; i++)
+            {
+                Edge edge = edges.get(i);
+                if (edge.First == firstVertex && edge.Second == secondVertex)
                 {
-                    edges.Remove(edge);
+                    edges.remove(i);
                     break;
                 }
+            }
             m--;
             wasChanged = true;
             transformEdgesToMatrix();
         }
 
-        public void changeEdge(int firstVertex, int secondVertex, int weigth)
+        //change one edge
+        public void changeEdge(int firstVertex, int secondVertex, int weight)
         {
             if ((firstVertex >= n || firstVertex < 0) ||
                 (secondVertex >= n || secondVertex < 0))
                 throw new Exception("Edge index is out of bounds exception");
-            deleteEdge(firstVertex, secondVertex);
-            addEdge(new Edge(firstVertex, secondVertex, weigth));
+            edges.change(firstVertex, secondVertex, weight);
             transformEdgesToMatrix();
             wasChanged = true;
         }
 
+        //return a beautiful representation of martix with different big numbers also
         public String matrixToString()
         {
             String res = "";
@@ -196,6 +239,12 @@ namespace Graph
             return res;
         }
 
+        /*
+         * all these methods are the same;
+         * if there are nothing has changes, it just call previous result
+         * in all these classes results is getting in constructor
+         */
+
         public bool isConnected()
         {
             if (wasChanged)
@@ -203,21 +252,31 @@ namespace Graph
                 graphConnected = new GraphConnected(this);
                 wasChanged = false;
             }
-            return graphConnected.isConnected();
+            return graphConnected.getConnected();
         }
 
         public Graph minSpanningTree()
         {
+            if (!isConnected())
+            {
+                throw new Exception("Graph is not connected, I can't create min tree!!");
+            }
             if (wasChanged)
             {
                 minTree = new MinTree(this);
                 wasChanged = false;
             }
-            return minTree.kruskalTree();
+            return minTree.getMinTree();
         }
+
+        //methods for printing different types of ways
 
         public String minimumWay(int firstVertex, int secondVertex)
         {
+            if (!isConnected())
+            {
+                throw new Exception("Graph is not connected, I can't create min way!!");
+            }
             if (wasChanged)
             {
                 minWay = new MinWay(this);
@@ -229,6 +288,10 @@ namespace Graph
 
         public String minimumWay(int vertex)
         {
+            if (!isConnected())
+            {
+                throw new Exception("Graph is not connected, I can't create min way!!");
+            }
             if (wasChanged)
             {
                 minWay = new MinWay(this);
@@ -239,6 +302,10 @@ namespace Graph
 
         public String minimumWay()
         {
+            if (!isConnected())
+            {
+                throw new Exception("Graph is not connected, I can't create min way!!");
+            }
             if (wasChanged)
             {
                 minWay = new MinWay(this);
@@ -246,6 +313,8 @@ namespace Graph
             }
             return allWaysToString(minWay.floydWays());
         }
+
+        //some help methods
 
         public int vertexesCount()
         {
@@ -262,7 +331,7 @@ namespace Graph
             return matrix;
         }
 
-        public LinkedList<Edge> getEdges()
+        public EdgesLinkedList getEdges()
         {
             return edges;
         }
@@ -272,7 +341,7 @@ namespace Graph
             String res = "";
             for (int i = 0; i < m; i++)
             {
-                res += edges.ElementAt(i).toString();
+                res += edges.get(i).toString();
                 res += "\n";
             }
             return res;

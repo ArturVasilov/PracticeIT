@@ -8,6 +8,8 @@ namespace Graph
 {
     class Way
     {
+        //simple class to keep and print way from one vertex in graph to another
+
         private int weight;
 
         private String way;

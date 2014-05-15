@@ -8,6 +8,11 @@ namespace Graph
 {
     class GraphConnected
     {
+        /*
+         * just a simple recursive algorithm, it is trying to visit
+         * all vertexes, and returns false, if i impossible
+         */
+
         private Graph graph;
 
         private int n;
@@ -15,6 +20,8 @@ namespace Graph
         bool[] flags;
 
         int[][] matrix;
+
+        private bool isConnected;
 
         public GraphConnected(Graph graph)
         {
@@ -24,9 +31,15 @@ namespace Graph
             for (int i = 0; i < n; i++)
                 flags[i] = false;
             matrix = graph.getMatrix();
+            isConnected = IsConnected();
         }
 
-        public bool isConnected()
+        public bool getConnected()
+        {
+            return isConnected;
+        }
+
+        private bool IsConnected()
         {
             if (n < 2)
                 return true;

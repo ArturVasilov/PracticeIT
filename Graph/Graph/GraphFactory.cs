@@ -8,7 +8,12 @@ namespace Graph
 {
     class GraphFactory
     {
-        public static int[][] createMatrix(LinkedList<Edge> edges, int n, int m)
+        /* this class is a simple factory with static methods of 
+         * creating list of edges from matrix and visa versa
+         * also there are method to get emtpy graph of n vertexes without edges
+         */
+
+        public static int[][] createMatrix(EdgesLinkedList edges, int n, int m)
         {
             int[][] matrix = new int[n][];
             for (int i = 0; i < n; i++)
@@ -18,17 +23,17 @@ namespace Graph
                     matrix[i][j] = Graph.VERY_BIG_NUMBER;
             for (int i = 0; i < m; i++)
             {
-                Edge edge = edges.ElementAt(i);
+                Edge edge = edges.get(i);
                 matrix[edge.First][edge.Second] = edge.Weigth;
                 matrix[edge.Second][edge.First] = edge.Weigth;
             }
             return matrix;
         }
 
-        public static LinkedList<Edge> createEdges(int[][] matrix)
+        public static EdgesLinkedList createEdges(int[][] matrix)
         {
             int n = matrix.Length;
-            LinkedList<Edge> list = new LinkedList<Edge>();
+            EdgesLinkedList list = new EdgesLinkedList();
             int k = 0; //index to add to edges
             for (int i = 0; i < n; i++)
             {
@@ -36,7 +41,7 @@ namespace Graph
                 {
                     if (matrix[i][j] < Graph.VERY_BIG_NUMBER)
                     {
-                        list.AddLast(new Edge(i, j, matrix[i][j]));
+                        list.append(new Edge(i, j, matrix[i][j]));
                         k++;
                     }
                 }

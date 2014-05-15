@@ -19,6 +19,7 @@ namespace Graph
             this.weigth = weigth;
         }
 
+        //it allow us use Arrays.sort() for this class
         public int CompareTo(Edge edge)
         {
             return Weigth.CompareTo(edge.Weigth);
@@ -47,6 +48,12 @@ namespace Graph
             return "First vertex: " + First
                 + "; Second vertex: " + Second
                 + "; Edge weight: " + Weigth;
+        }
+
+        //graph is simple, so edges are equal, when their vertexes are the same
+        public bool Equals(Edge edge)
+        {
+            return First == edge.First && Second == edge.Second;
         }
     }
 }
