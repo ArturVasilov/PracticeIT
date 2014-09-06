@@ -46,5 +46,10 @@ namespace DocumentsSecurity
                 profit = income - expense;
             }
         }
+
+        public long Profit
+        {
+            get { return profit; }
+        }
     }
 }

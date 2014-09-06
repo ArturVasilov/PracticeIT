@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DocumentsSecurity
 {
-    class Programmer : Document
+    public class Programmer : Document
     {
         private string name;
 
@@ -12,12 +12,12 @@ namespace DocumentsSecurity
 
         private LinkedList<string> skills;
 
-        public Programmer(long id, string description, String name, int salary, params string[] values) : base(id, DocumentType.Employee, description)
+        public Programmer(long id, string description, string name, int salary, string[] skillsParams) : base(id, DocumentType.Employee, description)
         {
             Name = name;
             Salary = salary;
             skills = new LinkedList<String>();
-            foreach (string skill in skills) 
+            foreach (string skill in skillsParams) 
             {
                 skills.AddLast(skill);
             }
@@ -43,6 +43,11 @@ namespace DocumentsSecurity
                     throw new ArgumentException("salary shouldn't be less than zero!");
                 }
             }
+        }
+
+        public LinkedList<string> Skills
+        {
+            get { return skills; }
         }
 
         public void addSkill(string skill)

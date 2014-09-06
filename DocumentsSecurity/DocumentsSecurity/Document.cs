@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace DocumentsSecurity
 {
-    class Document
+    public class Document
     {
         public enum DocumentType
         {
             Employee,
             Project,
             Finance,
+            None,
         };
 
         private long id;
@@ -23,6 +24,7 @@ namespace DocumentsSecurity
 
         public Document(long id, DocumentType type, string description)
         {
+            Id = id;
             Type = type;
             Description = description;
         }
