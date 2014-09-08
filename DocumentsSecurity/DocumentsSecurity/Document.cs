@@ -8,24 +8,18 @@ namespace DocumentsSecurity
 {
     public class Document
     {
-        public enum DocumentType
-        {
-            Employee,
-            Project,
-            Finance,
-            None,
-        };
+        public const string DOCUMENTS_TAG = "documents";
+        public const string DOCUMENT_TAG = "document";
+        public const string ID = "id";
+        public const string DESCRIPTION = "description";
 
         private long id;
 
-        private DocumentType type;
-
         private string description;
 
-        public Document(long id, DocumentType type, string description)
+        public Document(long id, string description)
         {
             Id = id;
-            Type = type;
             Description = description;
         }
 
@@ -43,12 +37,6 @@ namespace DocumentsSecurity
                     throw new ArgumentException("id shouldn't be less than zero!");
                 }
             }
-        }
-
-        public DocumentType Type
-        {
-            get { return type; }
-            set { type = value; }
         }
 
         public string Description

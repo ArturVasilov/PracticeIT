@@ -6,28 +6,22 @@ using System.Threading.Tasks;
 
 namespace DocumentsSecurity
 {
-    class Finance : Document
+    public class Finance : Document
     {
-        private long expense;
+        public const string INCOME = "income";
+        public const string EXPENSE = "expense";
+        public const string PROFIT = "profit";
 
         private long income;
 
+        private long expense;
+
         private long profit;
 
-        public Finance(long id, string description, long expense, long income) : base(id, DocumentType.Finance, description)
+        public Finance(long id, string description, long income, long expense) : base(id, description)
         {
-            Expense = expense;
             Income = income;
-        }
-
-        public long Expense
-        {
-            get { return expense; }
-            set
-            {
-                expense = value < 0 ? -value : value;
-                profit = income - expense;
-            }
+            Expense = expense;
         }
 
         public long Income
@@ -43,6 +37,16 @@ namespace DocumentsSecurity
                 {
                     income = value;
                 }
+                profit = income - expense;
+            }
+        }
+
+        public long Expense
+        {
+            get { return expense; }
+            set
+            {
+                expense = value < 0 ? -value : value;
                 profit = income - expense;
             }
         }

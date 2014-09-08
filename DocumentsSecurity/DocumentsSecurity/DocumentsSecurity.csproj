@@ -53,11 +53,23 @@
     <Compile Include="AddDocumentDialog.Designer.cs">
       <DependentUpon>AddDocumentDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddFinanceDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddFinanceDialog.Designer.cs">
+      <DependentUpon>AddFinanceDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddProgrammerDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AddProgrammerDialog.Designer.cs">
       <DependentUpon>AddProgrammerDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddProjectDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddProjectDialog.Designer.cs">
+      <DependentUpon>AddProjectDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Company.cs" />
     <Compile Include="Decryptor.cs" />
@@ -79,8 +91,14 @@
     <EmbeddedResource Include="AddDocumentDialog.resx">
       <DependentUpon>AddDocumentDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddFinanceDialog.resx">
+      <DependentUpon>AddFinanceDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddProgrammerDialog.resx">
       <DependentUpon>AddProgrammerDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddProjectDialog.resx">
+      <DependentUpon>AddProjectDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

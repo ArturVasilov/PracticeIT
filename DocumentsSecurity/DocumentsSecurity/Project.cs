@@ -6,8 +6,14 @@ using System.Text.RegularExpressions;
 
 namespace DocumentsSecurity
 {
-    class Project : Document
+    public class Project : Document
     {
+        public const string CUSTOMER = "customer";
+        public const string COST = "cost";
+        public const string DATE = "date";
+        public const string PERFORMERS = "performers";
+        public const string PERFORMER = "performer";
+
         private string customer;
 
         private long cost;
@@ -16,8 +22,8 @@ namespace DocumentsSecurity
 
         private LinkedList<string> performersNames;
 
-        public Project(long id, string description, string customer, long cost, string date, params string[] performersNames) 
-            : base(id, DocumentType.Project, description)
+        public Project(long id, string description, string customer, long cost, string date, string[] performersNames) 
+            : base(id, description)
         {
             Customer = customer;
             Date = date;

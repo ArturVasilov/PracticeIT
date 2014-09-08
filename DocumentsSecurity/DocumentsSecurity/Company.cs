@@ -19,7 +19,8 @@ namespace DocumentsSecurity
         {
             //TODO : change to XmlSecurityWrapper
             xml = new XmlController(FILENAME);
-            allDocuments = new LinkedList<Document>();
+            //allDocuments = new LinkedList<Document>();
+            allDocuments = xml.AllDocuments;
         }
 
         public void addDocument(Document document)
@@ -60,6 +61,18 @@ namespace DocumentsSecurity
             }
             xml.addFinance(finance);
             allDocuments.AddLast(finance);
+        }
+
+        public bool containsId(long id)
+        {
+            foreach (Document document in allDocuments)
+            {
+                if (id == document.Id)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static Company Instance

@@ -12,6 +12,8 @@ namespace DocumentsSecurity
 {
     public partial class AddDocumentDialog : Form
     {
+        private Document document;
+
         public AddDocumentDialog()
         {
             InitializeComponent();
@@ -21,23 +23,41 @@ namespace DocumentsSecurity
         {
             get
             {
-                long id = -1;
-                try 
-                {
-                    id = long.Parse(IdTextBox.Text);
-                }
-                catch (FormatException)
-                {
-                    throw new Exception("trying parse documents id has failed:(");
-                }
-                catch (Exception)
-                {
-                    throw new Exception("something strange has happened trying parse documents id");
-                }
-                string text = DescriptionTextBox.Text;
-                text = text == null ? "" : text;
-                return new Document(id, Document.DocumentType.None, text);
+                return document;
             }
+        }
+
+        private void OkButton_Click(object sender, EventArgs e)
+        {
+            long id = -1;
+            try
+            {
+                id = long.Parse(IdTextBox.Text);
+            }
+            catch (FormatException)
+            {
+                IdTextBox.BackColor = Color.Red;
+                return;
+            }
+            catch (Exception)
+            {
+                IdTextBox.BackColor = Color.Red;
+                return;
+            }
+            if (Company.Instance.containsId(id))
+            {
+                IdTextBox.BackColor = Color.Red;
+                MessageBox.Show("This id is already exist!");
+                return;
+            }
+
+            string text = DescriptionTextBox.Text;
+            text = text == null ? "" : text;
+
+            document = new Document(id, text);
+
+            this.DialogResult = DialogResult.OK;
+            Close();
         }
     }
 }

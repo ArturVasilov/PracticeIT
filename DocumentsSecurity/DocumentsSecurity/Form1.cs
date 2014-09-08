@@ -18,6 +18,7 @@ namespace DocumentsSecurity
         {
             InitializeComponent();
             company = Company.Instance;
+            //add all documents to list
         }
 
         private void AddDocumentButton_Click(object sender, EventArgs e)
@@ -30,7 +31,6 @@ namespace DocumentsSecurity
             }
             else
             {
-                //TODO : catch exception and restart dialog
                 Document document = addDocumentDialog.getDocument;
                 company.addDocument(document);
                 //add document to form list
@@ -47,10 +47,39 @@ namespace DocumentsSecurity
             }
             else
             {
-                //TODO : catch exception and restart dialog
                 Programmer programmer = addProgrammerDialog.getProgrammer;
                 company.addProgrammer(programmer);
                 //add document to form list
+            }
+        }
+
+        private void AddProjectDocumentButton_Click(object sender, EventArgs e)
+        {
+            AddProjectDialog addProjectDialog = new AddProjectDialog();
+
+            if (addProjectDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            else
+            {
+                Project project = addProjectDialog.getProject;
+                company.addProject(project);
+            }
+        }
+
+        private void AddFinanceDocumentButton_Click(object sender, EventArgs e)
+        {
+            AddFinanceDialog addFinanceDialog = new AddFinanceDialog();
+
+            if (addFinanceDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            else
+            {
+                Finance finance = addFinanceDialog.getFinance;
+                company.addFinance(finance);
             }
         }
     }

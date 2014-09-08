@@ -32,7 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DocumentProgrammerNameTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.ProgrammertDocumentIdTextBox = new System.Windows.Forms.TextBox();
+            this.DocumentProgrammerIdTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.DocumentProgrammerSalaryTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -59,7 +59,7 @@
             this.DocumentProgrammerNameTextBox.Location = new System.Drawing.Point(99, 48);
             this.DocumentProgrammerNameTextBox.Name = "DocumentProgrammerNameTextBox";
             this.DocumentProgrammerNameTextBox.Size = new System.Drawing.Size(379, 27);
-            this.DocumentProgrammerNameTextBox.TabIndex = 2;
+            this.DocumentProgrammerNameTextBox.TabIndex = 1;
             // 
             // label2
             // 
@@ -71,13 +71,13 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Идентификатор документа - ";
             // 
-            // ProgrammertDocumentIdTextBox
+            // DocumentProgrammerIdTextBox
             // 
-            this.ProgrammertDocumentIdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ProgrammertDocumentIdTextBox.Location = new System.Drawing.Point(285, 8);
-            this.ProgrammertDocumentIdTextBox.Name = "ProgrammertDocumentIdTextBox";
-            this.ProgrammertDocumentIdTextBox.Size = new System.Drawing.Size(193, 27);
-            this.ProgrammertDocumentIdTextBox.TabIndex = 1;
+            this.DocumentProgrammerIdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DocumentProgrammerIdTextBox.Location = new System.Drawing.Point(285, 8);
+            this.DocumentProgrammerIdTextBox.Name = "DocumentProgrammerIdTextBox";
+            this.DocumentProgrammerIdTextBox.Size = new System.Drawing.Size(193, 27);
+            this.DocumentProgrammerIdTextBox.TabIndex = 0;
             // 
             // label3
             // 
@@ -95,7 +95,7 @@
             this.DocumentProgrammerSalaryTextBox.Location = new System.Drawing.Point(260, 94);
             this.DocumentProgrammerSalaryTextBox.Name = "DocumentProgrammerSalaryTextBox";
             this.DocumentProgrammerSalaryTextBox.Size = new System.Drawing.Size(218, 27);
-            this.DocumentProgrammerSalaryTextBox.TabIndex = 3;
+            this.DocumentProgrammerSalaryTextBox.TabIndex = 2;
             // 
             // label4
             // 
@@ -122,18 +122,18 @@
             this.DocumentProgrammerDescriptionTextBox.Location = new System.Drawing.Point(16, 214);
             this.DocumentProgrammerDescriptionTextBox.Name = "DocumentProgrammerDescriptionTextBox";
             this.DocumentProgrammerDescriptionTextBox.Size = new System.Drawing.Size(462, 139);
-            this.DocumentProgrammerDescriptionTextBox.TabIndex = 5;
+            this.DocumentProgrammerDescriptionTextBox.TabIndex = 4;
             this.DocumentProgrammerDescriptionTextBox.Text = "";
             // 
             // DocumentProgrammerOKButton
             // 
-            this.DocumentProgrammerOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.DocumentProgrammerOKButton.Location = new System.Drawing.Point(16, 359);
             this.DocumentProgrammerOKButton.Name = "DocumentProgrammerOKButton";
             this.DocumentProgrammerOKButton.Size = new System.Drawing.Size(227, 32);
-            this.DocumentProgrammerOKButton.TabIndex = 6;
+            this.DocumentProgrammerOKButton.TabIndex = 5;
             this.DocumentProgrammerOKButton.Text = "Готово";
             this.DocumentProgrammerOKButton.UseVisualStyleBackColor = true;
+            this.DocumentProgrammerOKButton.Click += new System.EventHandler(this.DocumentProgrammerOKButton_Click_1);
             // 
             // DocumentProgrammerCancelButton
             // 
@@ -141,7 +141,7 @@
             this.DocumentProgrammerCancelButton.Location = new System.Drawing.Point(252, 359);
             this.DocumentProgrammerCancelButton.Name = "DocumentProgrammerCancelButton";
             this.DocumentProgrammerCancelButton.Size = new System.Drawing.Size(226, 32);
-            this.DocumentProgrammerCancelButton.TabIndex = 7;
+            this.DocumentProgrammerCancelButton.TabIndex = 6;
             this.DocumentProgrammerCancelButton.Text = "Отмена";
             this.DocumentProgrammerCancelButton.UseVisualStyleBackColor = true;
             // 
@@ -151,11 +151,10 @@
             this.DocumentProgrammerSkillsTextBox.Location = new System.Drawing.Point(16, 157);
             this.DocumentProgrammerSkillsTextBox.Name = "DocumentProgrammerSkillsTextBox";
             this.DocumentProgrammerSkillsTextBox.Size = new System.Drawing.Size(462, 27);
-            this.DocumentProgrammerSkillsTextBox.TabIndex = 4;
+            this.DocumentProgrammerSkillsTextBox.TabIndex = 3;
             // 
             // AddProgrammerDialog
             // 
-            this.AcceptButton = this.DocumentProgrammerOKButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.DocumentProgrammerCancelButton;
@@ -168,7 +167,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.DocumentProgrammerSalaryTextBox);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.ProgrammertDocumentIdTextBox);
+            this.Controls.Add(this.DocumentProgrammerIdTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.DocumentProgrammerNameTextBox);
             this.Controls.Add(this.label1);
@@ -178,7 +177,7 @@
             this.MinimizeBox = false;
             this.Name = "AddProgrammerDialog";
             this.ShowInTaskbar = false;
-            this.Text = "AddProgrammerDialog";
+            this.Text = "Добавление информации о сотруднике";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,7 +188,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox DocumentProgrammerNameTextBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox ProgrammertDocumentIdTextBox;
+        private System.Windows.Forms.TextBox DocumentProgrammerIdTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox DocumentProgrammerSalaryTextBox;
         private System.Windows.Forms.Label label4;

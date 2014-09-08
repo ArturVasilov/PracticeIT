@@ -6,13 +6,18 @@ namespace DocumentsSecurity
 {
     public class Programmer : Document
     {
+        public const string NAME = "name";
+        public const string SALARY = "salary";
+        public const string SKILLS = "skills";
+        public const string SKILL = "skill";
+
         private string name;
 
         private int salary;
 
         private LinkedList<string> skills;
 
-        public Programmer(long id, string description, string name, int salary, string[] skillsParams) : base(id, DocumentType.Employee, description)
+        public Programmer(long id, string description, string name, int salary, string[] skillsParams) : base(id, description)
         {
             Name = name;
             Salary = salary;

@@ -93,6 +93,7 @@
             this.AddProjectDocumentButton.TabIndex = 3;
             this.AddProjectDocumentButton.Text = "Добавить проектный договор";
             this.AddProjectDocumentButton.UseVisualStyleBackColor = true;
+            this.AddProjectDocumentButton.Click += new System.EventHandler(this.AddProjectDocumentButton_Click);
             // 
             // AddFinanceDocumentButton
             // 
@@ -102,6 +103,7 @@
             this.AddFinanceDocumentButton.TabIndex = 4;
             this.AddFinanceDocumentButton.Text = "Добавить финансовую декларацию";
             this.AddFinanceDocumentButton.UseVisualStyleBackColor = true;
+            this.AddFinanceDocumentButton.Click += new System.EventHandler(this.AddFinanceDocumentButton_Click);
             // 
             // EditChosenDocumentButton
             // 
