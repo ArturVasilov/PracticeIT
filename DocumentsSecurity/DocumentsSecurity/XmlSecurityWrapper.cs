@@ -8,13 +8,13 @@ namespace DocumentsSecurity
 {
     class XmlSecurityWrapper : XmlController
     {
-        private Encryptor encryptor;
+        /*private Encryptor encryptor;
         private Decryptor decryptor;
 
         public XmlSecurityWrapper(string fileName, Encryptor encryptor, Decryptor decryptor) : base(fileName)
         {
             this.encryptor = encryptor;
             this.decryptor = decryptor;
-        }
+        }*/
     }
 }

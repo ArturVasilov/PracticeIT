@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DocumentsForm));
-            this.listView1 = new System.Windows.Forms.ListView();
             this.ShowChosenDocumentButton = new System.Windows.Forms.Button();
             this.RemoveChosenDocumentButton = new System.Windows.Forms.Button();
             this.AddDocumentButton = new System.Windows.Forms.Button();
@@ -37,33 +36,28 @@
             this.AddProjectDocumentButton = new System.Windows.Forms.Button();
             this.AddFinanceDocumentButton = new System.Windows.Forms.Button();
             this.EditChosenDocumentButton = new System.Windows.Forms.Button();
+            this.DocumentsListBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
-            // 
-            // listView1
-            // 
-            this.listView1.Location = new System.Drawing.Point(10, 12);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(500, 400);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // ShowChosenDocumentButton
             // 
-            this.ShowChosenDocumentButton.Location = new System.Drawing.Point(10, 418);
+            this.ShowChosenDocumentButton.Location = new System.Drawing.Point(10, 407);
             this.ShowChosenDocumentButton.Name = "ShowChosenDocumentButton";
-            this.ShowChosenDocumentButton.Size = new System.Drawing.Size(160, 30);
+            this.ShowChosenDocumentButton.Size = new System.Drawing.Size(160, 41);
             this.ShowChosenDocumentButton.TabIndex = 5;
             this.ShowChosenDocumentButton.Text = "Посмотреть";
             this.ShowChosenDocumentButton.UseVisualStyleBackColor = true;
+            this.ShowChosenDocumentButton.Click += new System.EventHandler(this.ShowChosenDocumentButton_Click);
             // 
             // RemoveChosenDocumentButton
             // 
-            this.RemoveChosenDocumentButton.Location = new System.Drawing.Point(350, 418);
+            this.RemoveChosenDocumentButton.Location = new System.Drawing.Point(350, 407);
             this.RemoveChosenDocumentButton.Name = "RemoveChosenDocumentButton";
-            this.RemoveChosenDocumentButton.Size = new System.Drawing.Size(160, 30);
+            this.RemoveChosenDocumentButton.Size = new System.Drawing.Size(163, 41);
             this.RemoveChosenDocumentButton.TabIndex = 7;
             this.RemoveChosenDocumentButton.Text = "Удалить";
             this.RemoveChosenDocumentButton.UseVisualStyleBackColor = true;
+            this.RemoveChosenDocumentButton.Click += new System.EventHandler(this.RemoveChosenDocumentButton_Click);
             // 
             // AddDocumentButton
             // 
@@ -71,9 +65,9 @@
             this.AddDocumentButton.Name = "AddDocumentButton";
             this.AddDocumentButton.Size = new System.Drawing.Size(240, 50);
             this.AddDocumentButton.TabIndex = 1;
-            this.AddDocumentButton.Text = "Добавить документ";
+            this.AddDocumentButton.Text = "Добавить отчет";
             this.AddDocumentButton.UseVisualStyleBackColor = true;
-            this.AddDocumentButton.Click += new System.EventHandler(this.AddDocumentButton_Click);
+            this.AddDocumentButton.Click += new System.EventHandler(this.AddReportButton_Click);
             // 
             // AddProgrammerDocumentButton
             // 
@@ -107,18 +101,30 @@
             // 
             // EditChosenDocumentButton
             // 
-            this.EditChosenDocumentButton.Location = new System.Drawing.Point(180, 418);
+            this.EditChosenDocumentButton.Location = new System.Drawing.Point(180, 407);
             this.EditChosenDocumentButton.Name = "EditChosenDocumentButton";
-            this.EditChosenDocumentButton.Size = new System.Drawing.Size(160, 30);
+            this.EditChosenDocumentButton.Size = new System.Drawing.Size(160, 41);
             this.EditChosenDocumentButton.TabIndex = 6;
             this.EditChosenDocumentButton.Text = "Редактировать";
             this.EditChosenDocumentButton.UseVisualStyleBackColor = true;
+            this.EditChosenDocumentButton.Click += new System.EventHandler(this.EditChosenDocumentButton_Click);
+            // 
+            // DocumentsListBox
+            // 
+            this.DocumentsListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DocumentsListBox.FormattingEnabled = true;
+            this.DocumentsListBox.ItemHeight = 20;
+            this.DocumentsListBox.Location = new System.Drawing.Point(10, 17);
+            this.DocumentsListBox.Name = "DocumentsListBox";
+            this.DocumentsListBox.Size = new System.Drawing.Size(500, 384);
+            this.DocumentsListBox.TabIndex = 0;
             // 
             // DocumentsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 453);
+            this.Controls.Add(this.DocumentsListBox);
             this.Controls.Add(this.EditChosenDocumentButton);
             this.Controls.Add(this.AddFinanceDocumentButton);
             this.Controls.Add(this.AddProjectDocumentButton);
@@ -126,7 +132,6 @@
             this.Controls.Add(this.AddDocumentButton);
             this.Controls.Add(this.RemoveChosenDocumentButton);
             this.Controls.Add(this.ShowChosenDocumentButton);
-            this.Controls.Add(this.listView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DocumentsForm";
             this.Text = "Система обработки документов";
@@ -136,7 +141,6 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Button ShowChosenDocumentButton;
         private System.Windows.Forms.Button RemoveChosenDocumentButton;
         private System.Windows.Forms.Button AddDocumentButton;
@@ -144,6 +148,7 @@
         private System.Windows.Forms.Button AddProjectDocumentButton;
         private System.Windows.Forms.Button AddFinanceDocumentButton;
         private System.Windows.Forms.Button EditChosenDocumentButton;
+        private System.Windows.Forms.ListBox DocumentsListBox;
     }
 }
 

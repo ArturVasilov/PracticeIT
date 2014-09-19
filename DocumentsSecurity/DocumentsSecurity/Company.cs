@@ -2,35 +2,37 @@
 
 using System.Collections.Generic;
 
+using System.Data;
+
 namespace DocumentsSecurity
 {
-    class Company
+    public class Company
     {
         public const string FILENAME = "alldocuments.xml";
 
-        private XmlController xml;
+        private DataSet dataSet;
 
         private static volatile Company instance;
         private static object syncRoot = new Object();
 
-        private LinkedList<Document> allDocuments;
-
         private Company() 
         {
-            //TODO : change to XmlSecurityWrapper
-            xml = new XmlController(FILENAME);
-            //allDocuments = new LinkedList<Document>();
-            allDocuments = xml.AllDocuments;
+            dataSet = new DataSet();
+            initDataSet();
         }
 
-        public void addDocument(Document document)
+        private void initDataSet()
+        {
+            DataTable reportsTable = new DataTable(Report.DOCUMENTS_TYPE);
+            //TODO create database
+        }
+
+        public void addDocument(Report report)
         { 
-            if (document == null)
+            if (report == null)
             {
                 throw new ArgumentNullException("tried to add null reference for a document");
             }
-            xml.addDocument(document);
-            allDocuments.AddLast(document);
         }
 
         public void addProgrammer(Programmer programmer)
@@ -39,8 +41,6 @@ namespace DocumentsSecurity
             {
                 throw new ArgumentNullException("tried to add null reference for a programmer document");
             }
-            xml.addProgrammer(programmer);
-            allDocuments.AddLast(programmer);
         }
 
         public void addProject(Project project)
@@ -49,8 +49,6 @@ namespace DocumentsSecurity
             {
                 throw new ArgumentNullException("tried to add null reference for a project document");
             }
-            xml.addProject(project);
-            allDocuments.AddLast(project);
         }
 
         public void addFinance(Finance finance)
@@ -59,19 +57,10 @@ namespace DocumentsSecurity
             {
                 throw new ArgumentNullException("tried to add null reference for a finance document");
             }
-            xml.addFinance(finance);
-            allDocuments.AddLast(finance);
         }
 
         public bool containsId(long id)
         {
-            foreach (Document document in allDocuments)
-            {
-                if (id == document.Id)
-                {
-                    return true;
-                }
-            }
             return false;
         }
 

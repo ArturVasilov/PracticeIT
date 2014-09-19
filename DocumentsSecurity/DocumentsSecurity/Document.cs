@@ -8,10 +8,8 @@ namespace DocumentsSecurity
 {
     public class Document
     {
-        public const string DOCUMENTS_TAG = "documents";
-        public const string DOCUMENT_TAG = "document";
         public const string ID = "id";
-        public const string DESCRIPTION = "description";
+        public const string DOCUMENT_DESCRIPTION = "description";
 
         private long id;
 
@@ -21,6 +19,11 @@ namespace DocumentsSecurity
         {
             Id = id;
             Description = description;
+        }
+
+        public override string ToString()
+        {
+            return "Документ: идентификатор - " + id;
         }
 
         public long Id

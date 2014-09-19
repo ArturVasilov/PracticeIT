@@ -18,10 +18,15 @@ namespace DocumentsSecurity
         {
             InitializeComponent();
             company = Company.Instance;
-            //add all documents to list
+            addAllDocumentsToListBox();
         }
 
-        private void AddDocumentButton_Click(object sender, EventArgs e)
+        private void addAllDocumentsToListBox()
+        {
+            //TODO : add documents to form
+        }
+
+        private void AddReportButton_Click(object sender, EventArgs e)
         {
             AddDocumentDialog addDocumentDialog = new AddDocumentDialog();
 
@@ -32,8 +37,7 @@ namespace DocumentsSecurity
             else
             {
                 Document document = addDocumentDialog.getDocument;
-                company.addDocument(document);
-                //add document to form list
+                //TODO : add document to form list
             }
         }
 
@@ -81,6 +85,21 @@ namespace DocumentsSecurity
                 Finance finance = addFinanceDialog.getFinance;
                 company.addFinance(finance);
             }
+        }
+
+        private void ShowChosenDocumentButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EditChosenDocumentButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RemoveChosenDocumentButton_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -11,7 +11,7 @@ namespace DocumentsSecurity
 {
     class XmlController
     {
-        private string fileName;
+        /*private string fileName;
 
         public XmlController(string fileName)
         {
@@ -328,5 +328,6 @@ namespace DocumentsSecurity
         {
             get { return fileName; }
         }
+    }*/
     }
 }

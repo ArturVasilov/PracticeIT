@@ -6,10 +6,14 @@ namespace DocumentsSecurity
 {
     public class Programmer : Document
     {
-        public const string NAME = "name";
-        public const string SALARY = "salary";
-        public const string SKILLS = "skills";
-        public const string SKILL = "skill";
+        public const string DOCUMENTS_TYPE = "Programmers";
+
+        public const string DOCUMENT_NAME = "name";
+        public const string DOCUMENT_SALARY = "salary";
+
+        public const string DOCUMENT_SKILLS = "Skills";
+        public const string DOCUMENT_SKILL = "skill";
+        public const string PROGRAMMER_ID = "programmer_id";
 
         private string name;
 
