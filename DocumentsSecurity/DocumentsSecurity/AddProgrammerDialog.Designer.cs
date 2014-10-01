@@ -31,8 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddProgrammerDialog));
             this.label1 = new System.Windows.Forms.Label();
             this.DocumentProgrammerNameTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.DocumentProgrammerIdTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.DocumentProgrammerSalaryTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -47,7 +45,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 51);
+            this.label1.Location = new System.Drawing.Point(12, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 24);
             this.label1.TabIndex = 0;
@@ -56,34 +54,16 @@
             // DocumentProgrammerNameTextBox
             // 
             this.DocumentProgrammerNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DocumentProgrammerNameTextBox.Location = new System.Drawing.Point(99, 48);
+            this.DocumentProgrammerNameTextBox.Location = new System.Drawing.Point(99, 21);
             this.DocumentProgrammerNameTextBox.Name = "DocumentProgrammerNameTextBox";
             this.DocumentProgrammerNameTextBox.Size = new System.Drawing.Size(379, 27);
             this.DocumentProgrammerNameTextBox.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(12, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(271, 24);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Идентификатор документа - ";
-            // 
-            // DocumentProgrammerIdTextBox
-            // 
-            this.DocumentProgrammerIdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DocumentProgrammerIdTextBox.Location = new System.Drawing.Point(285, 8);
-            this.DocumentProgrammerIdTextBox.Name = "DocumentProgrammerIdTextBox";
-            this.DocumentProgrammerIdTextBox.Size = new System.Drawing.Size(193, 27);
-            this.DocumentProgrammerIdTextBox.TabIndex = 0;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(12, 93);
+            this.label3.Location = new System.Drawing.Point(12, 71);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(242, 24);
             this.label3.TabIndex = 4;
@@ -92,7 +72,7 @@
             // DocumentProgrammerSalaryTextBox
             // 
             this.DocumentProgrammerSalaryTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DocumentProgrammerSalaryTextBox.Location = new System.Drawing.Point(260, 94);
+            this.DocumentProgrammerSalaryTextBox.Location = new System.Drawing.Point(260, 71);
             this.DocumentProgrammerSalaryTextBox.Name = "DocumentProgrammerSalaryTextBox";
             this.DocumentProgrammerSalaryTextBox.Size = new System.Drawing.Size(218, 27);
             this.DocumentProgrammerSalaryTextBox.TabIndex = 2;
@@ -111,7 +91,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(12, 130);
+            this.label5.Location = new System.Drawing.Point(12, 112);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(231, 24);
             this.label5.TabIndex = 7;
@@ -148,7 +128,7 @@
             // DocumentProgrammerSkillsTextBox
             // 
             this.DocumentProgrammerSkillsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DocumentProgrammerSkillsTextBox.Location = new System.Drawing.Point(16, 157);
+            this.DocumentProgrammerSkillsTextBox.Location = new System.Drawing.Point(16, 139);
             this.DocumentProgrammerSkillsTextBox.Name = "DocumentProgrammerSkillsTextBox";
             this.DocumentProgrammerSkillsTextBox.Size = new System.Drawing.Size(462, 27);
             this.DocumentProgrammerSkillsTextBox.TabIndex = 3;
@@ -167,8 +147,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.DocumentProgrammerSalaryTextBox);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.DocumentProgrammerIdTextBox);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.DocumentProgrammerNameTextBox);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -187,8 +165,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox DocumentProgrammerNameTextBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox DocumentProgrammerIdTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox DocumentProgrammerSalaryTextBox;
         private System.Windows.Forms.Label label4;

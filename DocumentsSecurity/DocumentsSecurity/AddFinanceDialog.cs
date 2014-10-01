@@ -27,30 +27,8 @@ namespace DocumentsSecurity
         private void DocumentFinanceOKButton_Click(object sender, EventArgs e)
         {
             bool isAllOk = true;
-            long id = -1;
-            #region getting id
-            try
-            {
-                id = long.Parse(DocumentFinanceIdTextBox.Text);
-                DocumentFinanceIdTextBox.BackColor = Color.White;
-            }
-            catch (FormatException)
-            {
-                DocumentFinanceIdTextBox.BackColor = Color.Red;
-                isAllOk = false;
-            }
-            catch (Exception)
-            {
-                DocumentFinanceIdTextBox.BackColor = Color.Red;
-                isAllOk = false;
-            }
-            if (Company.Instance.containsId(id))
-            {
-                DocumentFinanceIdTextBox.BackColor = Color.Red;
-                MessageBox.Show("This id is already exist!");
-                return;
-            }
-            #endregion
+            //id isn't important, it's generating at runtime
+            long id = 0;
 
             long income = -1;
             #region getting income

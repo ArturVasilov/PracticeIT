@@ -47,12 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddDocumentDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AddDocumentDialog.Designer.cs">
-      <DependentUpon>AddDocumentDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="AddFinanceDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +64,12 @@
     </Compile>
     <Compile Include="AddProjectDialog.Designer.cs">
       <DependentUpon>AddProjectDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddReportDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddReportDialog.Designer.cs">
+      <DependentUpon>AddReportDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Company.cs" />
     <Compile Include="Decryptor.cs" />
@@ -89,9 +89,6 @@
     <Compile Include="Report.cs" />
     <Compile Include="XmlController.cs" />
     <Compile Include="XmlSecurityWrapper.cs" />
-    <EmbeddedResource Include="AddDocumentDialog.resx">
-      <DependentUpon>AddDocumentDialog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="AddFinanceDialog.resx">
       <DependentUpon>AddFinanceDialog.cs</DependentUpon>
     </EmbeddedResource>

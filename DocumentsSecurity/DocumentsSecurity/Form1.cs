@@ -28,17 +28,7 @@ namespace DocumentsSecurity
 
         private void AddReportButton_Click(object sender, EventArgs e)
         {
-            AddDocumentDialog addDocumentDialog = new AddDocumentDialog();
-
-            if (addDocumentDialog.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
-            else
-            {
-                Document document = addDocumentDialog.getDocument;
-                //TODO : add document to form list
-            }
+            
         }
 
         private void AddProgrammerDocumentButton_Click(object sender, EventArgs e)
@@ -53,7 +43,7 @@ namespace DocumentsSecurity
             {
                 Programmer programmer = addProgrammerDialog.getProgrammer;
                 company.addProgrammer(programmer);
-                //add document to form list
+                //TODO : add document to form list
             }
         }
 
@@ -69,6 +59,7 @@ namespace DocumentsSecurity
             {
                 Project project = addProjectDialog.getProject;
                 company.addProject(project);
+                //TODO : add document to form list
             }
         }
 
@@ -84,6 +75,7 @@ namespace DocumentsSecurity
             {
                 Finance finance = addFinanceDialog.getFinance;
                 company.addFinance(finance);
+                //TODO : add document to form list
             }
         }
 
@@ -100,6 +92,11 @@ namespace DocumentsSecurity
         private void RemoveChosenDocumentButton_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void DocumentsForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            company.save();
         }
     }
 }

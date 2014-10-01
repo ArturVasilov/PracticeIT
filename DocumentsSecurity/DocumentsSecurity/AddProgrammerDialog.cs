@@ -30,30 +30,8 @@ namespace DocumentsSecurity
         private void DocumentProgrammerOKButton_Click_1(object sender, EventArgs e)
         {
             bool isAllOk = true;
-            long id = -1;
-            #region getting id
-            try
-            {
-                id = long.Parse(DocumentProgrammerIdTextBox.Text);
-                DocumentProgrammerIdTextBox.BackColor = Color.White;
-            }
-            catch (FormatException)
-            {
-                DocumentProgrammerIdTextBox.BackColor = Color.Red;
-                isAllOk = false;
-            }
-            catch (Exception)
-            {
-                DocumentProgrammerIdTextBox.BackColor = Color.Red;
-                isAllOk = false;
-            }
-            if (Company.Instance.containsId(id))
-            {
-                DocumentProgrammerIdTextBox.BackColor = Color.Red;
-                MessageBox.Show("This id is already exist!");
-                return;
-            }
-            #endregion
+            //id isn't important, it's generating at runtime
+            long id = 0;
 
             string name = DocumentProgrammerNameTextBox.Text;
             name = name == null ? "" : name;

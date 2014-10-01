@@ -13,7 +13,9 @@ namespace DocumentsSecurity
 
         public const string DOCUMENT_SKILLS = "Skills";
         public const string DOCUMENT_SKILL = "skill";
-        public const string PROGRAMMER_ID = "programmer_id";
+        public const string DOCUMENT_PROGRAMMER_ID = "programmer_id";
+        public const string DOCUMENT_SKILL_ID = "skill_id";
+        public const string DOCUMENT_SKILLS_RELATIONS = "skills_relation";
 
         private string name;
 

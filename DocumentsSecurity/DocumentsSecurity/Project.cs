@@ -15,8 +15,10 @@ namespace DocumentsSecurity
         public const string DOCUMENT_DATE = "date";
 
         public const string DOCUMENT_PERFORMERS = "Performers";
-        public const string DOCUMENT_PERFORMER_ID = "performeer_id";
-        public const string DOCUMENT_PERFORMER = "performer";
+        public const string DOCUMENT_PERFORMER_ID = "performer_id";
+        public const string DOCUMENT_PROGRAMMER_NAME = "programmer_name";
+        public const string DOCUMENT_PERFORMERS_RELATIONS = "performers_relations";
+        public const string DOCUMENT_PROJECT_ID = "project_id";
 
         private string customer;
 

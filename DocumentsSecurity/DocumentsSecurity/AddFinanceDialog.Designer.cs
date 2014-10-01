@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddFinanceDialog));
-            this.label2 = new System.Windows.Forms.Label();
-            this.DocumentFinanceIdTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.DocumentFinanceIncomeTextBox = new System.Windows.Forms.TextBox();
@@ -41,29 +39,11 @@
             this.DocumentFinanceCancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(12, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(271, 24);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Идентификатор документа - ";
-            // 
-            // DocumentFinanceIdTextBox
-            // 
-            this.DocumentFinanceIdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DocumentFinanceIdTextBox.Location = new System.Drawing.Point(284, 8);
-            this.DocumentFinanceIdTextBox.Name = "DocumentFinanceIdTextBox";
-            this.DocumentFinanceIdTextBox.Size = new System.Drawing.Size(96, 27);
-            this.DocumentFinanceIdTextBox.TabIndex = 0;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 51);
+            this.label1.Location = new System.Drawing.Point(9, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(137, 24);
             this.label1.TabIndex = 6;
@@ -73,7 +53,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(12, 98);
+            this.label3.Location = new System.Drawing.Point(8, 68);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(144, 24);
             this.label3.TabIndex = 7;
@@ -82,7 +62,7 @@
             // DocumentFinanceIncomeTextBox
             // 
             this.DocumentFinanceIncomeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DocumentFinanceIncomeTextBox.Location = new System.Drawing.Point(152, 48);
+            this.DocumentFinanceIncomeTextBox.Location = new System.Drawing.Point(152, 24);
             this.DocumentFinanceIncomeTextBox.Name = "DocumentFinanceIncomeTextBox";
             this.DocumentFinanceIncomeTextBox.Size = new System.Drawing.Size(228, 27);
             this.DocumentFinanceIncomeTextBox.TabIndex = 1;
@@ -90,7 +70,7 @@
             // DocumentFinanceExpenseTextBox
             // 
             this.DocumentFinanceExpenseTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DocumentFinanceExpenseTextBox.Location = new System.Drawing.Point(152, 98);
+            this.DocumentFinanceExpenseTextBox.Location = new System.Drawing.Point(150, 68);
             this.DocumentFinanceExpenseTextBox.Name = "DocumentFinanceExpenseTextBox";
             this.DocumentFinanceExpenseTextBox.Size = new System.Drawing.Size(228, 27);
             this.DocumentFinanceExpenseTextBox.TabIndex = 2;
@@ -99,7 +79,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(12, 139);
+            this.label4.Location = new System.Drawing.Point(9, 114);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(158, 24);
             this.label4.TabIndex = 10;
@@ -107,9 +87,9 @@
             // 
             // DocumentFinanceDescriptionTextBox
             // 
-            this.DocumentFinanceDescriptionTextBox.Location = new System.Drawing.Point(12, 166);
+            this.DocumentFinanceDescriptionTextBox.Location = new System.Drawing.Point(12, 141);
             this.DocumentFinanceDescriptionTextBox.Name = "DocumentFinanceDescriptionTextBox";
-            this.DocumentFinanceDescriptionTextBox.Size = new System.Drawing.Size(368, 139);
+            this.DocumentFinanceDescriptionTextBox.Size = new System.Drawing.Size(368, 164);
             this.DocumentFinanceDescriptionTextBox.TabIndex = 3;
             this.DocumentFinanceDescriptionTextBox.Text = "";
             // 
@@ -146,15 +126,13 @@
             this.Controls.Add(this.DocumentFinanceIncomeTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.DocumentFinanceIdTextBox);
-            this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddFinanceDialog";
             this.ShowInTaskbar = false;
-            this.Text = "AddFinanceDialog";
+            this.Text = "Финансовая декларация";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -162,8 +140,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox DocumentFinanceIdTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox DocumentFinanceIncomeTextBox;

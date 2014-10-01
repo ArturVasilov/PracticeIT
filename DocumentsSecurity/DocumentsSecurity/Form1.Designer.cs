@@ -135,6 +135,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DocumentsForm";
             this.Text = "Система обработки документов";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.DocumentsForm_FormClosed);
             this.ResumeLayout(false);
 
         }

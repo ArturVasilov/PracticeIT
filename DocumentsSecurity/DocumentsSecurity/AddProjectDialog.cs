@@ -29,30 +29,8 @@ namespace DocumentsSecurity
         private void DocumentProjectOKButton_Click(object sender, EventArgs e)
         {
             bool isAllOk = true;
-            long id = -1;
-            #region getting id
-            try
-            {
-                id = long.Parse(DocumemtProjectIdTextBox.Text);
-                DocumemtProjectIdTextBox.BackColor = Color.White;
-            }
-            catch (FormatException)
-            {
-                DocumemtProjectIdTextBox.BackColor = Color.Red;
-                isAllOk = false;
-            }
-            catch (Exception)
-            {
-                DocumemtProjectIdTextBox.BackColor = Color.Red;
-                isAllOk = false;
-            }
-            if (Company.Instance.containsId(id))
-            {
-                DocumemtProjectIdTextBox.BackColor = Color.Red;
-                MessageBox.Show("This id is already exist!");
-                return;
-            }
-            #endregion
+            //id isn't important, it's generating at runtime
+            long id = 0;
 
             string customer = DocumentProjectCustomerTextBox.Text;
             customer = customer == null ? "" : customer;
