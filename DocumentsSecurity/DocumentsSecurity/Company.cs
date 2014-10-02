@@ -23,9 +23,9 @@ namespace DocumentsSecurity
         private void initDataSet()
         {
             dataSet = new DataSet();
-            dataSet.ReadXml(FILENAME, XmlReadMode.ReadSchema);
+            //dataSet.ReadXml(FILENAME, XmlReadMode.ReadSchema);
             #region create database
-            /*
+            //*
             DataTable reportsTable = new DataTable(Report.DOCUMENTS_TYPE);
             reportsTable.Columns.Add(new DataColumn(Report.ID, Type.GetType("System.Int32")));
             reportsTable.Columns.Add(new DataColumn(Report.DOCUMENT_AUTHOR_ID, Type.GetType("System.Int32")));
@@ -61,24 +61,42 @@ namespace DocumentsSecurity
 
             DataTable skillsTable = new DataTable(Programmer.DOCUMENT_SKILLS);
             skillsTable.Columns.Add(new DataColumn(Programmer.DOCUMENT_SKILL_ID, Type.GetType("System.Int32")));
-            skillsTable.Columns.Add(new DataColumn(Programmer.DOCUMENT_PROGRAMMER_ID, Type.GetType("System.Int32")));
             skillsTable.Columns.Add(new DataColumn(Programmer.DOCUMENT_SKILL, Type.GetType("System.String")));
             DataColumn[] skillsKey = new DataColumn[] { skillsTable.Columns[Programmer.DOCUMENT_SKILL_ID] };
             skillsTable.PrimaryKey = skillsKey;
             dataSet.Tables.Add(skillsTable);
 
-            DataRelation programmerRelation = new DataRelation(Programmer.DOCUMENT_SKILLS_RELATIONS,
-                new DataColumn[] { dataSet.Tables[Programmer.DOCUMENTS_TYPE].Columns[Programmer.ID] },
-                new DataColumn[] { dataSet.Tables[Programmer.DOCUMENT_SKILLS].Columns[Programmer.DOCUMENT_PROGRAMMER_ID] });
-            dataSet.Relations.Add(programmerRelation);
+            DataTable programmersSkillsTable = new DataTable(Programmer.DOCUMENT_POGRAMMER_SKILLS);
+            programmersSkillsTable.Columns.Add(new DataColumn(Programmer.DOCUMENT_SKILL_ID, Type.GetType("System.Int32")));
+            programmersSkillsTable.Columns.Add(new DataColumn(Programmer.DOCUMENT_PROGRAMMER_ID, Type.GetType("System.Int32")));
+            DataColumn[] programmerSkillsKey = new DataColumn[] 
+            {
+                programmersSkillsTable.Columns[0], programmersSkillsTable.Columns[1],
+            };
+            programmersSkillsTable.PrimaryKey = programmerSkillsKey;
+            dataSet.Tables.Add(programmersSkillsTable);
 
             DataTable performersTable = new DataTable(Project.DOCUMENT_PERFORMERS);
             performersTable.Columns.Add(new DataColumn(Project.DOCUMENT_PERFORMER_ID, Type.GetType("System.Int32")));
             performersTable.Columns.Add(new DataColumn(Project.DOCUMENT_PROJECT_ID, Type.GetType("System.Int32")));
-            performersTable.Columns.Add(new DataColumn(Project.DOCUMENT_PROGRAMMER_NAME, Type.GetType("System.String")));
             DataColumn[] performersKey = new DataColumn[] { performersTable.Columns[Project.DOCUMENT_PERFORMER_ID] };
             performersTable.PrimaryKey = performersKey;
             dataSet.Tables.Add(performersTable);
+
+            DataRelation reportsRelation = new DataRelation(Report.DOCUMENT_RELATIONS,
+                new DataColumn[] { reportsTable.Columns[Report.DOCUMENT_AUTHOR_ID] },
+                new DataColumn[] { reportsTable.Columns[Programmer.ID] });
+            dataSet.Relations.Add(reportsRelation);
+
+            DataRelation skillsRelation = new DataRelation(Programmer.DOCUMENT_SKILLS_RELATIONS,
+                new DataColumn[] { skillsTable.Columns[Programmer.DOCUMENT_SKILL_ID] },
+                new DataColumn[] { programmerTable.Columns[Programmer.ID] });
+            dataSet.Relations.Add(skillsRelation);
+
+            DataRelation programmerRelation = new DataRelation(Programmer.DOCUMENT_PROGRAMMER_SKILLS_RELATION,
+                new DataColumn[] { dataSet.Tables[Programmer.DOCUMENTS_TYPE].Columns[Programmer.ID] },
+                new DataColumn[] { dataSet.Tables[Programmer.DOCUMENT_SKILLS].Columns[Programmer.DOCUMENT_PROGRAMMER_ID] });
+            dataSet.Relations.Add(programmerRelation);
 
             DataRelation performersRelation = new DataRelation(Project.DOCUMENT_PERFORMERS_RELATIONS,
                 new DataColumn[] { dataSet.Tables[Project.DOCUMENTS_TYPE].Columns[Project.ID] },
@@ -86,7 +104,7 @@ namespace DocumentsSecurity
             dataSet.Relations.Add(performersRelation);
 
             dataSet.WriteXml(FILENAME, XmlWriteMode.WriteSchema);
-            */
+            //*/
             #endregion
         }
 

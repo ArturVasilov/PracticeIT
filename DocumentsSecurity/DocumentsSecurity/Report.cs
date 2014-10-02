@@ -12,6 +12,8 @@ namespace DocumentsSecurity
 
         public const string DOCUMENT_AUTHOR_ID = "author_id";
 
+        public const string DOCUMENT_RELATIONS = "reports_relation";
+
         private long authorId;
 
         private long AuthorId
