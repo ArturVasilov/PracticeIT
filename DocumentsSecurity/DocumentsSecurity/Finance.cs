@@ -8,12 +8,6 @@ namespace DocumentsSecurity
 {
     public class Finance : Document
     {
-        public const string DOCUMENTS_TYPE = "Finances";
-
-        public const string DOCUMENT_INCOME = "income";
-        public const string DOCUMENT_EXPENSE = "expense";
-        public const string DOCUMENT_PROFIT = "profit";
-
         private long income;
 
         private long expense;

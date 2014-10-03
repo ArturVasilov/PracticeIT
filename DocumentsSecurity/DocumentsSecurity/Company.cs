@@ -26,49 +26,49 @@ namespace DocumentsSecurity
             //dataSet.ReadXml(FILENAME, XmlReadMode.ReadSchema);
             #region create database
             //*
-            DataTable reportsTable = new DataTable(Report.DOCUMENTS_TYPE);
-            reportsTable.Columns.Add(new DataColumn(Report.ID, Type.GetType("System.Int32")));
-            reportsTable.Columns.Add(new DataColumn(Report.DOCUMENT_AUTHOR_ID, Type.GetType("System.Int32")));
-            reportsTable.Columns.Add(new DataColumn(Report.DOCUMENT_DESCRIPTION, Type.GetType("System.String")));
-            reportsTable.PrimaryKey = new DataColumn[] { reportsTable.Columns[Report.ID] };
+            DataTable reportsTable = new DataTable(DatabaseConstants.Report.TABLE_NAME);
+            reportsTable.Columns.Add(new DataColumn(DatabaseConstants.Report.ID, Type.GetType("System.Int32")));
+            reportsTable.Columns.Add(new DataColumn(DatabaseConstants.Report.AUTHOR, Type.GetType("System.Int32")));
+            reportsTable.Columns.Add(new DataColumn(DatabaseConstants.Report.CONTENT, Type.GetType("System.String")));
+            reportsTable.PrimaryKey = new DataColumn[] { reportsTable.Columns[DatabaseConstants.Report.ID] };
             dataSet.Tables.Add(reportsTable);
 
-            DataTable financeTable = new DataTable(Finance.DOCUMENTS_TYPE);
-            financeTable.Columns.Add(new DataColumn(Finance.ID, Type.GetType("System.Int32")));
-            financeTable.PrimaryKey = new DataColumn[] { financeTable.Columns[Finance.ID] };
-            financeTable.Columns.Add(new DataColumn(Finance.DOCUMENT_INCOME, Type.GetType("System.Int64")));
-            financeTable.Columns.Add(new DataColumn(Finance.DOCUMENT_EXPENSE, Type.GetType("System.Int64")));
-            financeTable.Columns.Add(new DataColumn(Finance.DOCUMENT_PROFIT, Type.GetType("System.Int64")));
-            financeTable.Columns.Add(new DataColumn(Finance.DOCUMENT_DESCRIPTION, Type.GetType("System.String")));
+            DataTable financeTable = new DataTable(DatabaseConstants.Finance.TABLE_NAME);
+            financeTable.Columns.Add(new DataColumn(DatabaseConstants.Finance.ID, Type.GetType("System.Int32")));
+            financeTable.Columns.Add(new DataColumn(DatabaseConstants.Finance.INCOME, Type.GetType("System.Int64")));
+            financeTable.Columns.Add(new DataColumn(DatabaseConstants.Finance.EXPENSE, Type.GetType("System.Int64")));
+            financeTable.Columns.Add(new DataColumn(DatabaseConstants.Finance.PROFIT, Type.GetType("System.Int64")));
+            financeTable.Columns.Add(new DataColumn(DatabaseConstants.Finance.DESCRIPTION, Type.GetType("System.String")));
+            financeTable.PrimaryKey = new DataColumn[] { financeTable.Columns[DatabaseConstants.Finance.ID] };
             dataSet.Tables.Add(financeTable);
 
-            DataTable projectsTable = new DataTable(Project.DOCUMENTS_TYPE);
-            projectsTable.Columns.Add(new DataColumn(Project.ID, Type.GetType("System.Int32")));
-            projectsTable.PrimaryKey = new DataColumn[] { projectsTable.Columns[Project.ID] };
-            projectsTable.Columns.Add(new DataColumn(Project.DOCUMENT_CUSTOMER, Type.GetType("System.String")));
-            projectsTable.Columns.Add(new DataColumn(Project.DOCUMENT_COST, Type.GetType("System.Int32")));
-            projectsTable.Columns.Add(new DataColumn(Project.DOCUMENT_DATE, Type.GetType("System.String")));
-            projectsTable.Columns.Add(new DataColumn(Project.DOCUMENT_DESCRIPTION, Type.GetType("System.String")));
+            DataTable projectsTable = new DataTable(DatabaseConstants.Project.TABLE_NAME);
+            projectsTable.Columns.Add(new DataColumn(DatabaseConstants.Project.ID, Type.GetType("System.Int32")));
+            projectsTable.Columns.Add(new DataColumn(DatabaseConstants.Project.CUSTOMER, Type.GetType("System.String")));
+            projectsTable.Columns.Add(new DataColumn(DatabaseConstants.Project.COST, Type.GetType("System.Int32")));
+            projectsTable.Columns.Add(new DataColumn(DatabaseConstants.Project.DATE, Type.GetType("System.String")));
+            projectsTable.Columns.Add(new DataColumn(DatabaseConstants.Project.DESCRIPTION, Type.GetType("System.String")));
+            projectsTable.PrimaryKey = new DataColumn[] { projectsTable.Columns[DatabaseConstants.Project.ID] };
             dataSet.Tables.Add(projectsTable);
 
-            DataTable programmerTable = new DataTable(Programmer.DOCUMENTS_TYPE);
-            programmerTable.Columns.Add(new DataColumn(Programmer.ID, Type.GetType("System.Int32")));
-            programmerTable.PrimaryKey = new DataColumn[] { programmerTable.Columns[Programmer.ID] };
-            programmerTable.Columns.Add(new DataColumn(Programmer.DOCUMENT_NAME, Type.GetType("System.String")));
-            programmerTable.Columns.Add(new DataColumn(Programmer.DOCUMENT_SALARY, Type.GetType("System.Int32")));
-            programmerTable.Columns.Add(new DataColumn(Project.DOCUMENT_DESCRIPTION, Type.GetType("System.String")));
+            DataTable programmerTable = new DataTable(DatabaseConstants.Programmer.TABLE_NAME);
+            programmerTable.Columns.Add(new DataColumn(DatabaseConstants.Programmer.ID, Type.GetType("System.Int32")));
+            programmerTable.Columns.Add(new DataColumn(DatabaseConstants.Programmer.NAME, Type.GetType("System.String")));
+            programmerTable.Columns.Add(new DataColumn(DatabaseConstants.Programmer.SALARY, Type.GetType("System.Int32")));
+            programmerTable.Columns.Add(new DataColumn(DatabaseConstants.Programmer.DESCRIPTION, Type.GetType("System.String")));
+            programmerTable.PrimaryKey = new DataColumn[] { programmerTable.Columns[DatabaseConstants.Programmer.ID] };
             dataSet.Tables.Add(programmerTable);
 
-            DataTable skillsTable = new DataTable(Programmer.DOCUMENT_SKILLS);
-            skillsTable.Columns.Add(new DataColumn(Programmer.DOCUMENT_SKILL_ID, Type.GetType("System.Int32")));
-            skillsTable.Columns.Add(new DataColumn(Programmer.DOCUMENT_SKILL, Type.GetType("System.String")));
-            DataColumn[] skillsKey = new DataColumn[] { skillsTable.Columns[Programmer.DOCUMENT_SKILL_ID] };
+            DataTable skillsTable = new DataTable(DatabaseConstants.Skill.TABLE_NAME);
+            skillsTable.Columns.Add(new DataColumn(DatabaseConstants.Skill.ID, Type.GetType("System.Int32")));
+            skillsTable.Columns.Add(new DataColumn(DatabaseConstants.Skill.SKILL, Type.GetType("System.String")));
+            DataColumn[] skillsKey = new DataColumn[] { skillsTable.Columns[DatabaseConstants.Skill.ID] };
             skillsTable.PrimaryKey = skillsKey;
             dataSet.Tables.Add(skillsTable);
 
-            DataTable programmersSkillsTable = new DataTable(Programmer.DOCUMENT_POGRAMMER_SKILLS);
-            programmersSkillsTable.Columns.Add(new DataColumn(Programmer.DOCUMENT_SKILL_ID, Type.GetType("System.Int32")));
-            programmersSkillsTable.Columns.Add(new DataColumn(Programmer.DOCUMENT_PROGRAMMER_ID, Type.GetType("System.Int32")));
+            DataTable programmersSkillsTable = new DataTable(DatabaseConstants.ProgrammersSkills.TABLE_NAME);
+            programmersSkillsTable.Columns.Add(new DataColumn(DatabaseConstants.ProgrammersSkills.SKILL_ID, Type.GetType("System.Int32")));
+            programmersSkillsTable.Columns.Add(new DataColumn(DatabaseConstants.ProgrammersSkills.PROGRAMMER_ID, Type.GetType("System.Int32")));
             DataColumn[] programmerSkillsKey = new DataColumn[] 
             {
                 programmersSkillsTable.Columns[0], programmersSkillsTable.Columns[1],
@@ -76,31 +76,35 @@ namespace DocumentsSecurity
             programmersSkillsTable.PrimaryKey = programmerSkillsKey;
             dataSet.Tables.Add(programmersSkillsTable);
 
-            DataTable performersTable = new DataTable(Project.DOCUMENT_PERFORMERS);
-            performersTable.Columns.Add(new DataColumn(Project.DOCUMENT_PERFORMER_ID, Type.GetType("System.Int32")));
-            performersTable.Columns.Add(new DataColumn(Project.DOCUMENT_PROJECT_ID, Type.GetType("System.Int32")));
-            DataColumn[] performersKey = new DataColumn[] { performersTable.Columns[Project.DOCUMENT_PERFORMER_ID] };
+            DataTable performersTable = new DataTable(DatabaseConstants.Performer.TABLE_NAME);
+            performersTable.Columns.Add(new DataColumn(DatabaseConstants.Performer.PROGRAMMER_ID, Type.GetType("System.Int32")));
+            performersTable.Columns.Add(new DataColumn(DatabaseConstants.Performer.PROJECT_ID, Type.GetType("System.Int32")));
+            DataColumn[] performersKey = new DataColumn[] 
+            { 
+                performersTable.Columns[DatabaseConstants.Performer.PROGRAMMER_ID], 
+                performersTable.Columns[DatabaseConstants.Performer.PROJECT_ID], 
+            };
             performersTable.PrimaryKey = performersKey;
             dataSet.Tables.Add(performersTable);
 
-            DataRelation reportsRelation = new DataRelation(Report.DOCUMENT_RELATIONS,
-                new DataColumn[] { reportsTable.Columns[Report.DOCUMENT_AUTHOR_ID] },
-                new DataColumn[] { reportsTable.Columns[Programmer.ID] });
-            dataSet.Relations.Add(reportsRelation);
+            /*DataRelation reportsRelation = new DataRelation(DatabaseConstants.Relations.REPORT_PROGRAMMER,
+                new DataColumn[] { reportsTable.Columns[DatabaseConstants.Report.ID] },
+                new DataColumn[] { reportsTable.Columns[DatabaseConstants.Programmer.ID] });
+            dataSet.Relations.Add(reportsRelation);*/
 
-            DataRelation skillsRelation = new DataRelation(Programmer.DOCUMENT_SKILLS_RELATIONS,
-                new DataColumn[] { skillsTable.Columns[Programmer.DOCUMENT_SKILL_ID] },
-                new DataColumn[] { programmerTable.Columns[Programmer.ID] });
+            DataRelation skillsRelation = new DataRelation(DatabaseConstants.Relations.SKILL_PROGRAMMERSKILL,
+                new DataColumn[] { skillsTable.Columns[DatabaseConstants.Skill.ID] },
+                new DataColumn[] { programmerTable.Columns[DatabaseConstants.ProgrammersSkills.SKILL_ID] });
             dataSet.Relations.Add(skillsRelation);
 
-            DataRelation programmerRelation = new DataRelation(Programmer.DOCUMENT_PROGRAMMER_SKILLS_RELATION,
-                new DataColumn[] { dataSet.Tables[Programmer.DOCUMENTS_TYPE].Columns[Programmer.ID] },
-                new DataColumn[] { dataSet.Tables[Programmer.DOCUMENT_SKILLS].Columns[Programmer.DOCUMENT_PROGRAMMER_ID] });
+            DataRelation programmerRelation = new DataRelation(DatabaseConstants.Relations.SKILL_PROGRAMMER,
+                new DataColumn[] { programmersSkillsTable.Columns[DatabaseConstants.ProgrammersSkills.PROGRAMMER_ID] },
+                new DataColumn[] { programmersSkillsTable.Columns[DatabaseConstants.Programmer.ID] });
             dataSet.Relations.Add(programmerRelation);
 
-            DataRelation performersRelation = new DataRelation(Project.DOCUMENT_PERFORMERS_RELATIONS,
-                new DataColumn[] { dataSet.Tables[Project.DOCUMENTS_TYPE].Columns[Project.ID] },
-                new DataColumn[] { dataSet.Tables[Project.DOCUMENT_PERFORMERS].Columns[Project.DOCUMENT_PROJECT_ID] });
+            DataRelation performersRelation = new DataRelation(DatabaseConstants.Relations.PROJECT_PERFORMER,
+                new DataColumn[] { projectsTable.Columns[DatabaseConstants.Project.ID] },
+                new DataColumn[] { performersTable.Columns[DatabaseConstants.Performer.PROJECT_ID] });
             dataSet.Relations.Add(performersRelation);
 
             dataSet.WriteXml(FILENAME, XmlWriteMode.WriteSchema);
@@ -114,11 +118,11 @@ namespace DocumentsSecurity
             {
                 throw new ArgumentNullException("tried to add null reference for a report document");
             }
-            DataTable table = dataSet.Tables[Report.DOCUMENTS_TYPE];
+            DataTable table = dataSet.Tables[DatabaseConstants.Report.TABLE_NAME];
             DataRow row = table.NewRow();
-            row[Report.ID] = table.Rows.Count + 1;
-            row[Report.DOCUMENT_AUTHOR_ID] = report.Id;
-            row[Report.DOCUMENT_DESCRIPTION] = report.Description;
+            row[DatabaseConstants.Report.ID] = table.Rows.Count + 1;
+            row[DatabaseConstants.Report.AUTHOR] = report.Id;
+            row[DatabaseConstants.Report.CONTENT] = report.Description;
             table.Rows.Add(row);
         }
 
@@ -128,22 +132,25 @@ namespace DocumentsSecurity
             {
                 throw new ArgumentNullException("tried to add null reference for a programmer document");
             }
-            DataTable programmersTable = dataSet.Tables[Programmer.DOCUMENTS_TYPE];
+            DataTable programmersTable = dataSet.Tables[DatabaseConstants.Programmer.TABLE_NAME];
             DataRow programmerRow = programmersTable.NewRow();
             programmer.Id = programmersTable.Rows.Count + 1;
-            programmerRow[Programmer.ID] = programmer.Id;
-            programmerRow[Programmer.DOCUMENT_NAME] = programmer.Name;
-            programmerRow[Programmer.DOCUMENT_SALARY] = programmer.Salary;
-            programmerRow[Programmer.DOCUMENT_DESCRIPTION] = programmer.Description;
+            programmerRow[DatabaseConstants.Programmer.ID] = programmer.Id;
+            programmerRow[DatabaseConstants.Programmer.NAME] = programmer.Name;
+            programmerRow[DatabaseConstants.Programmer.SALARY] = programmer.Salary;
+            programmerRow[DatabaseConstants.Programmer.DESCRIPTION] = programmer.Description;
             programmersTable.Rows.Add(programmerRow);
 
-            DataTable skillsTable = dataSet.Tables[Programmer.DOCUMENT_SKILLS];
+            //TODO
+            DataTable skillsTable = dataSet.Tables[DatabaseConstants.Skill.TABLE_NAME];
             foreach (string skill in programmer.Skills)
             {
                 DataRow skillRow = skillsTable.NewRow();
-                skillRow[Programmer.DOCUMENT_SKILL_ID] = skillsTable.Rows.Count + 1;
+                /*
+                skillRow[DatabaseConstants.Programmer.DOCUMENT_SKILL_ID] = skillsTable.Rows.Count + 1;
                 skillRow[Programmer.DOCUMENT_PROGRAMMER_ID] = programmer.Id;
                 skillRow[Programmer.DOCUMENT_SKILL] = skill;
+                //*/
                 skillsTable.Rows.Add(skillRow);
             }
         }
@@ -154,6 +161,8 @@ namespace DocumentsSecurity
             {
                 throw new ArgumentNullException("tried to add null reference for a project document");
             }
+            //TODO
+            /*
             DataTable projectsTable = dataSet.Tables[Project.DOCUMENTS_TYPE];
             DataRow projectRow = projectsTable.NewRow();
             project.Id = projectsTable.Rows.Count + 1;
@@ -172,6 +181,7 @@ namespace DocumentsSecurity
                 performerRow[Project.DOCUMENT_PROGRAMMER_NAME] = performer;
                 performersTable.Rows.Add(performerRow);
             }
+            //*/
         }
 
         public void addFinance(Finance finance)
@@ -180,13 +190,13 @@ namespace DocumentsSecurity
             {
                 throw new ArgumentNullException("tried to add null reference for a finance document");
             }
-            DataTable financeTable = dataSet.Tables[Finance.DOCUMENTS_TYPE];
+            DataTable financeTable = dataSet.Tables[DatabaseConstants.Finance.TABLE_NAME];
             DataRow financeRow = financeTable.NewRow();
-            financeRow[Finance.ID] = financeTable.Rows.Count + 1;
-            financeRow[Finance.DOCUMENT_INCOME] = finance.Income;
-            financeRow[Finance.DOCUMENT_EXPENSE] = finance.Expense;
-            financeRow[Finance.DOCUMENT_PROFIT] = finance.Profit;
-            financeRow[Finance.DOCUMENT_DESCRIPTION] = finance.Description;
+            financeRow[DatabaseConstants.Finance.ID] = financeTable.Rows.Count + 1;
+            financeRow[DatabaseConstants.Finance.INCOME] = finance.Income;
+            financeRow[DatabaseConstants.Finance.EXPENSE] = finance.Expense;
+            financeRow[DatabaseConstants.Finance.PROFIT] = finance.Profit;
+            financeRow[DatabaseConstants.Finance.DESCRIPTION] = finance.Description;
             financeTable.Rows.Add(financeRow);
         }
 

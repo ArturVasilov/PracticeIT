@@ -8,12 +8,6 @@ namespace DocumentsSecurity
 {
     public class Report : Document
     {
-        public const string DOCUMENTS_TYPE = "Reports";
-
-        public const string DOCUMENT_AUTHOR_ID = "author_id";
-
-        public const string DOCUMENT_RELATIONS = "reports_relation";
-
         private long authorId;
 
         private long AuthorId

@@ -8,18 +8,6 @@ namespace DocumentsSecurity
 {
     public class Project : Document
     {
-        public const string DOCUMENTS_TYPE = "Projects";
-
-        public const string DOCUMENT_CUSTOMER = "customer";
-        public const string DOCUMENT_COST = "cost";
-        public const string DOCUMENT_DATE = "date";
-
-        public const string DOCUMENT_PERFORMERS = "Performers";
-        public const string DOCUMENT_PERFORMER_ID = "performer_id";
-        public const string DOCUMENT_PROGRAMMER_NAME = "programmer_name";
-        public const string DOCUMENT_PERFORMERS_RELATIONS = "performers_relations";
-        public const string DOCUMENT_PROJECT_ID = "project_id";
-
         private string customer;
 
         private long cost;

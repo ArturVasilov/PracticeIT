@@ -8,9 +8,6 @@ namespace DocumentsSecurity
 {
     public class Document
     {
-        public const string ID = "id";
-        public const string DOCUMENT_DESCRIPTION = "description";
-
         private long id;
 
         private string description;
