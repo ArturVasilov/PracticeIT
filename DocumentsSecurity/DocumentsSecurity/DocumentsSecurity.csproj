@@ -72,6 +72,7 @@
       <DependentUpon>AddReportDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Company.cs" />
+    <Compile Include="Database.cs" />
     <Compile Include="DatabaseConstants.cs" />
     <Compile Include="Decryptor.cs" />
     <Compile Include="Document.cs" />

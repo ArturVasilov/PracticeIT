@@ -10,16 +10,16 @@ namespace DocumentsSecurity
 
         private int salary;
 
-        private LinkedList<string> skills;
+        private LinkedList<int> skillsIds;
 
-        public Programmer(long id, string description, string name, int salary, string[] skillsParams) : base(id, description)
+        public Programmer(long id, string description, string name, int salary, int[] skillsIds) : base(id, description)
         {
             Name = name;
             Salary = salary;
-            skills = new LinkedList<String>();
-            foreach (string skill in skillsParams) 
+            this.skillsIds = new LinkedList<int>();
+            foreach (int skill in skillsIds) 
             {
-                skills.AddLast(skill);
+                this.skillsIds.AddLast(skill);
             }
         }
 
@@ -45,19 +45,19 @@ namespace DocumentsSecurity
             }
         }
 
-        public LinkedList<string> Skills
+        public LinkedList<int> SkillsIds
         {
-            get { return skills; }
+            get { return skillsIds; }
         }
 
-        public void addSkill(string skill)
+        public void addSkill(int skillId)
         {
-            skills.AddLast(skill);
+            skillsIds.AddLast(skillId);
         }
 
-        public void removeSkill(string skill)
+        public void removeSkill(int skillId)
         {
-            skills.Remove(skill);
+            skillsIds.Remove(skillId);
         }
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DocumentsSecurity
 {
@@ -72,6 +68,7 @@ namespace DocumentsSecurity
             public const string SKILL_PROGRAMMERSKILL = "skill_programmerskill";
             public const string SKILL_PROGRAMMER = "skill_programmer";
             public const string PROJECT_PERFORMER = "project_performer";
+            public const string PROGRAMMER_PERFORMER = "programmer_performer";
         }
     }
 }

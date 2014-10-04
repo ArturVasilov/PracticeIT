@@ -14,18 +14,18 @@ namespace DocumentsSecurity
 
         private string date;
 
-        private LinkedList<string> performersNames;
+        private LinkedList<int> performersIds;
 
-        public Project(long id, string description, string customer, long cost, string date, string[] performersNames) 
+        public Project(long id, string description, string customer, long cost, string date, int[] performersIds) 
             : base(id, description)
         {
             Customer = customer;
             Date = date;
             Cost = cost;
-            this.performersNames = new LinkedList<string>();
-            foreach (string performer in performersNames)
+            this.performersIds = new LinkedList<int>();
+            foreach (int performerId in performersIds)
             {
-                this.performersNames.AddLast(performer);
+                this.performersIds.AddLast(performerId);
             }
         }
 
@@ -68,19 +68,19 @@ namespace DocumentsSecurity
             }
         }
 
-        public LinkedList<string> PerformersNames
+        public LinkedList<int> PerformersIds
         {
-            get { return performersNames; }
+            get { return performersIds; }
         }
 
-        public void addPerformer(string name)
+        public void addPerformer(int id)
         {
-            performersNames.AddLast(name);
+            performersIds.AddLast(id);
         }
 
-        public void removePerformer(string name)
+        public void removePerformer(int id)
         {
-            performersNames.Remove(name);
+            performersIds.Remove(id);
         }
     }
 }

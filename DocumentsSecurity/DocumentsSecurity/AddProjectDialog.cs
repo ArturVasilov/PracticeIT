@@ -71,19 +71,17 @@ namespace DocumentsSecurity
                 return;
             }
 
-            string[] performers = DocumentProjectPerformersTextBox.Text.Split(',');
-            for (int i = 0; i < performers.Length; i++)
+            //TODO
+            int[] performersIds = new int[5];
+            foreach (int peformerId in performersIds)
             {
-                while (performers[i].StartsWith(" "))
-                {
-                    performers[i] = performers[i].Remove(0, 1);
-                }
+                //do smth
             }
 
             string description = DocumentProjectDescriptionTextBox.Text;
             description = description == null ? "" : description;
 
-            project = new Project(id, description, customer, cost, date, performers);
+            project = new Project(id, description, customer, cost, date, performersIds);
 
             this.DialogResult = DialogResult.OK;
             Close();
