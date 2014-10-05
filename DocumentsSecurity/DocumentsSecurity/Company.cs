@@ -47,6 +47,14 @@ namespace DocumentsSecurity
             database.save();
         }
 
+        public List<Programmer.NameIdPair> getAllProgrammers
+        {
+            get 
+            {
+                return database.getAllProgrammers;
+            }
+        }
+
         public Database Database
         {
             get { return database; }

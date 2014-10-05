@@ -9,19 +9,20 @@ namespace DocumentsSecurity
     {
         public const string FILENAME = "alldocuments.xml";
 
+        private DataSet database;
+
         public Database()
         {
             loadDatabase();
         }
 
-        private DataSet database;
-
         public void loadDatabase()
         {
             database = new DataSet();
-            try 
+            try
             {
                 database.ReadXml(FILENAME, XmlReadMode.ReadSchema);
+                //throw new Exception();
             } catch (Exception) 
             {
                 createNewDatabase();
@@ -81,7 +82,6 @@ namespace DocumentsSecurity
             programmerRow[DatabaseConstants.Programmer.NAME] = programmer.Name;
             programmerRow[DatabaseConstants.Programmer.SALARY] = programmer.Salary;
             programmerRow[DatabaseConstants.Programmer.DESCRIPTION] = programmer.Description;
-            programmersTable.Rows.Add(programmerRow);
 
             DataTable programmersSkillsTable = database.Tables[DatabaseConstants.ProgrammersSkills.TABLE_NAME];
             foreach (int skillId in programmer.SkillsIds)
@@ -91,6 +91,8 @@ namespace DocumentsSecurity
                 skillRow[DatabaseConstants.ProgrammersSkills.SKILL_ID] = skillId;
                 programmersSkillsTable.Rows.Add(skillRow);
             }
+
+            programmersTable.Rows.Add(programmerRow);
         }
 
         public void addDocument(Finance finance)
@@ -109,13 +111,41 @@ namespace DocumentsSecurity
             financeTable.Rows.Add(financeRow);
         }
 
+        public List<Programmer.NameIdPair> getAllProgrammers
+        {
+            get
+            {
+                List<Programmer.NameIdPair> programmers = new List<Programmer.NameIdPair>();
+                foreach (DataRow row in database.Tables[DatabaseConstants.Programmer.TABLE_NAME].Rows)
+                {
+                    int id = (int) row[DatabaseConstants.Programmer.ID];
+                    string name = row[DatabaseConstants.Programmer.NAME].ToString();
+                    programmers.Add(new Programmer.NameIdPair(id, name));
+                }
+                return programmers;
+            }
+        }
+
         public List<int> createIdsListFromSkillsList(List<string> skills)
         {
             DataTable table = database.Tables[DatabaseConstants.Skill.TABLE_NAME];
             List<int> result = new List<int>();
             foreach (string skill in skills)
             {
-                //table.Rows.Find()
+                DataRow row = table.Rows.Find(skill);
+                if (row == null)
+                {
+                    row = table.NewRow();
+                    int id = table.Rows.Count + 1;
+                    row[DatabaseConstants.Skill.ID] = id;
+                    row[DatabaseConstants.Skill.SKILL] = skill;
+                    table.Rows.Add(row);
+                    result.Add(id);
+                }
+                else
+                {
+                    result.Add((int)row[DatabaseConstants.Skill.ID]);
+                }
             }
             return result;
         }
@@ -163,7 +193,7 @@ namespace DocumentsSecurity
             DataTable skillsTable = new DataTable(DatabaseConstants.Skill.TABLE_NAME);
             skillsTable.Columns.Add(new DataColumn(DatabaseConstants.Skill.ID, Type.GetType("System.Int32")));
             skillsTable.Columns.Add(new DataColumn(DatabaseConstants.Skill.SKILL, Type.GetType("System.String")));
-            DataColumn[] skillsKey = new DataColumn[] { skillsTable.Columns[DatabaseConstants.Skill.ID] };
+            DataColumn[] skillsKey = new DataColumn[] { skillsTable.Columns[DatabaseConstants.Skill.SKILL] };
             skillsTable.PrimaryKey = skillsKey;
             database.Tables.Add(skillsTable);
 

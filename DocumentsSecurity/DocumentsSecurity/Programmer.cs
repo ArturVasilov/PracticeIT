@@ -6,6 +6,21 @@ namespace DocumentsSecurity
 {
     public class Programmer : Document
     {
+        public struct NameIdPair
+        {
+            private int id;
+            private string name;
+
+            public string Name { get { return name; } }
+            public int Id { get { return id; } }
+
+            public NameIdPair(int id, string name)
+            {
+                this.id = id;
+                this.name = name;
+            }
+        }
+
         private string name;
 
         private int salary;

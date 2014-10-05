@@ -28,7 +28,18 @@ namespace DocumentsSecurity
 
         private void AddReportButton_Click(object sender, EventArgs e)
         {
-            
+            AddReportDialog addReportDialog = new AddReportDialog();
+
+            if (addReportDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            else
+            {
+                Report report = addReportDialog.getReport;
+                company.addReport(report);
+                //TODO : add document to form list
+            }
         }
 
         private void AddProgrammerDocumentButton_Click(object sender, EventArgs e)
