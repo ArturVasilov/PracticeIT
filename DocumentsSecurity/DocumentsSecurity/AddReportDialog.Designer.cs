@@ -82,6 +82,7 @@
             this.DocumentReportOKButton.TabIndex = 9;
             this.DocumentReportOKButton.Text = "Готово";
             this.DocumentReportOKButton.UseVisualStyleBackColor = true;
+            this.DocumentReportOKButton.Click += new System.EventHandler(this.DocumentReportOKButton_Click);
             // 
             // DocumentReportCancelButton
             // 

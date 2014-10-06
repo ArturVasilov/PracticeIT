@@ -33,5 +33,20 @@ namespace DocumentsSecurity
                 return report;
             }
         }
+
+        private void DocumentReportOKButton_Click(object sender, EventArgs e)
+        {
+            int index = DocumentReportAuthorComboBox.SelectedIndex;
+            if (index < 0)
+            {
+                DocumentReportAuthorComboBox.BackColor = Color.Red;
+                return;
+            }
+            long id = programmers[index].Id;
+            string content = DocumentReportContentTextBox.Text;
+            report = new Report(0, id, content);
+            this.DialogResult = DialogResult.OK;
+            Close();
+        }
     }
 }

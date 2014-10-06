@@ -34,13 +34,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.DocumentProjectCostTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.DocumentProjectPerformersTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.DocumentProjectDescriptionTextBox = new System.Windows.Forms.RichTextBox();
             this.DocumentProjectOKButton = new System.Windows.Forms.Button();
             this.DocumentProjectCancelButton = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.DocumentProjectDateTextBox = new System.Windows.Forms.TextBox();
+            this.DocumentProjectPerformersListBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // label1
@@ -58,7 +58,7 @@
             this.DocumentProjectCustomerTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DocumentProjectCustomerTextBox.Location = new System.Drawing.Point(117, 9);
             this.DocumentProjectCustomerTextBox.Name = "DocumentProjectCustomerTextBox";
-            this.DocumentProjectCustomerTextBox.Size = new System.Drawing.Size(361, 27);
+            this.DocumentProjectCustomerTextBox.Size = new System.Drawing.Size(335, 27);
             this.DocumentProjectCustomerTextBox.TabIndex = 1;
             // 
             // label3
@@ -76,32 +76,24 @@
             this.DocumentProjectCostTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DocumentProjectCostTextBox.Location = new System.Drawing.Point(191, 53);
             this.DocumentProjectCostTextBox.Name = "DocumentProjectCostTextBox";
-            this.DocumentProjectCostTextBox.Size = new System.Drawing.Size(287, 27);
+            this.DocumentProjectCostTextBox.Size = new System.Drawing.Size(261, 27);
             this.DocumentProjectCostTextBox.TabIndex = 2;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(12, 155);
+            this.label5.Location = new System.Drawing.Point(468, 9);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(283, 24);
+            this.label5.Size = new System.Drawing.Size(134, 24);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Исполнители (через запятую):";
-            // 
-            // DocumentProjectPerformersTextBox
-            // 
-            this.DocumentProjectPerformersTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.DocumentProjectPerformersTextBox.Location = new System.Drawing.Point(16, 182);
-            this.DocumentProjectPerformersTextBox.Name = "DocumentProjectPerformersTextBox";
-            this.DocumentProjectPerformersTextBox.Size = new System.Drawing.Size(462, 27);
-            this.DocumentProjectPerformersTextBox.TabIndex = 4;
+            this.label5.Text = "Исполнители:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(12, 233);
+            this.label4.Location = new System.Drawing.Point(12, 151);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(158, 24);
             this.label4.TabIndex = 11;
@@ -109,17 +101,17 @@
             // 
             // DocumentProjectDescriptionTextBox
             // 
-            this.DocumentProjectDescriptionTextBox.Location = new System.Drawing.Point(16, 260);
+            this.DocumentProjectDescriptionTextBox.Location = new System.Drawing.Point(16, 187);
             this.DocumentProjectDescriptionTextBox.Name = "DocumentProjectDescriptionTextBox";
-            this.DocumentProjectDescriptionTextBox.Size = new System.Drawing.Size(462, 139);
+            this.DocumentProjectDescriptionTextBox.Size = new System.Drawing.Size(436, 139);
             this.DocumentProjectDescriptionTextBox.TabIndex = 5;
             this.DocumentProjectDescriptionTextBox.Text = "";
             // 
             // DocumentProjectOKButton
             // 
-            this.DocumentProjectOKButton.Location = new System.Drawing.Point(16, 405);
+            this.DocumentProjectOKButton.Location = new System.Drawing.Point(16, 332);
             this.DocumentProjectOKButton.Name = "DocumentProjectOKButton";
-            this.DocumentProjectOKButton.Size = new System.Drawing.Size(227, 32);
+            this.DocumentProjectOKButton.Size = new System.Drawing.Size(212, 32);
             this.DocumentProjectOKButton.TabIndex = 6;
             this.DocumentProjectOKButton.Text = "Готово";
             this.DocumentProjectOKButton.UseVisualStyleBackColor = true;
@@ -128,9 +120,9 @@
             // DocumentProjectCancelButton
             // 
             this.DocumentProjectCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.DocumentProjectCancelButton.Location = new System.Drawing.Point(249, 405);
+            this.DocumentProjectCancelButton.Location = new System.Drawing.Point(234, 332);
             this.DocumentProjectCancelButton.Name = "DocumentProjectCancelButton";
-            this.DocumentProjectCancelButton.Size = new System.Drawing.Size(226, 32);
+            this.DocumentProjectCancelButton.Size = new System.Drawing.Size(218, 32);
             this.DocumentProjectCancelButton.TabIndex = 7;
             this.DocumentProjectCancelButton.Text = "Отмена";
             this.DocumentProjectCancelButton.UseVisualStyleBackColor = true;
@@ -150,21 +142,34 @@
             this.DocumentProjectDateTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.DocumentProjectDateTextBox.Location = new System.Drawing.Point(270, 105);
             this.DocumentProjectDateTextBox.Name = "DocumentProjectDateTextBox";
-            this.DocumentProjectDateTextBox.Size = new System.Drawing.Size(208, 27);
+            this.DocumentProjectDateTextBox.Size = new System.Drawing.Size(182, 27);
             this.DocumentProjectDateTextBox.TabIndex = 3;
+            // 
+            // DocumentProjectPerformersListBox
+            // 
+            this.DocumentProjectPerformersListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DocumentProjectPerformersListBox.FormattingEnabled = true;
+            this.DocumentProjectPerformersListBox.ItemHeight = 20;
+            this.DocumentProjectPerformersListBox.Location = new System.Drawing.Point(472, 36);
+            this.DocumentProjectPerformersListBox.Name = "DocumentProjectPerformersListBox";
+            this.DocumentProjectPerformersListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.DocumentProjectPerformersListBox.Size = new System.Drawing.Size(251, 324);
+            this.DocumentProjectPerformersListBox.TabIndex = 16;
             // 
             // AddProjectDialog
             // 
+            this.AcceptButton = this.DocumentProjectOKButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 449);
+            this.CancelButton = this.DocumentProjectCancelButton;
+            this.ClientSize = new System.Drawing.Size(735, 368);
+            this.Controls.Add(this.DocumentProjectPerformersListBox);
             this.Controls.Add(this.DocumentProjectDateTextBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.DocumentProjectCancelButton);
             this.Controls.Add(this.DocumentProjectOKButton);
             this.Controls.Add(this.DocumentProjectDescriptionTextBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.DocumentProjectPerformersTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.DocumentProjectCostTextBox);
             this.Controls.Add(this.label3);
@@ -189,12 +194,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox DocumentProjectCostTextBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox DocumentProjectPerformersTextBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RichTextBox DocumentProjectDescriptionTextBox;
         private System.Windows.Forms.Button DocumentProjectOKButton;
         private System.Windows.Forms.Button DocumentProjectCancelButton;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox DocumentProjectDateTextBox;
+        private System.Windows.Forms.ListBox DocumentProjectPerformersListBox;
     }
 }

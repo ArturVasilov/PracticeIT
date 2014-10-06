@@ -16,9 +16,16 @@ namespace DocumentsSecurity
     {
         private Project project;
 
+        private List<Programmer.NameIdPair> programmers;
+
         public AddProjectDialog()
         {
             InitializeComponent();
+            programmers = Company.Instance.getAllProgrammers;
+            foreach (Programmer.NameIdPair programmer in programmers)
+            {
+                DocumentProjectPerformersListBox.Items.Add(programmer.Name);
+            }
         }
 
         public Project getProject
@@ -71,13 +78,22 @@ namespace DocumentsSecurity
                 return;
             }
 
-            //TODO
-            int[] performersIds = new int[5];
-            foreach (int peformerId in performersIds)
+            List<int> selectedIndices = new List<int>();
+            foreach (int index in DocumentProjectPerformersListBox.SelectedIndices)
             {
-                //do smth
+                selectedIndices.Add(index);
             }
-
+            if (selectedIndices.Count == 0) 
+            {
+                DocumentProjectPerformersListBox.BackColor = Color.Red;
+                return;
+            }
+            int[] performersIds = new int[selectedIndices.Count];
+            for (int i = 0; i < selectedIndices.Count; i++)
+            {
+                performersIds[i] = programmers[selectedIndices[i]].Id;
+            }
+            
             string description = DocumentProjectDescriptionTextBox.Text;
             description = description == null ? "" : description;
 

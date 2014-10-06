@@ -37,7 +37,8 @@ namespace DocumentsSecurity
             }
             DataTable table = database.Tables[DatabaseConstants.Report.TABLE_NAME];
             DataRow row = table.NewRow();
-            row[DatabaseConstants.Report.ID] = table.Rows.Count + 1;
+            report.Id = table.Rows.Count + 1;
+            row[DatabaseConstants.Report.ID] = report.Id;
             row[DatabaseConstants.Report.AUTHOR] = report.Id;
             row[DatabaseConstants.Report.CONTENT] = report.Description;
             table.Rows.Add(row);
@@ -103,7 +104,8 @@ namespace DocumentsSecurity
             }
             DataTable financeTable = database.Tables[DatabaseConstants.Finance.TABLE_NAME];
             DataRow financeRow = financeTable.NewRow();
-            financeRow[DatabaseConstants.Finance.ID] = financeTable.Rows.Count + 1;
+            finance.Id = financeTable.Rows.Count + 1;
+            financeRow[DatabaseConstants.Finance.ID] = finance.Id;
             financeRow[DatabaseConstants.Finance.INCOME] = finance.Income;
             financeRow[DatabaseConstants.Finance.EXPENSE] = finance.Expense;
             financeRow[DatabaseConstants.Finance.PROFIT] = finance.Profit;
@@ -204,7 +206,7 @@ namespace DocumentsSecurity
             {
                 programmersSkillsTable.Columns[0], programmersSkillsTable.Columns[1],
             };
-            programmersSkillsTable.PrimaryKey = programmerSkillsKey;
+            programmersSkillsTable.PrimaryKey = programmerSkillsKey;//*/
             database.Tables.Add(programmersSkillsTable);
 
             DataTable performersTable = new DataTable(DatabaseConstants.Performer.TABLE_NAME);
@@ -219,19 +221,19 @@ namespace DocumentsSecurity
             database.Tables.Add(performersTable);
 
             DataRelation reportsRelation = new DataRelation(DatabaseConstants.Relations.REPORT_PROGRAMMER,
-                new DataColumn[] { reportsTable.Columns[DatabaseConstants.Report.ID] },
-                new DataColumn[] { programmerTable.Columns[DatabaseConstants.Programmer.ID] });
+                new DataColumn[] { programmerTable.Columns[DatabaseConstants.Programmer.ID] },
+                new DataColumn[] { reportsTable.Columns[DatabaseConstants.Report.ID] });
             database.Relations.Add(reportsRelation);
 
-            DataRelation skillsRelation = new DataRelation(DatabaseConstants.Relations.SKILL_PROGRAMMERSKILL,
+            DataRelation programmerSkillsRelation = new DataRelation(DatabaseConstants.Relations.SKILL_PROGRAMMERSKILL,
                 new DataColumn[] { skillsTable.Columns[DatabaseConstants.Skill.ID] },
                 new DataColumn[] { programmersSkillsTable.Columns[DatabaseConstants.ProgrammersSkills.SKILL_ID] });
-            database.Relations.Add(skillsRelation);
+            database.Relations.Add(programmerSkillsRelation);
 
-            DataRelation programmerRelation = new DataRelation(DatabaseConstants.Relations.SKILL_PROGRAMMER,
+            /*DataRelation skillsRelation = new DataRelation(DatabaseConstants.Relations.SKILL_PROGRAMMER,
                 new DataColumn[] { programmersSkillsTable.Columns[DatabaseConstants.ProgrammersSkills.PROGRAMMER_ID] },
                 new DataColumn[] { programmerTable.Columns[DatabaseConstants.Programmer.ID] });
-            database.Relations.Add(programmerRelation);
+            database.Relations.Add(skillsRelation);//*/
 
             DataRelation performersRelation = new DataRelation(DatabaseConstants.Relations.PROJECT_PERFORMER,
                 new DataColumn[] { projectsTable.Columns[DatabaseConstants.Project.ID] },
