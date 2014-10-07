@@ -30,5 +30,10 @@ namespace DocumentsSecurity
         {
             AuthorId = authorId;
         }
+
+        public override string ToString()
+        {
+            return "Отчет номер " + Id;
+        }
     }
 }

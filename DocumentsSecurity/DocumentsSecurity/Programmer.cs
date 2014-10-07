@@ -38,6 +38,11 @@ namespace DocumentsSecurity
             }
         }
 
+        public override string ToString()
+        {
+            return "Программист " + Name;
+        }
+
         public string Name
         {
             get { return name; }

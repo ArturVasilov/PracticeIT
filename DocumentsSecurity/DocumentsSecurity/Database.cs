@@ -120,7 +120,7 @@ namespace DocumentsSecurity
                 List<Programmer.NameIdPair> programmers = new List<Programmer.NameIdPair>();
                 foreach (DataRow row in database.Tables[DatabaseConstants.Programmer.TABLE_NAME].Rows)
                 {
-                    int id = (int) row[DatabaseConstants.Programmer.ID];
+                    int id = (int)row[DatabaseConstants.Programmer.ID];
                     string name = row[DatabaseConstants.Programmer.NAME].ToString();
                     programmers.Add(new Programmer.NameIdPair(id, name));
                 }
@@ -150,6 +150,55 @@ namespace DocumentsSecurity
                 }
             }
             return result;
+        }
+
+        public List<DocumentsForm.TableNameIdValueTriple> AllDocuments
+        {
+            get
+            {
+                List<DocumentsForm.TableNameIdValueTriple> list = new List<DocumentsForm.TableNameIdValueTriple>();
+
+                string tableName = DatabaseConstants.Project.TABLE_NAME;
+                string value = "Заказ от ";
+                DataTable table = database.Tables[tableName];
+                foreach (DataRow row in table.Rows)
+                {
+                    int id = (int) row[DatabaseConstants.Project.ID];
+                    string addValue = row[DatabaseConstants.Project.CUSTOMER].ToString();
+                    list.Add(new DocumentsForm.TableNameIdValueTriple(id, tableName, value + addValue));
+                }
+
+                tableName = DatabaseConstants.Programmer.TABLE_NAME;
+                table = database.Tables[tableName];
+                value = "Программист ";
+                foreach (DataRow row in table.Rows)
+                {
+                    int id = (int)row[DatabaseConstants.Programmer.ID];
+                    string addValue = row[DatabaseConstants.Programmer.NAME].ToString();
+                    list.Add(new DocumentsForm.TableNameIdValueTriple(id, tableName, value + addValue));
+                }
+
+                tableName = DatabaseConstants.Finance.TABLE_NAME;
+                table = database.Tables[tableName];
+                value = "Прибыль: ";
+                foreach (DataRow row in table.Rows)
+                {
+                    int id = (int)row[DatabaseConstants.Finance.ID]; 
+                    string addValue = row[DatabaseConstants.Finance.PROFIT].ToString();
+                    list.Add(new DocumentsForm.TableNameIdValueTriple(id, tableName, value + addValue));
+                }
+
+                tableName = DatabaseConstants.Report.TABLE_NAME;
+                table = database.Tables[tableName]; 
+                value = "Отчет номер ";
+                foreach (DataRow row in table.Rows)
+                {
+                    int id = (int)row[DatabaseConstants.Report.ID];
+                    list.Add(new DocumentsForm.TableNameIdValueTriple(id, tableName, value + id));
+                }
+
+                return list;
+            }
         }
 
         public void save()

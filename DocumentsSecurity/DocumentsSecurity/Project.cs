@@ -29,6 +29,11 @@ namespace DocumentsSecurity
             }
         }
 
+        public override string ToString()
+        {
+            return "Заказ от " + Customer;
+        }
+
         public string Customer
         {
             get { return customer; }

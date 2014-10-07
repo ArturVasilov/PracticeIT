@@ -20,6 +20,11 @@ namespace DocumentsSecurity
             Expense = expense;
         }
 
+        public override string ToString()
+        {
+            return "Прибыль: " + Profit;
+        }
+
         public long Income
         {
             get { return income; }

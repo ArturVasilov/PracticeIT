@@ -14,16 +14,40 @@ namespace DocumentsSecurity
     {
         private Company company;
 
+        public struct TableNameIdValueTriple
+        {
+            private int id;
+            private string tableName;
+            private string value;
+
+            public string Name { get { return tableName; } }
+            public int Id { get { return id; } }
+            public string Value { get { return value; } }
+
+            public TableNameIdValueTriple(int id, string tableName, string value)
+            {
+                this.id = id;
+                this.tableName = tableName;
+                this.value = value;
+            }
+        }
+
+        private List<TableNameIdValueTriple> documents;
+
         public DocumentsForm()
         {
             InitializeComponent();
             company = Company.Instance;
+            documents = company.Database.AllDocuments;
             addAllDocumentsToListBox();
         }
 
         private void addAllDocumentsToListBox()
         {
-            //TODO : add documents to form
+            foreach (TableNameIdValueTriple triple in documents)
+            {
+                DocumentsListBox.Items.Add(triple.Value);
+            }
         }
 
         private void AddReportButton_Click(object sender, EventArgs e)
@@ -37,8 +61,8 @@ namespace DocumentsSecurity
             else
             {
                 Report report = addReportDialog.getReport;
+                DocumentsListBox.Items.Add(report.ToString());
                 company.addReport(report);
-                //TODO : add document to form list
             }
         }
 
@@ -53,8 +77,8 @@ namespace DocumentsSecurity
             else
             {
                 Programmer programmer = addProgrammerDialog.getProgrammer;
+                DocumentsListBox.Items.Add(programmer.ToString());
                 company.addProgrammer(programmer);
-                //TODO : add document to form list
             }
         }
 
@@ -69,8 +93,8 @@ namespace DocumentsSecurity
             else
             {
                 Project project = addProjectDialog.getProject;
+                DocumentsListBox.Items.Add(project.ToString());
                 company.addProject(project);
-                //TODO : add document to form list
             }
         }
 
@@ -85,24 +109,39 @@ namespace DocumentsSecurity
             else
             {
                 Finance finance = addFinanceDialog.getFinance;
-                company.addFinance(finance);
-                //TODO : add document to form list
+                company.addFinance(finance); 
+                DocumentsListBox.Items.Add(finance.ToString());
             }
         }
 
         private void ShowChosenDocumentButton_Click(object sender, EventArgs e)
         {
-
+            int index = DocumentsListBox.SelectedIndex;
+            if (index < 0)
+            {
+                return;
+            }
+            //TODO : open in Microsoft Word
         }
 
         private void EditChosenDocumentButton_Click(object sender, EventArgs e)
         {
-
+            int index = DocumentsListBox.SelectedIndex;
+            if (index < 0)
+            {
+                return;
+            }
+            //TODO : open dialog to edit
         }
 
         private void RemoveChosenDocumentButton_Click(object sender, EventArgs e)
         {
-            
+            int index = DocumentsListBox.SelectedIndex;
+            if (index < 0)
+            {
+                return;
+            }
+            //TODO : Remove document from list and database
         }
 
         private void DocumentsForm_FormClosed(object sender, FormClosedEventArgs e)
