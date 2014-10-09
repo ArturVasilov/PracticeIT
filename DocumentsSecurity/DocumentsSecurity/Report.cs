@@ -26,7 +26,7 @@ namespace DocumentsSecurity
             }
         }
 
-        public Report(long documentId, long authorId, string text) : base(documentId, text)
+        public Report(int documentId, long authorId, string text) : base(documentId, text)
         {
             AuthorId = authorId;
         }

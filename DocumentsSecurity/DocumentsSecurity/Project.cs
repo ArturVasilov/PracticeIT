@@ -16,7 +16,7 @@ namespace DocumentsSecurity
 
         private LinkedList<int> performersIds;
 
-        public Project(long id, string description, string customer, long cost, string date, int[] performersIds) 
+        public Project(int id, string description, string customer, long cost, string date, int[] performersIds) 
             : base(id, description)
         {
             Customer = customer;

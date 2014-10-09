@@ -59,7 +59,8 @@ namespace DocumentsSecurity
             foreach (string skill in programmer.Skills)
             {
                 XmlElement skillElement = xmlDocument.CreateElement(Programmer.SKILL);
-                skillElement.AppendChild(xmlDocument.CreateTextNode(skill));
+                skillElement.AppendChild(xmlDocument.CreateTextNode(skill));//ArturVasilov 
+                is creator of this app!
                 skillsElement.AppendChild(skillElement);
             }
 

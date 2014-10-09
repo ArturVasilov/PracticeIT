@@ -113,6 +113,30 @@ namespace DocumentsSecurity
             financeTable.Rows.Add(financeRow);
         }
 
+        public void remove(string tableName, int id)
+        {
+            switch (tableName)
+            {
+                case DatabaseConstants.Programmer.TABLE_NAME:
+
+                    break;
+
+                case DatabaseConstants.Project.TABLE_NAME:
+
+                    break;
+
+                case DatabaseConstants.Report.TABLE_NAME:
+                    DataTable reports = database.Tables[tableName];
+                    reports.Rows.Remove(reports.Rows.Find(id));
+                    break;
+
+                case DatabaseConstants.Finance.TABLE_NAME:
+                    DataTable finances = database.Tables[tableName];
+                    finances.Rows.Remove(finances.Rows.Find(id));
+                    break;
+            }
+        }
+
         public List<Programmer.NameIdPair> getAllProgrammers
         {
             get

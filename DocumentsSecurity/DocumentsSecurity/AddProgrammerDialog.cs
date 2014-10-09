@@ -31,7 +31,7 @@ namespace DocumentsSecurity
         {
             bool isAllOk = true;
             //id isn't important, it's generating at runtime
-            long id = 0;
+            int id = 0;
 
             string name = DocumentProgrammerNameTextBox.Text;
             name = name == null ? "" : name;

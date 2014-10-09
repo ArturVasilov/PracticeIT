@@ -20,7 +20,7 @@ namespace DocumentsSecurity
             private string tableName;
             private string value;
 
-            public string Name { get { return tableName; } }
+            public string TableName { get { return tableName; } }
             public int Id { get { return id; } }
             public string Value { get { return value; } }
 
@@ -137,11 +137,13 @@ namespace DocumentsSecurity
         private void RemoveChosenDocumentButton_Click(object sender, EventArgs e)
         {
             int index = DocumentsListBox.SelectedIndex;
-            if (index < 0)
+            if (index < 0 || index >= documents.Count)
             {
                 return;
             }
-            //TODO : Remove document from list and database
+            company.Database.remove(documents[index].TableName, documents[index].Id);
+            documents.RemoveAt(index);
+            DocumentsListBox.Items.RemoveAt(index);
         }
 
         private void DocumentsForm_FormClosed(object sender, FormClosedEventArgs e)

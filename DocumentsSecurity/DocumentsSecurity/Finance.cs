@@ -14,7 +14,7 @@ namespace DocumentsSecurity
 
         private long profit;
 
-        public Finance(long id, string description, long income, long expense) : base(id, description)
+        public Finance(int id, string description, long income, long expense) : base(id, description)
         {
             Income = income;
             Expense = expense;

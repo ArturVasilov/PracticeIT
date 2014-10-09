@@ -27,7 +27,7 @@ namespace DocumentsSecurity
 
         private LinkedList<int> skillsIds;
 
-        public Programmer(long id, string description, string name, int salary, int[] skillsIds) : base(id, description)
+        public Programmer(int id, string description, string name, int salary, int[] skillsIds) : base(id, description)
         {
             Name = name;
             Salary = salary;

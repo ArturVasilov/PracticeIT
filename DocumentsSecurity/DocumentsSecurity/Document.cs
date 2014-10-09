@@ -8,11 +8,11 @@ namespace DocumentsSecurity
 {
     public class Document
     {
-        private long id;
+        private int id;
 
         private string description;
 
-        public Document(long id, string description)
+        public Document(int id, string description)
         {
             Id = id;
             Description = description;
@@ -23,7 +23,7 @@ namespace DocumentsSecurity
             return "Документ: идентификатор - " + id;
         }
 
-        public long Id
+        public int Id
         {
             get { return id; }
             set

@@ -42,7 +42,7 @@ namespace DocumentsSecurity
                 DocumentReportAuthorComboBox.BackColor = Color.Red;
                 return;
             }
-            long id = programmers[index].Id;
+            int id = programmers[index].Id;
             string content = DocumentReportContentTextBox.Text;
             report = new Report(0, id, content);
             this.DialogResult = DialogResult.OK;
