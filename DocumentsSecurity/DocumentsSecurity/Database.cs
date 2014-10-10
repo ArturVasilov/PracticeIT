@@ -118,11 +118,11 @@ namespace DocumentsSecurity
             switch (tableName)
             {
                 case DatabaseConstants.Programmer.TABLE_NAME:
-
+                    removeProgrammer(tableName, id);
                     break;
 
                 case DatabaseConstants.Project.TABLE_NAME:
-
+                    removeProject(tableName, id);
                     break;
 
                 case DatabaseConstants.Report.TABLE_NAME:
@@ -134,6 +134,60 @@ namespace DocumentsSecurity
                     DataTable finances = database.Tables[tableName];
                     finances.Rows.Remove(finances.Rows.Find(id));
                     break;
+            }
+        }
+
+        private void removeProgrammer(string tableName, int id)
+        {
+            DataTable programmers = database.Tables[tableName];
+            programmers.Rows.Remove(programmers.Rows.Find(id));
+
+            DataTable skills = database.Tables[DatabaseConstants.ProgrammersSkills.TABLE_NAME];
+            List<DataRow> rowsToRemove = new List<DataRow>();
+            foreach (DataRow row in skills.Rows)
+            {
+                if (((int)row[DatabaseConstants.ProgrammersSkills.PROGRAMMER_ID]) == id)
+                {
+                    rowsToRemove.Add(row);
+                }
+            }
+            foreach (DataRow row in rowsToRemove)
+            {
+                skills.Rows.Remove(row);
+            }
+
+            DataTable performers = database.Tables[DatabaseConstants.Performer.TABLE_NAME];
+            rowsToRemove = new List<DataRow>();
+            foreach (DataRow row in performers.Rows)
+            {
+                if (((int)row[DatabaseConstants.Performer.PROGRAMMER_ID]) == id)
+                {
+                    rowsToRemove.Add(row);
+                }
+            }
+            foreach (DataRow row in rowsToRemove)
+            {
+                performers.Rows.Remove(row);
+            }
+        }
+
+        private void removeProject(string tableName, int id)
+        {
+            DataTable projects = database.Tables[tableName];
+            projects.Rows.Remove(projects.Rows.Find(id));
+
+            DataTable performers = database.Tables[DatabaseConstants.Performer.TABLE_NAME];
+            List<DataRow> rowsToRemove = new List<DataRow>();
+            foreach (DataRow row in performers.Rows)
+            {
+                if (((int)row[DatabaseConstants.Performer.PROJECT_ID]) == id)
+                {
+                    rowsToRemove.Add(row);
+                }
+            }
+            foreach (DataRow row in rowsToRemove)
+            {
+                performers.Rows.Remove(row);
             }
         }
 
