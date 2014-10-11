@@ -8,9 +8,9 @@ namespace DocumentsSecurity
 {
     public class Report : Document
     {
-        private long authorId;
+        private int authorId;
 
-        private long AuthorId
+        private int AuthorId
         {
             get { return authorId; }
             set
@@ -26,7 +26,7 @@ namespace DocumentsSecurity
             }
         }
 
-        public Report(int documentId, long authorId, string text) : base(documentId, text)
+        public Report(int documentId, int authorId, string text) : base(documentId, text)
         {
             AuthorId = authorId;
         }

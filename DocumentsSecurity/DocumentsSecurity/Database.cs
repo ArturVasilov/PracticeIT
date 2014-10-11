@@ -113,16 +113,98 @@ namespace DocumentsSecurity
             financeTable.Rows.Add(financeRow);
         }
 
+        public Programmer getProgrammerById(int id)
+        {
+            DataTable table = database.Tables[DatabaseConstants.Programmer.TABLE_NAME];
+            DataRow row = table.Rows.Find(id);
+            string description = row[DatabaseConstants.Programmer.DESCRIPTION].ToString();
+            string name = row[DatabaseConstants.Programmer.NAME].ToString();
+            int salary = (int)row[DatabaseConstants.Programmer.SALARY];
+
+            table = database.Tables[DatabaseConstants.ProgrammersSkills.TABLE_NAME];
+            List<int> ids = new List<int>();
+            foreach (DataRow dataRow in table.Rows)
+            {
+                if (((int)dataRow[DatabaseConstants.ProgrammersSkills.PROGRAMMER_ID]) == id)
+                {
+                    ids.Add((int)dataRow[DatabaseConstants.ProgrammersSkills.SKILL_ID]);
+                }
+            }
+            int[] skillsIds = ids.ToArray();
+
+            return new Programmer(id, description, name, salary, skillsIds);
+        }
+
+        public Project getProjectById(int id)
+        {
+            DataTable table = database.Tables[DatabaseConstants.Project.TABLE_NAME];
+            DataRow row = table.Rows.Find(id);
+            string description = row[DatabaseConstants.Project.DESCRIPTION].ToString();
+            string customer = row[DatabaseConstants.Project.CUSTOMER].ToString();
+            long cost = (long)row[DatabaseConstants.Project.COST];
+            string date = row[DatabaseConstants.Project.DATE].ToString();
+
+            table = database.Tables[DatabaseConstants.Performer.TABLE_NAME];
+            List<int> ids = new List<int>();
+            foreach (DataRow dataRow in table.Rows)
+            {
+                if (((int)dataRow[DatabaseConstants.Performer.PROJECT_ID]) == id)
+                {
+                    ids.Add((int)dataRow[DatabaseConstants.Performer.PROGRAMMER_ID]);
+                }
+            }
+            int[] performersIds = ids.ToArray();
+
+            return new Project(id, description, customer, cost, date, performersIds);
+        }
+
+        public Finance getFinanceById(int id)
+        {
+            DataTable table = database.Tables[DatabaseConstants.Finance.TABLE_NAME];
+            DataRow row = table.Rows.Find(id);
+            return new Finance(id, row[DatabaseConstants.Finance.DESCRIPTION].ToString(),
+                (long)row[DatabaseConstants.Finance.INCOME],
+                (long)row[DatabaseConstants.Finance.EXPENSE]);
+        }
+
+        public Report getReportById(int id)
+        {
+            DataTable table = database.Tables[DatabaseConstants.Report.TABLE_NAME];
+            DataRow row = table.Rows.Find(id);
+            return new Report(id, (int)row[DatabaseConstants.Report.AUTHOR], 
+                row[DatabaseConstants.Report.CONTENT].ToString());
+        }
+
+        public void editProgrammer(Programmer programmer)
+        {
+
+        }
+
+        public void editProject(Project project)
+        {
+
+        }
+
+        public void editFinance(Finance finance)
+        {
+
+        }
+
+        public void editReport(Report report)
+        {
+
+        }
+
         public void remove(string tableName, int id)
         {
             switch (tableName)
             {
                 case DatabaseConstants.Programmer.TABLE_NAME:
-                    removeProgrammer(tableName, id);
+                    removeProgrammer(id);
                     break;
 
                 case DatabaseConstants.Project.TABLE_NAME:
-                    removeProject(tableName, id);
+                    removeProject(id);
                     break;
 
                 case DatabaseConstants.Report.TABLE_NAME:
@@ -137,9 +219,9 @@ namespace DocumentsSecurity
             }
         }
 
-        private void removeProgrammer(string tableName, int id)
+        private void removeProgrammer(int id)
         {
-            DataTable programmers = database.Tables[tableName];
+            DataTable programmers = database.Tables[DatabaseConstants.Programmer.TABLE_NAME];
             programmers.Rows.Remove(programmers.Rows.Find(id));
 
             DataTable skills = database.Tables[DatabaseConstants.ProgrammersSkills.TABLE_NAME];
@@ -171,9 +253,9 @@ namespace DocumentsSecurity
             }
         }
 
-        private void removeProject(string tableName, int id)
+        private void removeProject(int id)
         {
-            DataTable projects = database.Tables[tableName];
+            DataTable projects = database.Tables[DatabaseConstants.Project.TABLE_NAME];
             projects.Rows.Remove(projects.Rows.Find(id));
 
             DataTable performers = database.Tables[DatabaseConstants.Performer.TABLE_NAME];
