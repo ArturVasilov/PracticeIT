@@ -80,5 +80,19 @@ namespace DocumentsSecurity
             this.DialogResult = DialogResult.OK;
             Close();
         }
+
+        internal Programmer changeProgrammer(int id)
+        {
+            programmer.Id = id;
+            return programmer;
+        }
+
+        internal void setFields(string name, int salary, string skills, string description)
+        {
+            DocumentProgrammerNameTextBox.Text = name;
+            DocumentProgrammerSalaryTextBox.Text = salary.ToString();
+            DocumentProgrammerSkillsTextBox.Text = skills;
+            DocumentProgrammerDescriptionTextBox.Text = description;
+        }
     }
 }

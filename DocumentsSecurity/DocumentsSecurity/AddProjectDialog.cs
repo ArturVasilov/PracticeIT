@@ -102,5 +102,26 @@ namespace DocumentsSecurity
             this.DialogResult = DialogResult.OK;
             Close();
         }
+
+        internal void setFields(string customer, long cost, string date, List<int> ids, string description)
+        {
+            DocumentProjectCustomerTextBox.Text = customer;
+            DocumentProjectCostTextBox.Text = cost.ToString();
+            DocumentProjectDateTextBox.Text = date;
+            DocumentProjectDescriptionTextBox.Text = description;
+            for (int i = 0; i < programmers.Count; i++)
+            {
+                if (ids.Contains(programmers[i].Id))
+                {
+                    DocumentProjectPerformersListBox.SelectedIndices.Add(i);
+                }
+            }
+        }
+
+        internal Project changeProject(int id)
+        {
+            project.Id = id;
+            return project;
+        }
     }
 }

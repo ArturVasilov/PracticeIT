@@ -14,7 +14,7 @@ namespace DocumentsSecurity
 
         private string date;
 
-        private LinkedList<int> performersIds;
+        private List<int> performersIds;
 
         public Project(int id, string description, string customer, long cost, string date, int[] performersIds) 
             : base(id, description)
@@ -22,10 +22,10 @@ namespace DocumentsSecurity
             Customer = customer;
             Date = date;
             Cost = cost;
-            this.performersIds = new LinkedList<int>();
+            this.performersIds = new List<int>();
             foreach (int performerId in performersIds)
             {
-                this.performersIds.AddLast(performerId);
+                this.performersIds.Add(performerId);
             }
         }
 
@@ -68,19 +68,19 @@ namespace DocumentsSecurity
                 }
                 else
                 {
-                    throw new ArgumentException("Date has irregular format. Use DD/MM/YYYY instead.");
+                    throw new ArgumentException("Date has irregular format. Use DD/MM/YYYY instead. Your input is " + value);
                 }
             }
         }
 
-        public LinkedList<int> PerformersIds
+        public List<int> PerformersIds
         {
             get { return performersIds; }
         }
 
         public void addPerformer(int id)
         {
-            performersIds.AddLast(id);
+            performersIds.Add(id);
         }
 
         public void removePerformer(int id)

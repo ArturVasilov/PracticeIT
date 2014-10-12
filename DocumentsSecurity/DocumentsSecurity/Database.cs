@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using System.Data;
+using System.Text;
 
 namespace DocumentsSecurity
 {
@@ -57,6 +58,7 @@ namespace DocumentsSecurity
             projectRow[DatabaseConstants.Project.ID] = project.Id;
             projectRow[DatabaseConstants.Project.CUSTOMER] = project.Customer;
             projectRow[DatabaseConstants.Project.COST] = project.Cost;
+            projectRow[DatabaseConstants.Project.DATE] = project.Date;
             projectRow[DatabaseConstants.Project.DESCRIPTION] = project.Description;
             projectsTable.Rows.Add(projectRow);
 
@@ -187,7 +189,12 @@ namespace DocumentsSecurity
 
         public void editFinance(Finance finance)
         {
-
+            //DataTable table = database.Tables[DatabaseConstants.Finance.TABLE_NAME];
+            DataRow row = database.Tables[DatabaseConstants.Finance.TABLE_NAME].Rows.Find(finance.Id); 
+            row[DatabaseConstants.Finance.INCOME] = finance.Income;
+            row[DatabaseConstants.Finance.EXPENSE] = finance.Expense;
+            row[DatabaseConstants.Finance.PROFIT] = finance.Profit;
+            row[DatabaseConstants.Finance.DESCRIPTION] = finance.Description;
         }
 
         public void editReport(Report report)
@@ -312,6 +319,19 @@ namespace DocumentsSecurity
             return result;
         }
 
+        internal string getSkillsByIds(List<int> skillsIds)
+        {
+            StringBuilder result = new StringBuilder();
+            foreach (DataRow row in database.Tables[DatabaseConstants.Skill.TABLE_NAME].Rows)
+            {
+                if (skillsIds.Contains((int) row[DatabaseConstants.Skill.ID]))
+                {
+                    result.Append(row[DatabaseConstants.Skill.SKILL].ToString() + ", ");
+                }
+            }
+            return result.ToString();
+        }
+
         public List<DocumentsForm.TableNameIdValueTriple> AllDocuments
         {
             get
@@ -387,7 +407,7 @@ namespace DocumentsSecurity
             DataTable projectsTable = new DataTable(DatabaseConstants.Project.TABLE_NAME);
             projectsTable.Columns.Add(new DataColumn(DatabaseConstants.Project.ID, Type.GetType("System.Int32")));
             projectsTable.Columns.Add(new DataColumn(DatabaseConstants.Project.CUSTOMER, Type.GetType("System.String")));
-            projectsTable.Columns.Add(new DataColumn(DatabaseConstants.Project.COST, Type.GetType("System.Int32")));
+            projectsTable.Columns.Add(new DataColumn(DatabaseConstants.Project.COST, Type.GetType("System.Int64")));
             projectsTable.Columns.Add(new DataColumn(DatabaseConstants.Project.DATE, Type.GetType("System.String")));
             projectsTable.Columns.Add(new DataColumn(DatabaseConstants.Project.DESCRIPTION, Type.GetType("System.String")));
             projectsTable.PrimaryKey = new DataColumn[] { projectsTable.Columns[DatabaseConstants.Project.ID] };
@@ -456,5 +476,6 @@ namespace DocumentsSecurity
 
             database.WriteXml(FILENAME, XmlWriteMode.WriteSchema);
         }
+
     }
 }

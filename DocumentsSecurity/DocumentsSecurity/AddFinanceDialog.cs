@@ -81,5 +81,18 @@ namespace DocumentsSecurity
             this.DialogResult = DialogResult.OK;
             Close();
         }
+
+        internal Finance changeFinance(int id)
+        {
+            finance.Id = id;
+            return finance;
+        }
+
+        internal void setFields(long income, long expense, string description)
+        {
+            DocumentFinanceIncomeTextBox.Text = income.ToString();
+            DocumentFinanceExpenseTextBox.Text = expense.ToString();
+            DocumentFinanceDescriptionTextBox.Text = description;
+        }
     }
 }

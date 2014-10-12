@@ -25,16 +25,16 @@ namespace DocumentsSecurity
 
         private int salary;
 
-        private LinkedList<int> skillsIds;
+        private List<int> skillsIds;
 
         public Programmer(int id, string description, string name, int salary, int[] skillsIds) : base(id, description)
         {
             Name = name;
             Salary = salary;
-            this.skillsIds = new LinkedList<int>();
+            this.skillsIds = new List<int>();
             foreach (int skill in skillsIds) 
             {
-                this.skillsIds.AddLast(skill);
+                this.skillsIds.Add(skill);
             }
         }
 
@@ -65,14 +65,14 @@ namespace DocumentsSecurity
             }
         }
 
-        public LinkedList<int> SkillsIds
+        public List<int> SkillsIds
         {
             get { return skillsIds; }
         }
 
         public void addSkill(int skillId)
         {
-            skillsIds.AddLast(skillId);
+            skillsIds.Add(skillId);
         }
 
         public void removeSkill(int skillId)

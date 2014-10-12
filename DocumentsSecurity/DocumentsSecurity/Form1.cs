@@ -63,6 +63,8 @@ namespace DocumentsSecurity
                 Report report = addReportDialog.getReport;
                 DocumentsListBox.Items.Add(report.ToString());
                 company.addReport(report);
+                documents.Add(new TableNameIdValueTriple(report.Id,
+                    DatabaseConstants.Finance.TABLE_NAME, report.ToString()));
             }
         }
 
@@ -79,6 +81,8 @@ namespace DocumentsSecurity
                 Programmer programmer = addProgrammerDialog.getProgrammer;
                 DocumentsListBox.Items.Add(programmer.ToString());
                 company.addProgrammer(programmer);
+                documents.Add(new TableNameIdValueTriple(programmer.Id,
+                    DatabaseConstants.Finance.TABLE_NAME, programmer.ToString()));
             }
         }
 
@@ -94,7 +98,9 @@ namespace DocumentsSecurity
             {
                 Project project = addProjectDialog.getProject;
                 DocumentsListBox.Items.Add(project.ToString());
-                company.addProject(project);
+                company.addProject(project); 
+                documents.Add(new TableNameIdValueTriple(project.Id,
+                     DatabaseConstants.Finance.TABLE_NAME, project.ToString()));
             }
         }
 
@@ -111,6 +117,8 @@ namespace DocumentsSecurity
                 Finance finance = addFinanceDialog.getFinance;
                 company.addFinance(finance); 
                 DocumentsListBox.Items.Add(finance.ToString());
+                documents.Add(new TableNameIdValueTriple(finance.Id,
+                    DatabaseConstants.Finance.TABLE_NAME, finance.ToString()));
             }
         }
 
@@ -131,7 +139,88 @@ namespace DocumentsSecurity
             {
                 return;
             }
-            //TODO : open dialog to edit
+
+            TableNameIdValueTriple value = documents[index];
+            switch (value.TableName)
+            {
+                case DatabaseConstants.Programmer.TABLE_NAME:
+                    editProgrammerDocument(value.Id);
+                    break;
+
+                case DatabaseConstants.Project.TABLE_NAME:
+                    editProjectDocument(value.Id);
+                    break;
+
+                case DatabaseConstants.Finance.TABLE_NAME:
+                    editFinanceDocument(value.Id);
+                    break;
+
+                case DatabaseConstants.Report.TABLE_NAME:
+                    editReportDocument(value.Id);
+                    break;
+            }
+        }
+
+        private void editProgrammerDocument(int id)
+        {
+            Programmer programmer = company.Database.getProgrammerById(id);
+            AddProgrammerDialog addProgrammerDialog = new AddProgrammerDialog();
+            string skills = company.Database.getSkillsByIds(programmer.SkillsIds);
+            addProgrammerDialog.setFields(programmer.Name, programmer.Salary, skills, programmer.Description);
+            if (addProgrammerDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            else
+            {
+                company.Database.editProgrammer(addProgrammerDialog.changeProgrammer(programmer.Id));
+            }
+        }
+
+        private void editProjectDocument(int id)
+        {
+            Project project = company.Database.getProjectById(id);
+            AddProjectDialog addProjectDialog = new AddProjectDialog();
+            addProjectDialog.setFields(project.Customer, project.Cost, project.Date, 
+                project.PerformersIds, project.Description);
+            if (addProjectDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            else
+            {
+                company.Database.editProject(addProjectDialog.changeProject(project.Id));
+            }
+        }
+
+        private void editFinanceDocument(int id)
+        {
+            Finance finance = company.Database.getFinanceById(id);
+            AddFinanceDialog addFinanceDialog = new AddFinanceDialog();
+            addFinanceDialog.setFields(finance.Income, finance.Expense, finance.Description);
+            if (addFinanceDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            else
+            {
+                company.Database.editFinance(addFinanceDialog.changeFinance(finance.Id));
+            }
+        }
+
+        private void editReportDocument(int id)
+        {
+            Finance finance = company.Database.getFinanceById(id);
+            AddFinanceDialog addFinanceDialog = new AddFinanceDialog();
+            addFinanceDialog.setFields(finance.Income, finance.Expense, finance.Description);
+            if (addFinanceDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            else
+            {
+                company.Database.editFinance(addFinanceDialog.changeFinance(finance.Id));
+            }
         }
 
         private void RemoveChosenDocumentButton_Click(object sender, EventArgs e)
