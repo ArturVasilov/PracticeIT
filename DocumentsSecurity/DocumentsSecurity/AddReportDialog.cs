@@ -42,11 +42,32 @@ namespace DocumentsSecurity
                 DocumentReportAuthorComboBox.BackColor = Color.Red;
                 return;
             }
-            int id = programmers[index].Id;
+            int id = DatabaseConstants.IdsKeeper.REPORT_ID;
+            int programmerId = programmers[index].Id;
             string content = DocumentReportContentTextBox.Text;
-            report = new Report(0, id, content);
+            report = new Report(id, programmerId, content);
             this.DialogResult = DialogResult.OK;
             Close();
+        }
+
+        internal void setFields(int authorId, string content)
+        {
+            for (int i = 0; i < programmers.Count; i++)
+            {
+                if (authorId == programmers[i].Id)
+                {
+                    DocumentReportAuthorComboBox.SelectedItem = i;
+                    DocumentReportAuthorComboBox.Text = programmers[i].Name;
+                    break;
+                }
+            }
+            DocumentReportContentTextBox.Text = content;
+        }
+
+        internal Report changeReport(int id)
+        {
+            report.Id = id;
+            return report;
         }
     }
 }

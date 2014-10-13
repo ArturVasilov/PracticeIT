@@ -10,7 +10,7 @@ namespace DocumentsSecurity
     {
         private int authorId;
 
-        private int AuthorId
+        public int AuthorId
         {
             get { return authorId; }
             set

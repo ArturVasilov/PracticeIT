@@ -64,7 +64,7 @@ namespace DocumentsSecurity
                 DocumentsListBox.Items.Add(report.ToString());
                 company.addReport(report);
                 documents.Add(new TableNameIdValueTriple(report.Id,
-                    DatabaseConstants.Finance.TABLE_NAME, report.ToString()));
+                    DatabaseConstants.Report.TABLE_NAME, report.ToString()));
             }
         }
 
@@ -82,7 +82,7 @@ namespace DocumentsSecurity
                 DocumentsListBox.Items.Add(programmer.ToString());
                 company.addProgrammer(programmer);
                 documents.Add(new TableNameIdValueTriple(programmer.Id,
-                    DatabaseConstants.Finance.TABLE_NAME, programmer.ToString()));
+                    DatabaseConstants.Programmer.TABLE_NAME, programmer.ToString()));
             }
         }
 
@@ -100,7 +100,7 @@ namespace DocumentsSecurity
                 DocumentsListBox.Items.Add(project.ToString());
                 company.addProject(project); 
                 documents.Add(new TableNameIdValueTriple(project.Id,
-                     DatabaseConstants.Finance.TABLE_NAME, project.ToString()));
+                     DatabaseConstants.Project.TABLE_NAME, project.ToString()));
             }
         }
 
@@ -210,16 +210,16 @@ namespace DocumentsSecurity
 
         private void editReportDocument(int id)
         {
-            Finance finance = company.Database.getFinanceById(id);
-            AddFinanceDialog addFinanceDialog = new AddFinanceDialog();
-            addFinanceDialog.setFields(finance.Income, finance.Expense, finance.Description);
-            if (addFinanceDialog.ShowDialog() != DialogResult.OK)
+            Report report = company.Database.getReportById(id);
+            AddReportDialog addReportDialog = new AddReportDialog();
+            addReportDialog.setFields(report.AuthorId, report.Description);
+            if (addReportDialog.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
             else
             {
-                company.Database.editFinance(addFinanceDialog.changeFinance(finance.Id));
+                company.Database.editReport(addReportDialog.changeReport(report.Id));
             }
         }
 

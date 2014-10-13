@@ -1,9 +1,49 @@
 ﻿using System;
 
+using System.IO;
+
 namespace DocumentsSecurity
 {
     public static class DatabaseConstants
     {
+        public static class IdsKeeper
+        {
+            private const string IDS_FILENAME = "max_ids.txt";
+
+            //current ids to set for new documents
+            public static int REPORT_ID { get; private set; }
+            public static void addReport() { REPORT_ID++; }
+
+            public static int PROGRAMMER_ID { get; private set; }
+            public static void addProgrammer() { PROGRAMMER_ID++; }
+
+            public static int PROJECT_ID { get; private set; }
+            public static void addProject() { PROJECT_ID++; }
+
+            public static int FINANCE_ID { get; private set; }
+            public static void addFinance() { FINANCE_ID++; }
+
+            public static void init()
+            {
+                StreamReader reader = new StreamReader(IDS_FILENAME);
+                REPORT_ID = int.Parse(reader.ReadLine());
+                PROGRAMMER_ID = int.Parse(reader.ReadLine());
+                PROJECT_ID = int.Parse(reader.ReadLine());
+                FINANCE_ID = int.Parse(reader.ReadLine());
+                reader.Close();
+            }
+
+            public static void save()
+            {
+                StreamWriter writer = new StreamWriter(IDS_FILENAME);
+                writer.WriteLine(REPORT_ID);
+                writer.WriteLine(PROGRAMMER_ID);
+                writer.WriteLine(PROJECT_ID);
+                writer.WriteLine(FINANCE_ID);
+                writer.Close();
+            }
+        }
+
         public static class Report
         {
             public const string TABLE_NAME = "reports_table";

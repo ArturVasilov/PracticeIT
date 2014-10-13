@@ -37,7 +37,7 @@ namespace DocumentsSecurity
         {
             bool isAllOk = true;
             //id isn't important, it's generating at runtime
-            int id = 0;
+            int id = DatabaseConstants.IdsKeeper.PROJECT_ID;
 
             string customer = DocumentProjectCustomerTextBox.Text;
             customer = customer == null ? "" : customer;

@@ -23,6 +23,7 @@ namespace DocumentsSecurity
             try
             {
                 database.ReadXml(FILENAME, XmlReadMode.ReadSchema);
+                DatabaseConstants.IdsKeeper.init();
                 //throw new Exception();
             } catch (Exception) 
             {
@@ -30,6 +31,7 @@ namespace DocumentsSecurity
             }
         }
 
+        #region add documents functions
         public void addDocument(Report report)
         {
             if (report == null)
@@ -38,11 +40,11 @@ namespace DocumentsSecurity
             }
             DataTable table = database.Tables[DatabaseConstants.Report.TABLE_NAME];
             DataRow row = table.NewRow();
-            report.Id = table.Rows.Count + 1;
             row[DatabaseConstants.Report.ID] = report.Id;
-            row[DatabaseConstants.Report.AUTHOR] = report.Id;
+            row[DatabaseConstants.Report.AUTHOR] = report.AuthorId;
             row[DatabaseConstants.Report.CONTENT] = report.Description;
             table.Rows.Add(row);
+            DatabaseConstants.IdsKeeper.addReport();
         }
 
         public void addDocument(Project project)
@@ -54,7 +56,6 @@ namespace DocumentsSecurity
 
             DataTable projectsTable = database.Tables[DatabaseConstants.Project.TABLE_NAME];
             DataRow projectRow = projectsTable.NewRow();
-            project.Id = projectsTable.Rows.Count + 1;
             projectRow[DatabaseConstants.Project.ID] = project.Id;
             projectRow[DatabaseConstants.Project.CUSTOMER] = project.Customer;
             projectRow[DatabaseConstants.Project.COST] = project.Cost;
@@ -70,6 +71,7 @@ namespace DocumentsSecurity
                 performerRow[DatabaseConstants.Performer.PROGRAMMER_ID] = performerId;
                 performersTable.Rows.Add(performerRow);
             }
+            DatabaseConstants.IdsKeeper.addProject();
         }
 
         public void addDocument(Programmer programmer)
@@ -80,7 +82,6 @@ namespace DocumentsSecurity
             }
             DataTable programmersTable = database.Tables[DatabaseConstants.Programmer.TABLE_NAME];
             DataRow programmerRow = programmersTable.NewRow();
-            programmer.Id = programmersTable.Rows.Count + 1;
             programmerRow[DatabaseConstants.Programmer.ID] = programmer.Id;
             programmerRow[DatabaseConstants.Programmer.NAME] = programmer.Name;
             programmerRow[DatabaseConstants.Programmer.SALARY] = programmer.Salary;
@@ -96,6 +97,7 @@ namespace DocumentsSecurity
             }
 
             programmersTable.Rows.Add(programmerRow);
+            DatabaseConstants.IdsKeeper.addProgrammer();
         }
 
         public void addDocument(Finance finance)
@@ -106,15 +108,17 @@ namespace DocumentsSecurity
             }
             DataTable financeTable = database.Tables[DatabaseConstants.Finance.TABLE_NAME];
             DataRow financeRow = financeTable.NewRow();
-            finance.Id = financeTable.Rows.Count + 1;
             financeRow[DatabaseConstants.Finance.ID] = finance.Id;
             financeRow[DatabaseConstants.Finance.INCOME] = finance.Income;
             financeRow[DatabaseConstants.Finance.EXPENSE] = finance.Expense;
             financeRow[DatabaseConstants.Finance.PROFIT] = finance.Profit;
             financeRow[DatabaseConstants.Finance.DESCRIPTION] = finance.Description;
             financeTable.Rows.Add(financeRow);
+            DatabaseConstants.IdsKeeper.addFinance();
         }
+        #endregion
 
+        #region getters for documents
         public Programmer getProgrammerById(int id)
         {
             DataTable table = database.Tables[DatabaseConstants.Programmer.TABLE_NAME];
@@ -125,12 +129,9 @@ namespace DocumentsSecurity
 
             table = database.Tables[DatabaseConstants.ProgrammersSkills.TABLE_NAME];
             List<int> ids = new List<int>();
-            foreach (DataRow dataRow in table.Rows)
+            foreach (DataRow dataRow in table.Select(DatabaseConstants.ProgrammersSkills.PROGRAMMER_ID + "=" + id))
             {
-                if (((int)dataRow[DatabaseConstants.ProgrammersSkills.PROGRAMMER_ID]) == id)
-                {
-                    ids.Add((int)dataRow[DatabaseConstants.ProgrammersSkills.SKILL_ID]);
-                }
+                ids.Add((int)dataRow[DatabaseConstants.ProgrammersSkills.SKILL_ID]);
             }
             int[] skillsIds = ids.ToArray();
 
@@ -148,12 +149,10 @@ namespace DocumentsSecurity
 
             table = database.Tables[DatabaseConstants.Performer.TABLE_NAME];
             List<int> ids = new List<int>();
-            foreach (DataRow dataRow in table.Rows)
+            foreach (DataRow dataRow in table.Select(DatabaseConstants.Performer.PROJECT_ID + "=" + id))
             {
-                if (((int)dataRow[DatabaseConstants.Performer.PROJECT_ID]) == id)
-                {
-                    ids.Add((int)dataRow[DatabaseConstants.Performer.PROGRAMMER_ID]);
-                }
+
+                ids.Add((int)dataRow[DatabaseConstants.Performer.PROGRAMMER_ID]);
             }
             int[] performersIds = ids.ToArray();
 
@@ -177,19 +176,117 @@ namespace DocumentsSecurity
                 row[DatabaseConstants.Report.CONTENT].ToString());
         }
 
+        public List<Programmer.NameIdPair> getAllProgrammers
+        {
+            get
+            {
+                List<Programmer.NameIdPair> programmers = new List<Programmer.NameIdPair>();
+                foreach (DataRow row in database.Tables[DatabaseConstants.Programmer.TABLE_NAME].Rows)
+                {
+                    int id = (int)row[DatabaseConstants.Programmer.ID];
+                    string name = row[DatabaseConstants.Programmer.NAME].ToString();
+                    programmers.Add(new Programmer.NameIdPair(id, name));
+                }
+                return programmers;
+            }
+        }
+
+        public List<DocumentsForm.TableNameIdValueTriple> AllDocuments
+        {
+            get
+            {
+                List<DocumentsForm.TableNameIdValueTriple> list = new List<DocumentsForm.TableNameIdValueTriple>();
+
+                string tableName = DatabaseConstants.Project.TABLE_NAME;
+                string value = "Заказ от ";
+                DataTable table = database.Tables[tableName];
+                foreach (DataRow row in table.Rows)
+                {
+                    int id = (int)row[DatabaseConstants.Project.ID];
+                    string addValue = row[DatabaseConstants.Project.CUSTOMER].ToString();
+                    list.Add(new DocumentsForm.TableNameIdValueTriple(id, tableName, value + addValue));
+                }
+
+                tableName = DatabaseConstants.Programmer.TABLE_NAME;
+                table = database.Tables[tableName];
+                value = "Программист ";
+                foreach (DataRow row in table.Rows)
+                {
+                    int id = (int)row[DatabaseConstants.Programmer.ID];
+                    string addValue = row[DatabaseConstants.Programmer.NAME].ToString();
+                    list.Add(new DocumentsForm.TableNameIdValueTriple(id, tableName, value + addValue));
+                }
+
+                tableName = DatabaseConstants.Finance.TABLE_NAME;
+                table = database.Tables[tableName];
+                value = "Прибыль: ";
+                foreach (DataRow row in table.Rows)
+                {
+                    int id = (int)row[DatabaseConstants.Finance.ID];
+                    string addValue = row[DatabaseConstants.Finance.PROFIT].ToString();
+                    list.Add(new DocumentsForm.TableNameIdValueTriple(id, tableName, value + addValue));
+                }
+
+                tableName = DatabaseConstants.Report.TABLE_NAME;
+                table = database.Tables[tableName];
+                value = "Отчет номер ";
+                foreach (DataRow row in table.Rows)
+                {
+                    int id = (int)row[DatabaseConstants.Report.ID];
+                    list.Add(new DocumentsForm.TableNameIdValueTriple(id, tableName, value + id));
+                }
+
+                return list;
+            }
+        }
+        #endregion
+
+        #region edit functions
         public void editProgrammer(Programmer programmer)
         {
+            DataRow programmerRow = database.Tables[DatabaseConstants.Programmer.TABLE_NAME].Rows.Find(programmer.Id);
+            programmerRow[DatabaseConstants.Programmer.NAME] = programmer.Name;
+            programmerRow[DatabaseConstants.Programmer.SALARY] = programmer.Salary;
+            programmerRow[DatabaseConstants.Programmer.DESCRIPTION] = programmer.Description;
 
+            DataTable skillsTable = database.Tables[DatabaseConstants.ProgrammersSkills.TABLE_NAME];
+            foreach (DataRow row in skillsTable.Select(DatabaseConstants.ProgrammersSkills.PROGRAMMER_ID + "=" + programmer.Id))
+            {
+                skillsTable.Rows.Remove(row);
+            }
+            foreach (int skillId in programmer.SkillsIds)
+            {
+                DataRow row = skillsTable.NewRow();
+                row[DatabaseConstants.ProgrammersSkills.PROGRAMMER_ID] = programmer.Id;
+                row[DatabaseConstants.ProgrammersSkills.SKILL_ID] = skillId;
+                skillsTable.Rows.Add(row);
+            }
         }
 
         public void editProject(Project project)
         {
+            DataRow projectRow = database.Tables[DatabaseConstants.Project.TABLE_NAME].Rows.Find(project.Id);
+            projectRow[DatabaseConstants.Project.CUSTOMER] = project.Customer;
+            projectRow[DatabaseConstants.Project.COST] = project.Cost;
+            projectRow[DatabaseConstants.Project.DATE] = project.Date;
+            projectRow[DatabaseConstants.Project.DESCRIPTION] = project.Description;
 
+            DataTable performersTable = database.Tables[DatabaseConstants.Performer.TABLE_NAME];
+            foreach (DataRow row in performersTable.Select(DatabaseConstants.Performer.PROJECT_ID + "=" + project.Id))
+            {
+                performersTable.Rows.Remove(row);
+            }
+            foreach (int performerId in project.PerformersIds)
+            {
+                DataRow row = performersTable.NewRow();
+                row[DatabaseConstants.Performer.PROJECT_ID] = project.Id;
+                row[DatabaseConstants.Performer.PROGRAMMER_ID] = performerId;
+                performersTable.Rows.Add(row);
+            }
         }
 
         public void editFinance(Finance finance)
         {
-            //DataTable table = database.Tables[DatabaseConstants.Finance.TABLE_NAME];
             DataRow row = database.Tables[DatabaseConstants.Finance.TABLE_NAME].Rows.Find(finance.Id); 
             row[DatabaseConstants.Finance.INCOME] = finance.Income;
             row[DatabaseConstants.Finance.EXPENSE] = finance.Expense;
@@ -199,9 +296,13 @@ namespace DocumentsSecurity
 
         public void editReport(Report report)
         {
-
+            DataRow row = database.Tables[DatabaseConstants.Report.TABLE_NAME].Rows.Find(report.Id);
+            row[DatabaseConstants.Report.AUTHOR] = report.AuthorId;
+            row[DatabaseConstants.Report.CONTENT] = report.Description;
         }
+        #endregion
 
+        #region remove functions
         public void remove(string tableName, int id)
         {
             switch (tableName)
@@ -232,29 +333,13 @@ namespace DocumentsSecurity
             programmers.Rows.Remove(programmers.Rows.Find(id));
 
             DataTable skills = database.Tables[DatabaseConstants.ProgrammersSkills.TABLE_NAME];
-            List<DataRow> rowsToRemove = new List<DataRow>();
-            foreach (DataRow row in skills.Rows)
-            {
-                if (((int)row[DatabaseConstants.ProgrammersSkills.PROGRAMMER_ID]) == id)
-                {
-                    rowsToRemove.Add(row);
-                }
-            }
-            foreach (DataRow row in rowsToRemove)
+            foreach (DataRow row in skills.Select(DatabaseConstants.ProgrammersSkills.PROGRAMMER_ID + "=" + id))
             {
                 skills.Rows.Remove(row);
             }
 
             DataTable performers = database.Tables[DatabaseConstants.Performer.TABLE_NAME];
-            rowsToRemove = new List<DataRow>();
-            foreach (DataRow row in performers.Rows)
-            {
-                if (((int)row[DatabaseConstants.Performer.PROGRAMMER_ID]) == id)
-                {
-                    rowsToRemove.Add(row);
-                }
-            }
-            foreach (DataRow row in rowsToRemove)
+            foreach (DataRow row in performers.Select(DatabaseConstants.Performer.PROGRAMMER_ID + "=" + id))
             {
                 performers.Rows.Remove(row);
             }
@@ -267,34 +352,14 @@ namespace DocumentsSecurity
 
             DataTable performers = database.Tables[DatabaseConstants.Performer.TABLE_NAME];
             List<DataRow> rowsToRemove = new List<DataRow>();
-            foreach (DataRow row in performers.Rows)
-            {
-                if (((int)row[DatabaseConstants.Performer.PROJECT_ID]) == id)
-                {
-                    rowsToRemove.Add(row);
-                }
-            }
-            foreach (DataRow row in rowsToRemove)
+            foreach (DataRow row in performers.Select(DatabaseConstants.Performer.PROJECT_ID + "=" + id))
             {
                 performers.Rows.Remove(row);
             }
         }
+        #endregion
 
-        public List<Programmer.NameIdPair> getAllProgrammers
-        {
-            get
-            {
-                List<Programmer.NameIdPair> programmers = new List<Programmer.NameIdPair>();
-                foreach (DataRow row in database.Tables[DatabaseConstants.Programmer.TABLE_NAME].Rows)
-                {
-                    int id = (int)row[DatabaseConstants.Programmer.ID];
-                    string name = row[DatabaseConstants.Programmer.NAME].ToString();
-                    programmers.Add(new Programmer.NameIdPair(id, name));
-                }
-                return programmers;
-            }
-        }
-
+        #region some help functions
         public List<int> createIdsListFromSkillsList(List<string> skills)
         {
             DataTable table = database.Tables[DatabaseConstants.Skill.TABLE_NAME];
@@ -331,59 +396,12 @@ namespace DocumentsSecurity
             }
             return result.ToString();
         }
-
-        public List<DocumentsForm.TableNameIdValueTriple> AllDocuments
-        {
-            get
-            {
-                List<DocumentsForm.TableNameIdValueTriple> list = new List<DocumentsForm.TableNameIdValueTriple>();
-
-                string tableName = DatabaseConstants.Project.TABLE_NAME;
-                string value = "Заказ от ";
-                DataTable table = database.Tables[tableName];
-                foreach (DataRow row in table.Rows)
-                {
-                    int id = (int) row[DatabaseConstants.Project.ID];
-                    string addValue = row[DatabaseConstants.Project.CUSTOMER].ToString();
-                    list.Add(new DocumentsForm.TableNameIdValueTriple(id, tableName, value + addValue));
-                }
-
-                tableName = DatabaseConstants.Programmer.TABLE_NAME;
-                table = database.Tables[tableName];
-                value = "Программист ";
-                foreach (DataRow row in table.Rows)
-                {
-                    int id = (int)row[DatabaseConstants.Programmer.ID];
-                    string addValue = row[DatabaseConstants.Programmer.NAME].ToString();
-                    list.Add(new DocumentsForm.TableNameIdValueTriple(id, tableName, value + addValue));
-                }
-
-                tableName = DatabaseConstants.Finance.TABLE_NAME;
-                table = database.Tables[tableName];
-                value = "Прибыль: ";
-                foreach (DataRow row in table.Rows)
-                {
-                    int id = (int)row[DatabaseConstants.Finance.ID]; 
-                    string addValue = row[DatabaseConstants.Finance.PROFIT].ToString();
-                    list.Add(new DocumentsForm.TableNameIdValueTriple(id, tableName, value + addValue));
-                }
-
-                tableName = DatabaseConstants.Report.TABLE_NAME;
-                table = database.Tables[tableName]; 
-                value = "Отчет номер ";
-                foreach (DataRow row in table.Rows)
-                {
-                    int id = (int)row[DatabaseConstants.Report.ID];
-                    list.Add(new DocumentsForm.TableNameIdValueTriple(id, tableName, value + id));
-                }
-
-                return list;
-            }
-        }
+        #endregion
 
         public void save()
         {
             database.WriteXml(FILENAME, XmlWriteMode.WriteSchema);
+            DatabaseConstants.IdsKeeper.save();
         }
 
         private void createNewDatabase()

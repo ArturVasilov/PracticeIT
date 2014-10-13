@@ -31,7 +31,7 @@ namespace DocumentsSecurity
         {
             bool isAllOk = true;
             //id isn't important, it's generating at runtime
-            int id = 0;
+            int id = DatabaseConstants.IdsKeeper.PROGRAMMER_ID;
 
             string name = DocumentProgrammerNameTextBox.Text;
             name = name == null ? "" : name;
