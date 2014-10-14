@@ -38,7 +38,7 @@ namespace DocumentsSecurity
         {
             InitializeComponent();
             company = Company.Instance;
-            documents = company.Database.AllDocuments;
+            documents = company.AllDocuments;
             addAllDocumentsToListBox();
         }
 
@@ -163,9 +163,9 @@ namespace DocumentsSecurity
 
         private void editProgrammerDocument(int id)
         {
-            Programmer programmer = company.Database.getProgrammerById(id);
+            Programmer programmer = company.getProgrammerById(id);
             AddProgrammerDialog addProgrammerDialog = new AddProgrammerDialog();
-            string skills = company.Database.getSkillsByIds(programmer.SkillsIds);
+            string skills = company.getSkillsByIds(programmer.SkillsIds);
             addProgrammerDialog.setFields(programmer.Name, programmer.Salary, skills, programmer.Description);
             if (addProgrammerDialog.ShowDialog() != DialogResult.OK)
             {
@@ -173,13 +173,13 @@ namespace DocumentsSecurity
             }
             else
             {
-                company.Database.editProgrammer(addProgrammerDialog.changeProgrammer(programmer.Id));
+                company.editProgrammer(addProgrammerDialog.changeProgrammer(programmer.Id));
             }
         }
 
         private void editProjectDocument(int id)
         {
-            Project project = company.Database.getProjectById(id);
+            Project project = company.getProjectById(id);
             AddProjectDialog addProjectDialog = new AddProjectDialog();
             addProjectDialog.setFields(project.Customer, project.Cost, project.Date, 
                 project.PerformersIds, project.Description);
@@ -189,13 +189,13 @@ namespace DocumentsSecurity
             }
             else
             {
-                company.Database.editProject(addProjectDialog.changeProject(project.Id));
+                company.editProject(addProjectDialog.changeProject(project.Id));
             }
         }
 
         private void editFinanceDocument(int id)
         {
-            Finance finance = company.Database.getFinanceById(id);
+            Finance finance = company.getFinanceById(id);
             AddFinanceDialog addFinanceDialog = new AddFinanceDialog();
             addFinanceDialog.setFields(finance.Income, finance.Expense, finance.Description);
             if (addFinanceDialog.ShowDialog() != DialogResult.OK)
@@ -204,13 +204,13 @@ namespace DocumentsSecurity
             }
             else
             {
-                company.Database.editFinance(addFinanceDialog.changeFinance(finance.Id));
+                company.editFinance(addFinanceDialog.changeFinance(finance.Id));
             }
         }
 
         private void editReportDocument(int id)
         {
-            Report report = company.Database.getReportById(id);
+            Report report = company.getReportById(id);
             AddReportDialog addReportDialog = new AddReportDialog();
             addReportDialog.setFields(report.AuthorId, report.Description);
             if (addReportDialog.ShowDialog() != DialogResult.OK)
@@ -219,7 +219,7 @@ namespace DocumentsSecurity
             }
             else
             {
-                company.Database.editReport(addReportDialog.changeReport(report.Id));
+                company.editReport(addReportDialog.changeReport(report.Id));
             }
         }
 
@@ -230,7 +230,7 @@ namespace DocumentsSecurity
             {
                 return;
             }
-            company.Database.remove(documents[index].TableName, documents[index].Id);
+            company.remove(documents[index].TableName, documents[index].Id);
             documents.RemoveAt(index);
             DocumentsListBox.Items.RemoveAt(index);
         }

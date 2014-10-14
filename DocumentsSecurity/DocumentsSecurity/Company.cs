@@ -55,11 +55,6 @@ namespace DocumentsSecurity
             }
         }
 
-        public Database Database
-        {
-            get { return database; }
-        }
-
         public static Company Instance
         {
             get
@@ -77,5 +72,63 @@ namespace DocumentsSecurity
                 return instance;
             }
         }
+
+        public List<DocumentsForm.TableNameIdValueTriple> AllDocuments { get { return database.AllDocuments; } }
+
+        internal void editProgrammer(Programmer programmer)
+        {
+            database.editProgrammer(programmer);
+        }
+
+        internal void editProject(Project project)
+        {
+            database.editProject(project);
+        }
+
+        internal void editFinance(Finance finance)
+        {
+            database.editFinance(finance);
+        }
+
+        internal void editReport(Report report)
+        {
+            database.editReport(report);
+        }
+
+        internal void remove(string tableName, int id)
+        {
+            database.remove(tableName, id);
+        }
+
+        internal List<int> createIdsListFromSkillsList(List<string> list)
+        {
+            return database.createIdsListFromSkillsList(list);
+        }
+
+        internal Report getReportById(int id)
+        {
+            return database.getReportById(id);
+        }
+
+        internal Finance getFinanceById(int id)
+        {
+            return database.getFinanceById(id);
+        }
+
+        internal Programmer getProgrammerById(int id)
+        {
+            return database.getProgrammerById(id);
+        }
+
+        internal Project getProjectById(int id)
+        {
+            return database.getProjectById(id);
+        }
+
+        internal string getSkillsByIds(List<int> list)
+        {
+            return database.getSkillsByIds(list);
+        }
+
     }
 }

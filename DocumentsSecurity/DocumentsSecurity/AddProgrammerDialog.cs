@@ -75,7 +75,7 @@ namespace DocumentsSecurity
             description = description == null ? "" : description;
 
             programmer = new Programmer(id, description, name, salary, 
-                Company.Instance.Database.createIdsListFromSkillsList(skills.ToList()).ToArray());
+                Company.Instance.createIdsListFromSkillsList(skills.ToList()).ToArray());
 
             this.DialogResult = DialogResult.OK;
             Close();
