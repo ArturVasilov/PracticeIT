@@ -88,7 +88,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Report.cs" />
     <Compile Include="Serializator.cs" />
-    <Compile Include="XmlController.cs" />
+    <Compile Include="Signer.cs" />
+    <Compile Include="Verifier.cs" />
+    <Compile Include="WordDocument.cs" />
     <EmbeddedResource Include="AddFinanceDialog.resx">
       <DependentUpon>AddFinanceDialog.cs</DependentUpon>
     </EmbeddedResource>

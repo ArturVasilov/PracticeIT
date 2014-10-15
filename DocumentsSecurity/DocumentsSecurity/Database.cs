@@ -394,7 +394,7 @@ namespace DocumentsSecurity
                     result.Append(row[DatabaseConstants.Skill.SKILL].ToString() + ", ");
                 }
             }
-            return result.ToString();
+            return result.Remove(result.Length - 2, 2).ToString();
         }
         #endregion
 
@@ -469,7 +469,7 @@ namespace DocumentsSecurity
 
             DataRelation reportsRelation = new DataRelation(DatabaseConstants.Relations.REPORT_PROGRAMMER,
                 new DataColumn[] { programmerTable.Columns[DatabaseConstants.Programmer.ID] },
-                new DataColumn[] { reportsTable.Columns[DatabaseConstants.Report.ID] });
+                new DataColumn[] { reportsTable.Columns[DatabaseConstants.Report.AUTHOR] });
             database.Relations.Add(reportsRelation);
 
             DataRelation programmerSkillsRelation = new DataRelation(DatabaseConstants.Relations.SKILL_PROGRAMMERSKILL,
