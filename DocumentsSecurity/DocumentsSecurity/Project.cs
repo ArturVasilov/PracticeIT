@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace DocumentsSecurity
 {
+    [Serializable]
     public class Project : Document
     {
         private string customer;
@@ -15,6 +16,8 @@ namespace DocumentsSecurity
         private string date;
 
         private List<int> performersIds;
+
+        public Project() : base() { }
 
         public Project(int id, string description, string customer, long cost, string date, int[] performersIds) 
             : base(id, description)

@@ -12,6 +12,8 @@ namespace DocumentsSecurity
 
         private string description;
 
+        public Document() { }
+
         public Document(int id, string description)
         {
             Id = id;

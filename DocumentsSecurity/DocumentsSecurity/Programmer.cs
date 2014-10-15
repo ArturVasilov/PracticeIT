@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace DocumentsSecurity
 {
+    [Serializable]
     public class Programmer : Document
     {
         public struct NameIdPair
@@ -26,6 +27,8 @@ namespace DocumentsSecurity
         private int salary;
 
         private List<int> skillsIds;
+
+        public Programmer() : base() { }
 
         public Programmer(int id, string description, string name, int salary, int[] skillsIds) : base(id, description)
         {

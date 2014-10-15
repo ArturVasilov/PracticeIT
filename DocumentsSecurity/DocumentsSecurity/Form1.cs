@@ -50,6 +50,7 @@ namespace DocumentsSecurity
             }
         }
 
+        #region add functions
         private void AddReportButton_Click(object sender, EventArgs e)
         {
             AddReportDialog addReportDialog = new AddReportDialog();
@@ -121,17 +122,9 @@ namespace DocumentsSecurity
                     DatabaseConstants.Finance.TABLE_NAME, finance.ToString()));
             }
         }
+        #endregion
 
-        private void ShowChosenDocumentButton_Click(object sender, EventArgs e)
-        {
-            int index = DocumentsListBox.SelectedIndex;
-            if (index < 0)
-            {
-                return;
-            }
-            //TODO : open in Microsoft Word
-        }
-
+        #region edit functions
         private void EditChosenDocumentButton_Click(object sender, EventArgs e)
         {
             int index = DocumentsListBox.SelectedIndex;
@@ -222,6 +215,7 @@ namespace DocumentsSecurity
                 company.editReport(addReportDialog.changeReport(report.Id));
             }
         }
+        #endregion
 
         private void RemoveChosenDocumentButton_Click(object sender, EventArgs e)
         {
@@ -235,9 +229,60 @@ namespace DocumentsSecurity
             DocumentsListBox.Items.RemoveAt(index);
         }
 
+        private void ShowChosenDocumentButton_Click(object sender, EventArgs e)
+        {
+            int index = DocumentsListBox.SelectedIndex;
+            if (index < 0)
+            {
+                return;
+            }
+            //TODO : open in Microsoft Word
+        }
+
+        private void serializeDocumentButton_Click(object sender, EventArgs e)
+        {
+            int index = DocumentsListBox.SelectedIndex;
+            if (index < 0)
+            {
+                return;
+            }
+
+            TableNameIdValueTriple value = documents[index];
+            switch (value.TableName)
+            {
+                case DatabaseConstants.Programmer.TABLE_NAME:
+                    Serializator.serialize(company.getProgrammerById(value.Id));
+                    break;
+
+                case DatabaseConstants.Project.TABLE_NAME:
+                    Serializator.serialize(company.getProjectById(value.Id));
+                    break;
+
+                case DatabaseConstants.Finance.TABLE_NAME:
+                    Serializator.serialize(company.getFinanceById(value.Id));
+                    break;
+
+                case DatabaseConstants.Report.TABLE_NAME:
+                    Serializator.serialize(company.getReportById(value.Id));
+                    break;
+            }
+        }   
+        
+
+        private void signDocumentButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void verificateButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void DocumentsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             company.save();
         }
+
     }
 }

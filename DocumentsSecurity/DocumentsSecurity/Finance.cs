@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DocumentsSecurity
 {
+    [Serializable]
     public class Finance : Document
     {
         private long income;
@@ -13,6 +14,8 @@ namespace DocumentsSecurity
         private long expense;
 
         private long profit;
+
+        public Finance() : base() { }
 
         public Finance(int id, string description, long income, long expense) : base(id, description)
         {

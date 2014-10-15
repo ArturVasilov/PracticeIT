@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DocumentsSecurity
 {
+    [Serializable]
     public class Report : Document
     {
         private int authorId;
@@ -25,6 +26,8 @@ namespace DocumentsSecurity
                 }
             }
         }
+
+        public Report() : base() { }
 
         public Report(int documentId, int authorId, string text) : base(documentId, text)
         {
