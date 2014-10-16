@@ -5,12 +5,12 @@ using System.Xml.Serialization;
 
 namespace DocumentsSecurity
 {
-    static class Signer
+    internal static class Signer
     {
         private static string path = Path.GetDirectoryName(Path.GetDirectoryName(
             System.IO.Directory.GetCurrentDirectory())) + "\\bin\\Debug\\signatures\\";
 
-        public static void sign(Report report)
+        internal static void sign(Report report)
         {
             XmlSerializer serializer = new XmlSerializer(report.GetType());
             MemoryStream memoryStream = new MemoryStream();
@@ -21,7 +21,7 @@ namespace DocumentsSecurity
             sign(memoryStream, fileName);
         }
 
-        public static void sign(Programmer programmer)
+        internal static void sign(Programmer programmer)
         {
             XmlSerializer serializer = new XmlSerializer(programmer.GetType());
             MemoryStream memoryStream = new MemoryStream();
@@ -32,7 +32,7 @@ namespace DocumentsSecurity
             sign(memoryStream, fileName);
         }
 
-        public static void sign(Project project)
+        internal static void sign(Project project)
         {
             XmlSerializer serializer = new XmlSerializer(project.GetType());
             MemoryStream memoryStream = new MemoryStream();
@@ -43,7 +43,7 @@ namespace DocumentsSecurity
             sign(memoryStream, fileName);
         }
 
-        public static void sign(Finance finance)
+        internal static void sign(Finance finance)
         {
             XmlSerializer serializer = new XmlSerializer(finance.GetType());
             MemoryStream memoryStream = new MemoryStream();

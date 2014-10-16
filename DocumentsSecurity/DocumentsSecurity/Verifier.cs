@@ -5,12 +5,12 @@ using System.Xml.Serialization;
 
 namespace DocumentsSecurity
 {
-    static class Verifier
+    internal static class Verifier
     {
         private static string path = Path.GetDirectoryName(Path.GetDirectoryName(
             System.IO.Directory.GetCurrentDirectory())) + "\\bin\\Debug\\signatures\\";
 
-        public static bool verify(Report report)
+        internal static bool verify(Report report)
         {
             XmlSerializer serializer = new XmlSerializer(report.GetType());
             MemoryStream memoryStream = new MemoryStream();
@@ -21,7 +21,7 @@ namespace DocumentsSecurity
             return verify(memoryStream, fileName);
         }
 
-        public static bool verify(Programmer programmer)
+        internal static bool verify(Programmer programmer)
         {
             XmlSerializer serializer = new XmlSerializer(programmer.GetType());
             MemoryStream memoryStream = new MemoryStream();
@@ -32,7 +32,7 @@ namespace DocumentsSecurity
             return verify(memoryStream, fileName);
         }
 
-        public static bool verify(Project project)
+        internal static bool verify(Project project)
         {
             XmlSerializer serializer = new XmlSerializer(project.GetType());
             MemoryStream memoryStream = new MemoryStream();
@@ -43,7 +43,7 @@ namespace DocumentsSecurity
             return verify(memoryStream, fileName);
         }
 
-        public static bool verify(Finance finance)
+        internal static bool verify(Finance finance)
         {
             XmlSerializer serializer = new XmlSerializer(finance.GetType());
             MemoryStream memoryStream = new MemoryStream();

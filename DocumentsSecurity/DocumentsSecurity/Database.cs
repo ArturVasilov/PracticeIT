@@ -6,9 +6,9 @@ using System.Text;
 
 namespace DocumentsSecurity
 {
-    public class Database
+    internal class Database
     {
-        public const string FILENAME = "alldocuments.xml";
+        internal const string FILENAME = "alldocuments.xml";
 
         private DataSet database;
 
@@ -17,7 +17,7 @@ namespace DocumentsSecurity
             loadDatabase();
         }
 
-        public void loadDatabase()
+        internal void loadDatabase()
         {
             database = new DataSet();
             try
@@ -32,7 +32,7 @@ namespace DocumentsSecurity
         }
 
         #region add documents functions
-        public void addDocument(Report report)
+        internal void addDocument(Report report)
         {
             if (report == null)
             {
@@ -47,7 +47,7 @@ namespace DocumentsSecurity
             DatabaseConstants.IdsKeeper.addReport();
         }
 
-        public void addDocument(Project project)
+        internal void addDocument(Project project)
         {
             if (project == null)
             {
@@ -74,7 +74,7 @@ namespace DocumentsSecurity
             DatabaseConstants.IdsKeeper.addProject();
         }
 
-        public void addDocument(Programmer programmer)
+        internal void addDocument(Programmer programmer)
         {
             if (programmer == null)
             {
@@ -100,7 +100,7 @@ namespace DocumentsSecurity
             DatabaseConstants.IdsKeeper.addProgrammer();
         }
 
-        public void addDocument(Finance finance)
+        internal void addDocument(Finance finance)
         {
             if (finance == null)
             {
@@ -119,7 +119,7 @@ namespace DocumentsSecurity
         #endregion
 
         #region getters for documents
-        public Programmer getProgrammerById(int id)
+        internal Programmer getProgrammerById(int id)
         {
             DataTable table = database.Tables[DatabaseConstants.Programmer.TABLE_NAME];
             DataRow row = table.Rows.Find(id);
@@ -138,7 +138,7 @@ namespace DocumentsSecurity
             return new Programmer(id, description, name, salary, skillsIds);
         }
 
-        public Project getProjectById(int id)
+        internal Project getProjectById(int id)
         {
             DataTable table = database.Tables[DatabaseConstants.Project.TABLE_NAME];
             DataRow row = table.Rows.Find(id);
@@ -159,7 +159,7 @@ namespace DocumentsSecurity
             return new Project(id, description, customer, cost, date, performersIds);
         }
 
-        public Finance getFinanceById(int id)
+        internal Finance getFinanceById(int id)
         {
             DataTable table = database.Tables[DatabaseConstants.Finance.TABLE_NAME];
             DataRow row = table.Rows.Find(id);
@@ -168,7 +168,7 @@ namespace DocumentsSecurity
                 (long)row[DatabaseConstants.Finance.EXPENSE]);
         }
 
-        public Report getReportById(int id)
+        internal Report getReportById(int id)
         {
             DataTable table = database.Tables[DatabaseConstants.Report.TABLE_NAME];
             DataRow row = table.Rows.Find(id);
@@ -176,7 +176,7 @@ namespace DocumentsSecurity
                 row[DatabaseConstants.Report.CONTENT].ToString());
         }
 
-        public List<Programmer.NameIdPair> getAllProgrammers
+        internal List<Programmer.NameIdPair> getAllProgrammers
         {
             get
             {
@@ -242,7 +242,7 @@ namespace DocumentsSecurity
         #endregion
 
         #region edit functions
-        public void editProgrammer(Programmer programmer)
+        internal void editProgrammer(Programmer programmer)
         {
             DataRow programmerRow = database.Tables[DatabaseConstants.Programmer.TABLE_NAME].Rows.Find(programmer.Id);
             programmerRow[DatabaseConstants.Programmer.NAME] = programmer.Name;
@@ -263,7 +263,7 @@ namespace DocumentsSecurity
             }
         }
 
-        public void editProject(Project project)
+        internal void editProject(Project project)
         {
             DataRow projectRow = database.Tables[DatabaseConstants.Project.TABLE_NAME].Rows.Find(project.Id);
             projectRow[DatabaseConstants.Project.CUSTOMER] = project.Customer;
@@ -285,7 +285,7 @@ namespace DocumentsSecurity
             }
         }
 
-        public void editFinance(Finance finance)
+        internal void editFinance(Finance finance)
         {
             DataRow row = database.Tables[DatabaseConstants.Finance.TABLE_NAME].Rows.Find(finance.Id); 
             row[DatabaseConstants.Finance.INCOME] = finance.Income;
@@ -294,7 +294,7 @@ namespace DocumentsSecurity
             row[DatabaseConstants.Finance.DESCRIPTION] = finance.Description;
         }
 
-        public void editReport(Report report)
+        internal void editReport(Report report)
         {
             DataRow row = database.Tables[DatabaseConstants.Report.TABLE_NAME].Rows.Find(report.Id);
             row[DatabaseConstants.Report.AUTHOR] = report.AuthorId;
@@ -303,7 +303,7 @@ namespace DocumentsSecurity
         #endregion
 
         #region remove functions
-        public void remove(string tableName, int id)
+        internal void remove(string tableName, int id)
         {
             switch (tableName)
             {
@@ -360,7 +360,7 @@ namespace DocumentsSecurity
         #endregion
 
         #region some help functions
-        public List<int> createIdsListFromSkillsList(List<string> skills)
+        internal List<int> createIdsListFromSkillsList(List<string> skills)
         {
             DataTable table = database.Tables[DatabaseConstants.Skill.TABLE_NAME];
             List<int> result = new List<int>();
@@ -398,7 +398,7 @@ namespace DocumentsSecurity
         }
         #endregion
 
-        public void save()
+        internal void save()
         {
             database.WriteXml(FILENAME, XmlWriteMode.WriteSchema);
             DatabaseConstants.IdsKeeper.save();

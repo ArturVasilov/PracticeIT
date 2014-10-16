@@ -3,24 +3,24 @@ using System.IO;
 
 namespace DocumentsSecurity
 {
-    class WordDocument
+    internal class WordDocument
     {
         private static string path = Path.GetDirectoryName(Path.GetDirectoryName(
             System.IO.Directory.GetCurrentDirectory())) + "\\bin\\Debug\\word\\";
 
-        public static void createWordDocument(Report report)
+        internal static void createWordDocument(Report report)
         {
         }
 
-        public static void createWordDocument(Programmer programmer)
+        internal static void createWordDocument(Programmer programmer)
         {
         }
 
-        public static void createWordDocument(Project project)
+        internal static void createWordDocument(Project project)
         {
         }
 
-        public static void createWordDocument(Finance finance)
+        internal static void createWordDocument(Finance finance)
         {
         }
 

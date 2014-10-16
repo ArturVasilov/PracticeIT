@@ -37,8 +37,6 @@
             this.AddFinanceDocumentButton = new System.Windows.Forms.Button();
             this.EditChosenDocumentButton = new System.Windows.Forms.Button();
             this.DocumentsListBox = new System.Windows.Forms.ListBox();
-            this.signDocumentButton = new System.Windows.Forms.Button();
-            this.verificateButton = new System.Windows.Forms.Button();
             this.serializeDocumentButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -64,7 +62,7 @@
             // 
             // AddDocumentButton
             // 
-            this.AddDocumentButton.Location = new System.Drawing.Point(538, 27);
+            this.AddDocumentButton.Location = new System.Drawing.Point(543, 17);
             this.AddDocumentButton.Name = "AddDocumentButton";
             this.AddDocumentButton.Size = new System.Drawing.Size(240, 50);
             this.AddDocumentButton.TabIndex = 1;
@@ -74,7 +72,7 @@
             // 
             // AddProgrammerDocumentButton
             // 
-            this.AddProgrammerDocumentButton.Location = new System.Drawing.Point(784, 27);
+            this.AddProgrammerDocumentButton.Location = new System.Drawing.Point(543, 90);
             this.AddProgrammerDocumentButton.Name = "AddProgrammerDocumentButton";
             this.AddProgrammerDocumentButton.Size = new System.Drawing.Size(240, 50);
             this.AddProgrammerDocumentButton.TabIndex = 2;
@@ -84,7 +82,7 @@
             // 
             // AddProjectDocumentButton
             // 
-            this.AddProjectDocumentButton.Location = new System.Drawing.Point(538, 83);
+            this.AddProjectDocumentButton.Location = new System.Drawing.Point(543, 166);
             this.AddProjectDocumentButton.Name = "AddProjectDocumentButton";
             this.AddProjectDocumentButton.Size = new System.Drawing.Size(240, 50);
             this.AddProjectDocumentButton.TabIndex = 3;
@@ -94,7 +92,7 @@
             // 
             // AddFinanceDocumentButton
             // 
-            this.AddFinanceDocumentButton.Location = new System.Drawing.Point(784, 83);
+            this.AddFinanceDocumentButton.Location = new System.Drawing.Point(543, 236);
             this.AddFinanceDocumentButton.Name = "AddFinanceDocumentButton";
             this.AddFinanceDocumentButton.Size = new System.Drawing.Size(240, 50);
             this.AddFinanceDocumentButton.TabIndex = 4;
@@ -122,31 +120,11 @@
             this.DocumentsListBox.Size = new System.Drawing.Size(500, 384);
             this.DocumentsListBox.TabIndex = 0;
             // 
-            // signDocumentButton
-            // 
-            this.signDocumentButton.Location = new System.Drawing.Point(538, 342);
-            this.signDocumentButton.Name = "signDocumentButton";
-            this.signDocumentButton.Size = new System.Drawing.Size(240, 50);
-            this.signDocumentButton.TabIndex = 9;
-            this.signDocumentButton.Text = "Подписать";
-            this.signDocumentButton.UseVisualStyleBackColor = true;
-            this.signDocumentButton.Click += new System.EventHandler(this.signDocumentButton_Click);
-            // 
-            // verificateButton
-            // 
-            this.verificateButton.Location = new System.Drawing.Point(789, 342);
-            this.verificateButton.Name = "verificateButton";
-            this.verificateButton.Size = new System.Drawing.Size(240, 50);
-            this.verificateButton.TabIndex = 10;
-            this.verificateButton.Text = "Верифицировать";
-            this.verificateButton.UseVisualStyleBackColor = true;
-            this.verificateButton.Click += new System.EventHandler(this.verificateButton_Click);
-            // 
             // serializeDocumentButton
             // 
-            this.serializeDocumentButton.Location = new System.Drawing.Point(538, 206);
+            this.serializeDocumentButton.Location = new System.Drawing.Point(543, 339);
             this.serializeDocumentButton.Name = "serializeDocumentButton";
-            this.serializeDocumentButton.Size = new System.Drawing.Size(486, 50);
+            this.serializeDocumentButton.Size = new System.Drawing.Size(240, 50);
             this.serializeDocumentButton.TabIndex = 11;
             this.serializeDocumentButton.Text = "Сериализовать";
             this.serializeDocumentButton.UseVisualStyleBackColor = true;
@@ -156,10 +134,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1041, 453);
+            this.ClientSize = new System.Drawing.Size(812, 453);
             this.Controls.Add(this.serializeDocumentButton);
-            this.Controls.Add(this.verificateButton);
-            this.Controls.Add(this.signDocumentButton);
             this.Controls.Add(this.DocumentsListBox);
             this.Controls.Add(this.EditChosenDocumentButton);
             this.Controls.Add(this.AddFinanceDocumentButton);
@@ -186,8 +162,6 @@
         private System.Windows.Forms.Button AddFinanceDocumentButton;
         private System.Windows.Forms.Button EditChosenDocumentButton;
         private System.Windows.Forms.ListBox DocumentsListBox;
-        private System.Windows.Forms.Button signDocumentButton;
-        private System.Windows.Forms.Button verificateButton;
         private System.Windows.Forms.Button serializeDocumentButton;
     }
 }

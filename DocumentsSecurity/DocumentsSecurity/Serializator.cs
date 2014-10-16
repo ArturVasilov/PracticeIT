@@ -10,7 +10,7 @@ namespace DocumentsSecurity
         private static string path = Path.GetDirectoryName(Path.GetDirectoryName(
             System.IO.Directory.GetCurrentDirectory())) + "\\bin\\Debug\\serializations\\";
 
-        public static void serialize(Report report)
+        internal static void serialize(Report report)
         {
             string fileName = path + "report" + report.Id + ".xml";
             FileStream fileStream = new FileStream(fileName, FileMode.Create);
@@ -18,7 +18,7 @@ namespace DocumentsSecurity
             serializer.Serialize(fileStream, report);
         }
 
-        public static void serialize(Programmer programmer)
+        internal static void serialize(Programmer programmer)
         {
             string fileName = path + "programmer" + programmer.Id + ".xml";
             FileStream fileStream = new FileStream(fileName, FileMode.Create);
@@ -26,7 +26,7 @@ namespace DocumentsSecurity
             serializer.Serialize(fileStream, programmer);
         }
 
-        public static void serialize(Project project)
+        internal static void serialize(Project project)
         {
             string fileName = path + "project" + project.Id + ".xml";
             FileStream fileStream = new FileStream(fileName, FileMode.Create);
@@ -34,7 +34,7 @@ namespace DocumentsSecurity
             serializer.Serialize(fileStream, project);
         }
 
-        public static void serialize(Finance finance)
+        internal static void serialize(Finance finance)
         {
             string fileName = path + "finance" + finance.Id + ".xml";
             FileStream fileStream = new FileStream(fileName, FileMode.Create);

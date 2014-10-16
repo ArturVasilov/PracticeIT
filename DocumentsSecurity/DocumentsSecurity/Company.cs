@@ -22,32 +22,38 @@ namespace DocumentsSecurity
             database.loadDatabase();
         }
 
-        public void addReport(Report report)
+        #region add functions
+        internal void addReport(Report report)
         {
             database.addDocument(report);
+            sign(report);
         }
 
-        public void addProgrammer(Programmer programmer)
+        internal void addProgrammer(Programmer programmer)
         {
             database.addDocument(programmer);
+            sign(programmer);
         }
 
-        public void addProject(Project project)
+        internal void addProject(Project project)
         {
             database.addDocument(project);
+            sign(project);
         }
 
-        public void addFinance(Finance finance)
+        internal void addFinance(Finance finance)
         {
             database.addDocument(finance);
+            sign(finance);
         }
+        #endregion
 
-        public void save()
+        internal void save()
         {
             database.save();
         }
 
-        public List<Programmer.NameIdPair> getAllProgrammers
+        internal List<Programmer.NameIdPair> getAllProgrammers
         {
             get 
             {
@@ -73,27 +79,33 @@ namespace DocumentsSecurity
             }
         }
 
-        public List<DocumentsForm.TableNameIdValueTriple> AllDocuments { get { return database.AllDocuments; } }
+        internal List<DocumentsForm.TableNameIdValueTriple> AllDocuments { get { return database.AllDocuments; } }
 
+        #region edit functions
         internal void editProgrammer(Programmer programmer)
         {
             database.editProgrammer(programmer);
+            sign(programmer);
         }
 
         internal void editProject(Project project)
         {
             database.editProject(project);
+            sign(project);
         }
 
         internal void editFinance(Finance finance)
         {
             database.editFinance(finance);
+            sign(finance);
         }
 
         internal void editReport(Report report)
         {
             database.editReport(report);
+            sign(report);
         }
+        #endregion
 
         internal void remove(string tableName, int id)
         {
@@ -105,6 +117,12 @@ namespace DocumentsSecurity
             return database.createIdsListFromSkillsList(list);
         }
 
+        internal string getSkillsByIds(List<int> list)
+        {
+            return database.getSkillsByIds(list);
+        }
+
+        #region getters
         internal Report getReportById(int id)
         {
             return database.getReportById(id);
@@ -124,11 +142,143 @@ namespace DocumentsSecurity
         {
             return database.getProjectById(id);
         }
+        #endregion
 
-        internal string getSkillsByIds(List<int> list)
+        #region word documents
+        internal void createWordDocument(string tableName, int id)
         {
-            return database.getSkillsByIds(list);
+            switch (tableName)
+            {
+                case DatabaseConstants.Programmer.TABLE_NAME:
+                    WordDocument.createWordDocument(getProgrammerById(id));
+                    break;
+
+                case DatabaseConstants.Project.TABLE_NAME:
+                    WordDocument.createWordDocument(getProjectById(id));
+                    break;
+
+                case DatabaseConstants.Finance.TABLE_NAME:
+                    WordDocument.createWordDocument(getFinanceById(id));
+                    break;
+
+                case DatabaseConstants.Report.TABLE_NAME:
+                    WordDocument.createWordDocument(getReportById(id));
+                    break;
+            }
         }
 
+        internal void createWordDocument(Programmer programmer)
+        {
+            WordDocument.createWordDocument(programmer);
+        }
+
+        internal void createWordDocument(Project project)
+        {
+            WordDocument.createWordDocument(project);
+        }
+
+        internal void createWordDocument(Report report)
+        {
+            WordDocument.createWordDocument(report);
+        }
+
+        internal void createWordDocument(Finance finance)
+        {
+            WordDocument.createWordDocument(finance);
+        }
+        #endregion
+
+        #region serializators
+        internal void serialize(string tableName, int id)
+        {
+            switch (tableName)
+            {
+                case DatabaseConstants.Programmer.TABLE_NAME:
+                    Serializator.serialize(getProgrammerById(id));
+                    break;
+
+                case DatabaseConstants.Project.TABLE_NAME:
+                    Serializator.serialize(getProjectById(id));
+                    break;
+
+                case DatabaseConstants.Finance.TABLE_NAME:
+                    Serializator.serialize(getFinanceById(id));
+                    break;
+
+                case DatabaseConstants.Report.TABLE_NAME:
+                    Serializator.serialize(getReportById(id));
+                    break;
+            }
+        }
+
+        internal void serialize(Programmer programmer)
+        {
+            Serializator.serialize(programmer);
+        }
+
+        internal void serialize(Project project)
+        {
+            Serializator.serialize(project);
+        }
+
+        internal void serialize(Report report)
+        {
+            Serializator.serialize(report);
+        }
+
+        internal void serialize(Finance finance)
+        {
+            Serializator.serialize(finance);
+        }
+        #endregion
+
+        #region signers
+        internal void sign(string tableName, int id)
+        {
+            switch (tableName)
+            {
+                case DatabaseConstants.Programmer.TABLE_NAME:
+                    Signer.sign(getProgrammerById(id));
+                    break;
+
+                case DatabaseConstants.Project.TABLE_NAME:
+                    Signer.sign(getProjectById(id));
+                    break;
+
+                case DatabaseConstants.Finance.TABLE_NAME:
+                    Signer.sign(getFinanceById(id));
+                    break;
+
+                case DatabaseConstants.Report.TABLE_NAME:
+                    Signer.sign(getReportById(id));
+                    break;
+            }
+        }
+
+        internal void sign(Programmer programmer)
+        {
+            Signer.sign(programmer);
+        }
+
+        internal void sign(Project project)
+        {
+            Signer.sign(project);
+        }
+
+        internal void sign(Report report)
+        {
+            Signer.sign(report);
+        }
+
+        internal void sign(Finance finance)
+        {
+            Signer.sign(finance);
+        }
+        #endregion
+   
+        internal void verifyAll()
+        {
+            //TODO : verify all documents
+        }
     }
 }

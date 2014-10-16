@@ -16,7 +16,7 @@ namespace DocumentsSecurity
     {
         private Company company;
 
-        public struct TableNameIdValueTriple
+        internal struct TableNameIdValueTriple
         {
             private int id;
             private string tableName;
@@ -238,7 +238,9 @@ namespace DocumentsSecurity
             {
                 return;
             }
-            //TODO : open in Microsoft Word
+
+            TableNameIdValueTriple value = documents[index];
+            company.createWordDocument(value.TableName, value.Id);
         }
 
         private void serializeDocumentButton_Click(object sender, EventArgs e)
@@ -250,95 +252,9 @@ namespace DocumentsSecurity
             }
 
             TableNameIdValueTriple value = documents[index];
-            switch (value.TableName)
-            {
-                case DatabaseConstants.Programmer.TABLE_NAME:
-                    Serializator.serialize(company.getProgrammerById(value.Id));
-                    break;
-
-                case DatabaseConstants.Project.TABLE_NAME:
-                    Serializator.serialize(company.getProjectById(value.Id));
-                    break;
-
-                case DatabaseConstants.Finance.TABLE_NAME:
-                    Serializator.serialize(company.getFinanceById(value.Id));
-                    break;
-
-                case DatabaseConstants.Report.TABLE_NAME:
-                    Serializator.serialize(company.getReportById(value.Id));
-                    break;
-            }
+            company.serialize(value.TableName, value.Id);
             MessageBox.Show("Документ сериализован!");
         }   
-        
-
-        private void signDocumentButton_Click(object sender, EventArgs e)
-        {
-            int index = DocumentsListBox.SelectedIndex;
-            if (index < 0)
-            {
-                return;
-            }
-
-            TableNameIdValueTriple value = documents[index];
-            switch (value.TableName)
-            {
-                case DatabaseConstants.Programmer.TABLE_NAME:
-                    Signer.sign(company.getProgrammerById(value.Id));
-                    break;
-
-                case DatabaseConstants.Project.TABLE_NAME:
-                    Signer.sign(company.getProjectById(value.Id));
-                    break;
-
-                case DatabaseConstants.Finance.TABLE_NAME:
-                    Signer.sign(company.getFinanceById(value.Id));
-                    break;
-
-                case DatabaseConstants.Report.TABLE_NAME:
-                    Signer.sign(company.getReportById(value.Id));
-                    break;
-            }
-            MessageBox.Show("Документ подписан цифровой подписью!");
-        }
-
-        private void verificateButton_Click(object sender, EventArgs e)
-        {
-            int index = DocumentsListBox.SelectedIndex;
-            if (index < 0)
-            {
-                return;
-            }
-
-            try
-            {
-                bool isVerified = false;
-                TableNameIdValueTriple value = documents[index];
-                switch (value.TableName)
-                {
-                    case DatabaseConstants.Programmer.TABLE_NAME:
-                        isVerified = Verifier.verify(company.getProgrammerById(value.Id));
-                        break;
-
-                    case DatabaseConstants.Project.TABLE_NAME:
-                        isVerified = Verifier.verify(company.getProjectById(value.Id));
-                        break;
-
-                    case DatabaseConstants.Finance.TABLE_NAME:
-                        isVerified = Verifier.verify(company.getFinanceById(value.Id));
-                        break;
-
-                    case DatabaseConstants.Report.TABLE_NAME:
-                        isVerified = Verifier.verify(company.getReportById(value.Id));
-                        break;
-                }
-                MessageBox.Show(isVerified ? "Верификация прошла успешно!" : "Документ не прошел верификацию!");
-            }
-            catch (FileNotFoundException)
-            {
-                MessageBox.Show("Документ не подписан или подписан неверно! Документ не прошел верификацию!");
-            }
-        }
 
         private void DocumentsForm_FormClosed(object sender, FormClosedEventArgs e)
         {
