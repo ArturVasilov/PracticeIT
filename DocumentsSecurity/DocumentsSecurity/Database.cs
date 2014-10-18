@@ -191,11 +191,11 @@ namespace DocumentsSecurity
             }
         }
 
-        public List<DocumentsForm.TableNameIdValueTriple> AllDocuments
+        public List<TableNameIdValueTriple> AllDocuments
         {
             get
             {
-                List<DocumentsForm.TableNameIdValueTriple> list = new List<DocumentsForm.TableNameIdValueTriple>();
+                List<TableNameIdValueTriple> list = new List<TableNameIdValueTriple>();
 
                 string tableName = DatabaseConstants.Project.TABLE_NAME;
                 string value = "Заказ от ";
@@ -204,7 +204,7 @@ namespace DocumentsSecurity
                 {
                     int id = (int)row[DatabaseConstants.Project.ID];
                     string addValue = row[DatabaseConstants.Project.CUSTOMER].ToString();
-                    list.Add(new DocumentsForm.TableNameIdValueTriple(id, tableName, value + addValue));
+                    list.Add(new TableNameIdValueTriple(id, tableName, value + addValue));
                 }
 
                 tableName = DatabaseConstants.Programmer.TABLE_NAME;
@@ -214,7 +214,7 @@ namespace DocumentsSecurity
                 {
                     int id = (int)row[DatabaseConstants.Programmer.ID];
                     string addValue = row[DatabaseConstants.Programmer.NAME].ToString();
-                    list.Add(new DocumentsForm.TableNameIdValueTriple(id, tableName, value + addValue));
+                    list.Add(new TableNameIdValueTriple(id, tableName, value + addValue));
                 }
 
                 tableName = DatabaseConstants.Finance.TABLE_NAME;
@@ -224,7 +224,7 @@ namespace DocumentsSecurity
                 {
                     int id = (int)row[DatabaseConstants.Finance.ID];
                     string addValue = row[DatabaseConstants.Finance.PROFIT].ToString();
-                    list.Add(new DocumentsForm.TableNameIdValueTriple(id, tableName, value + addValue));
+                    list.Add(new TableNameIdValueTriple(id, tableName, value + addValue));
                 }
 
                 tableName = DatabaseConstants.Report.TABLE_NAME;
@@ -233,7 +233,7 @@ namespace DocumentsSecurity
                 foreach (DataRow row in table.Rows)
                 {
                     int id = (int)row[DatabaseConstants.Report.ID];
-                    list.Add(new DocumentsForm.TableNameIdValueTriple(id, tableName, value + id));
+                    list.Add(new TableNameIdValueTriple(id, tableName, value + id));
                 }
 
                 return list;

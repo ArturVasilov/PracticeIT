@@ -16,6 +16,16 @@ namespace DocumentsSecurity
             initDataSet();
         }
 
+        public bool verifyDocuments()
+        {
+            List<Document> docs = getUnverifiedDocs();
+            if (docs.Count == 0)
+            {
+                return true;
+            }
+            throw new VerificationException("Verification failed!", docs);
+        }
+
         private void initDataSet()
         {
             database = new Database();
@@ -79,7 +89,7 @@ namespace DocumentsSecurity
             }
         }
 
-        internal List<DocumentsForm.TableNameIdValueTriple> AllDocuments { get { return database.AllDocuments; } }
+        internal List<TableNameIdValueTriple> AllDocuments { get { return database.AllDocuments; } }
 
         #region edit functions
         internal void editProgrammer(Programmer programmer)
@@ -276,9 +286,59 @@ namespace DocumentsSecurity
         }
         #endregion
    
-        internal void verifyAll()
+        private List<Document> getUnverifiedDocs()
         {
-            //TODO : verify all documents
+            try
+            {
+                List<Document> unverifiedDocuments = new List<Document>();
+                foreach (TableNameIdValueTriple document in AllDocuments) 
+                {
+                    verify(document, unverifiedDocuments);
+                }
+                return unverifiedDocuments;
+            }
+            catch (Exception)
+            {
+                throw new VerificationException("Attemp to verificate failed! Check documents format or smth like this!");
+            }
+        }
+
+        private void verify(TableNameIdValueTriple document, List<Document> list)
+        {
+            switch (document.TableName)
+            {
+                case DatabaseConstants.Programmer.TABLE_NAME:
+                    Programmer programmer = getProgrammerById(document.Id);
+                    if (!Verifier.verify(programmer))
+                    {
+                        list.Add(programmer);
+                    }
+                    break;
+
+                case DatabaseConstants.Project.TABLE_NAME: 
+                    Project project = getProjectById(document.Id);
+                    if (!Verifier.verify(project))
+                    {
+                        list.Add(project);
+                    }
+                    break;
+
+                case DatabaseConstants.Finance.TABLE_NAME:
+                    Finance finance = getFinanceById(document.Id);
+                    if (!Verifier.verify(finance))
+                    {
+                        list.Add(finance);
+                    }
+                    break;
+
+                case DatabaseConstants.Report.TABLE_NAME:
+                    Report report = getReportById(document.Id);
+                    if (!Verifier.verify(report))
+                    {
+                        list.Add(report);
+                    }
+                    break;
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DocumentsSecurity
 {
+    [Serializable]
     public class Document
     {
         private int id;

@@ -122,7 +122,7 @@
             // 
             // serializeDocumentButton
             // 
-            this.serializeDocumentButton.Location = new System.Drawing.Point(543, 339);
+            this.serializeDocumentButton.Location = new System.Drawing.Point(543, 351);
             this.serializeDocumentButton.Name = "serializeDocumentButton";
             this.serializeDocumentButton.Size = new System.Drawing.Size(240, 50);
             this.serializeDocumentButton.TabIndex = 11;

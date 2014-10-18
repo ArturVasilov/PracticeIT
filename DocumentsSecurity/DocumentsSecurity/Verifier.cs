@@ -62,7 +62,7 @@ namespace DocumentsSecurity
 
             try
             {
-                BinaryReader binaryReader = new BinaryReader(new FileStream(fileName, FileMode.Create));
+                BinaryReader binaryReader = new BinaryReader(new FileStream(fileName, FileMode.Open));
                 string savedKey = binaryReader.ReadString();
                 int length = binaryReader.ReadInt32();
                 byte[] savedSignature = binaryReader.ReadBytes(length);

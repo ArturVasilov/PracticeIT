@@ -16,6 +16,7 @@ namespace DocumentsSecurity
             FileStream fileStream = new FileStream(fileName, FileMode.Create);
             XmlSerializer serializer = new XmlSerializer(report.GetType());
             serializer.Serialize(fileStream, report);
+            fileStream.Close();
         }
 
         internal static void serialize(Programmer programmer)
@@ -24,6 +25,7 @@ namespace DocumentsSecurity
             FileStream fileStream = new FileStream(fileName, FileMode.Create);
             XmlSerializer serializer = new XmlSerializer(programmer.GetType());
             serializer.Serialize(fileStream, programmer);
+            fileStream.Close();
         }
 
         internal static void serialize(Project project)
@@ -32,6 +34,7 @@ namespace DocumentsSecurity
             FileStream fileStream = new FileStream(fileName, FileMode.Create);
             XmlSerializer serializer = new XmlSerializer(project.GetType());
             serializer.Serialize(fileStream, project);
+            fileStream.Close();
         }
 
         internal static void serialize(Finance finance)
@@ -40,6 +43,7 @@ namespace DocumentsSecurity
             FileStream fileStream = new FileStream(fileName, FileMode.Create);
             XmlSerializer serializer = new XmlSerializer(finance.GetType());
             serializer.Serialize(fileStream, finance);
+            fileStream.Close();
         }
     }
 }
