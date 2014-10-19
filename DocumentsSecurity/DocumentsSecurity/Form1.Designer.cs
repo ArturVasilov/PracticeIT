@@ -46,9 +46,9 @@
             this.ShowChosenDocumentButton.Name = "ShowChosenDocumentButton";
             this.ShowChosenDocumentButton.Size = new System.Drawing.Size(160, 41);
             this.ShowChosenDocumentButton.TabIndex = 5;
-            this.ShowChosenDocumentButton.Text = "Посмотреть";
+            this.ShowChosenDocumentButton.Text = "Создать документ";
             this.ShowChosenDocumentButton.UseVisualStyleBackColor = true;
-            this.ShowChosenDocumentButton.Click += new System.EventHandler(this.ShowChosenDocumentButton_Click);
+            this.ShowChosenDocumentButton.Click += new System.EventHandler(this.CreateWordDocumentButton_Click);
             // 
             // RemoveChosenDocumentButton
             // 

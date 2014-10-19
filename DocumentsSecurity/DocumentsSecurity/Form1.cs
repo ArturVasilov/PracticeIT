@@ -221,7 +221,7 @@ namespace DocumentsSecurity
             DocumentsListBox.Items.RemoveAt(index);
         }
 
-        private void ShowChosenDocumentButton_Click(object sender, EventArgs e)
+        private void CreateWordDocumentButton_Click(object sender, EventArgs e)
         {
             int index = DocumentsListBox.SelectedIndex;
             if (index < 0)
