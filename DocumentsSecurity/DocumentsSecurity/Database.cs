@@ -396,6 +396,17 @@ namespace DocumentsSecurity
             }
             return result.Remove(result.Length - 2, 2).ToString();
         }
+
+        internal string getPerformersByIds(List<int> list)
+        {
+            StringBuilder result = new StringBuilder();
+            foreach (int id in list)
+            {
+                DataRow dataRow = database.Tables[DatabaseConstants.Programmer.TABLE_NAME].Rows.Find(id);
+                result.Append(dataRow[DatabaseConstants.Programmer.NAME].ToString()).Append(", ");
+            }
+            return result.Remove(result.Length - 2, 2).ToString();
+        }
         #endregion
 
         internal void save()

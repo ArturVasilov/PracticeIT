@@ -132,6 +132,11 @@ namespace DocumentsSecurity
             return database.getSkillsByIds(list);
         }
 
+        internal string getPerformersByIds(List<int> list)
+        {
+            return database.getPerformersByIds(list);
+        }
+
         #region getters
         internal Report getReportById(int id)
         {
