@@ -14,7 +14,7 @@ namespace Symbols
     {
         static void Main(string[] args)
         {
-            RegularExpressions.Task7();
+            RegularExpression2.Task6();
 
             Console.ReadLine();
         }
