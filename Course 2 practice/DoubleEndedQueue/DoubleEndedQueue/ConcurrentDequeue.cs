@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace DoubleEndedQueue
 {
-    class ConcurrentDequeue<T> : IEnumerable<T>
+    class ConcurrentDequeue<T> : DEQueue<T>
     {
         private static readonly object monitor = new object();
 
+        //I can use adapter here, but list implementation is much more powerful for it;
         private ListDequeue<T> dequeue;
 
         public ConcurrentDequeue()
@@ -113,6 +114,14 @@ namespace DoubleEndedQueue
             lock (monitor)
             {
                 return dequeue.isEmpty();
+            }
+        }
+
+        public override string ToString()
+        {
+            lock (monitor)
+            {
+                return dequeue.ToString();
             }
         }
 

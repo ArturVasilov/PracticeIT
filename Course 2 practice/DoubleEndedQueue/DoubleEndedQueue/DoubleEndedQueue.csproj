@@ -45,9 +45,12 @@
     <Compile Include="ConcurrentDequeue.cs" />
     <Compile Include="DEQueue.cs" />
     <Compile Include="EmptyQueueException.cs" />
+    <Compile Include="QueueAdapter.cs" />
+    <Compile Include="StackQueue.cs" />
     <Compile Include="ListDequeue.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StackAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -13,7 +13,11 @@ namespace DoubleEndedQueue
 
         private const double ENSURE_CAPACITY = 1.5;
 
-        private T[] values; 
+        private T[] values;
+
+        private int addIndex = 0;
+
+        private int popIndex = -1;
 
         public ArrayDequeue()
         {
@@ -28,6 +32,7 @@ namespace DoubleEndedQueue
         public ArrayDequeue(T element)
         {
             values = new T[INITIAL_CAPACITY];
+            addBack(element);
         }
 
         public ArrayDequeue(params T[] values)
@@ -40,6 +45,7 @@ namespace DoubleEndedQueue
             {
                 this.values = new T[(int)(values.Length * ENSURE_CAPACITY)];
             }
+            addAllBack(values);
         }
 
         public ArrayDequeue(IEnumerable<T> collection)
@@ -52,6 +58,14 @@ namespace DoubleEndedQueue
             {
                 values = new T[(int)(collection.Count() * ENSURE_CAPACITY)];
             }
+            addAllBack(values);
+        }
+
+        private void ensureCapacity(int newCapacity)
+        {
+            T[] newValues = new T[newCapacity];
+            Array.Copy(values, newValues, values.Length);
+            values = newValues;
         }
 
         public void addFront(T element)

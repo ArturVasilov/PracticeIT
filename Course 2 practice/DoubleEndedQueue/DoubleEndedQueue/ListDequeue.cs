@@ -197,6 +197,23 @@ namespace DoubleEndedQueue
             return count == 0;
         }
 
+        public override string ToString()
+        {
+            if (size() == 0)
+            {
+                return "[]";
+            }
+            StringBuilder builder = new StringBuilder("[");
+            Refer current = firstElement;
+            while (current != null)
+            {
+                builder.Append(current.data.ToString()).Append(", ");
+                current = current.next;
+            }
+            builder.Remove(builder.Length - 2, 2);
+            return builder.Append("]").ToString();
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             List<T> list = new List<T>();
