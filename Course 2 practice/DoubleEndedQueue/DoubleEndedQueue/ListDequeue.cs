@@ -176,15 +176,16 @@ namespace DoubleEndedQueue
             }
             else
             {
-                Refer current = firstElement.next;
+                firstElement = firstElement.next;
                 do
                 {
-                    current.previous = null;
-                    current = current.next;
-                } while (current.next != null);
-                current.previous = null;
-                current = null;
+                    firstElement.previous = null;
+                    firstElement = firstElement.next;
+                } while (firstElement.next != null);
+                firstElement.previous = null;
+                firstElement = null;
             }
+            count = 0;
         }
 
         public int size()
@@ -212,23 +213,6 @@ namespace DoubleEndedQueue
             }
             builder.Remove(builder.Length - 2, 2);
             return builder.Append("]").ToString();
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            List<T> list = new List<T>();
-            Refer current = firstElement;
-            while (current != null)
-            {
-                list.Add(current.data);
-                current = current.next;
-            }
-            return list.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
     }
 }

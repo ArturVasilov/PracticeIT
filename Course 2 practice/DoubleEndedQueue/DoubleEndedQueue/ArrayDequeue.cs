@@ -108,6 +108,11 @@ namespace DoubleEndedQueue
 
         }
 
+        public override string ToString()
+        {
+            return "[]";
+        }
+
         public void clear()
         {
 
@@ -123,14 +128,5 @@ namespace DoubleEndedQueue
             return size() == 0;
         }
 
-        public IEnumerator<T> GetEnumerator()
-        {
-            return new List<T>(values).GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return values.GetEnumerator();
-        }
     }
 }

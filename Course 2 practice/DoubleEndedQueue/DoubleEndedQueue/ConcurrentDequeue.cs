@@ -124,21 +124,5 @@ namespace DoubleEndedQueue
                 return dequeue.ToString();
             }
         }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            lock (monitor)
-            {
-                return dequeue.GetEnumerator();
-            }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            lock (monitor)
-            {
-                return dequeue.GetEnumerator();
-            }
-        }
     }
 }

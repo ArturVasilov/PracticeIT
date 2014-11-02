@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DoubleEndedQueue
 {
-    interface DEQueue<T> : IEnumerable<T>
+    interface DEQueue<T>
     {
         void addFront(T element);
 

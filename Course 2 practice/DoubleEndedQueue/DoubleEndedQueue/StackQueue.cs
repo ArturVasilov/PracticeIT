@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DoubleEndedQueue
 {
-    interface StackQueue<T> : IEnumerable<T>
+    interface StackQueue<T>
     {
         void push(T element);
 

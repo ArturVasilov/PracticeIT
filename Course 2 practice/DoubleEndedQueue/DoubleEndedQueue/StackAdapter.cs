@@ -55,15 +55,5 @@ namespace DoubleEndedQueue
         {
             return dequeue.ToString();
         }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            return dequeue.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return dequeue.GetEnumerator();
-        }
     }
 }

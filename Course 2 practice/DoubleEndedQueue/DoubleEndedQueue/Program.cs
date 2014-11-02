@@ -32,7 +32,7 @@ namespace DoubleEndedQueue
 
             Console.WriteLine("\n\n\n");
             Console.WriteLine("Test Queue");
-            sd = new ArrayDequeue<string>();
+            sd = new ListDequeue<string>();
             sq = new QueueAdapter<string>(sd);
             testStackQueue(sq);
 
@@ -58,18 +58,24 @@ namespace DoubleEndedQueue
             Console.WriteLine(dequeue.peekFront());
             Console.WriteLine(dequeue);
             Console.WriteLine(dequeue.size());
-            foreach (int a in dequeue)
-            {
-                Console.Write(a * 2 + " ");
-            }
-            Console.WriteLine();
             dequeue.clear();
             Console.WriteLine(dequeue);
         }
 
         static void testStackQueue(StackQueue<string> sq)
         {
-
+            Console.WriteLine(sq);
+            sq.push("aaa");
+            sq.push("bbbb");
+            sq.pushAll(new string[] { "xx", "12", "16", "17" });
+            Console.WriteLine(sq);
+            Console.WriteLine(sq.peek() == sq.pop());
+            Console.WriteLine(sq.peek());
+            Console.WriteLine(sq.pop());
+            Console.WriteLine(sq);
+            Console.WriteLine(sq.size());
+            sq.clear();
+            Console.WriteLine(sq);
         }
     }
 }
