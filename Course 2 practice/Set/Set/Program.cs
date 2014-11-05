@@ -10,16 +10,16 @@ namespace Set
     {
         static void Main(string[] args)
         {
-            //testListSet();
+            testSet(new TreeSet<int>(11, 15, 13, 17, 19, 21, 25));
 
             //testSetFactory();
 
             Console.ReadLine();
         }
 
-        private static void testSetFactory()
+        private static void testFactory()
         {
-            ListSet<int> set = new ListSet<int>(1, 5, 3, 7, 9, 11, 15, 12, 14, 2, 8, 20);
+            Set<int> set = new ListSet<int>(1, 5, 3, 7, 9, 11, 15, 12, 14, 2, 8, 20);
             Console.WriteLine("set - " + set);
             List<int> list = new List<int>(new int[] { 2, 4, 6, 8, 15, 21 });
             Console.WriteLine("list - [2, 4, 6, 8, 15, 21]");
@@ -29,18 +29,17 @@ namespace Set
             Console.WriteLine("difference set with set - " + SetFactory.difference(set, set));
         }
 
-        private static void testListSet()
+        private static void testSet(Set<int> set)
         {
-            ListSet<int> set = new ListSet<int>(1, 5, 3, 7, 9, 11, 15);
             Console.WriteLine(set);
             Console.WriteLine("Add value 5, result - " + set.add(5));
             Console.WriteLine(set);
-            Console.WriteLine("Add array [2, 3, 4, 12, 13, 14], result - " + set.addAll(new int[] { 2, 3, 4, 12, 13, 14 }));
+            Console.WriteLine("Add array [12, 13, 14, 22, 23, 24], result - " + set.addAll(new int[] { 12, 13, 14, 22, 23, 24 }));
             Console.WriteLine(set);
-            Console.WriteLine("Contains [2, 3, 4] - " + set.containsAll(new int[] { 2, 3, 4 }));
-            Console.WriteLine("Remove 1, result - " + set.remove(1));
+            Console.WriteLine("Contains [12, 13, 14] - " + set.containsAll(new int[] { 12, 13, 14 }));
+            Console.WriteLine("Remove 11, result - " + set.remove(11));
             Console.WriteLine(set);
-            Console.WriteLine("Remove [2, 3, 4] - " + set.removeAll(new LinkedList<int>(new int[] { 2, 3, 4 })));
+            Console.WriteLine("Remove [12, 13, 14] - " + set.removeAll(new LinkedList<int>(new int[] { 12, 13, 14 })));
             Console.WriteLine(set);
         }
     }
