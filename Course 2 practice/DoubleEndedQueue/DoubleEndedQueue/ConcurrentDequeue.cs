@@ -11,12 +11,16 @@ namespace DoubleEndedQueue
     {
         private static readonly object monitor = new object();
 
-        //I can use adapter here, but list implementation is much more powerful for it;
-        private ListDequeue<T> dequeue;
+        private DEQueue<T> dequeue;
 
         public ConcurrentDequeue()
         {
             dequeue = new ListDequeue<T>();
+        }
+
+        public ConcurrentDequeue(DEQueue<T> dequeue)
+        {
+            this.dequeue = dequeue;
         }
 
         public ConcurrentDequeue(T element)

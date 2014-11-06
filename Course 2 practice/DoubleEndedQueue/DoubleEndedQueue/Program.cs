@@ -12,17 +12,17 @@ namespace DoubleEndedQueue
         {
             Console.WriteLine("Test ListDequeue");
             DEQueue<int> dequeue = new ListDequeue<int>(3, 4, 5);
-            testDequeue(dequeue);
+            //testDequeue(dequeue);
 
             Console.WriteLine("\n\n\n");
             Console.WriteLine("Test ArrayDequeue");
-            dequeue = new ArrayDequeue<int>(3);
-            //testDequeue(dequeue);
+            dequeue = new ArrayDequeue<int>(10);
+            testDequeue(dequeue);
 
             Console.WriteLine("\n\n\n");
             Console.WriteLine("Test ConcurrentDequeue");
             dequeue = new ConcurrentDequeue<int>(new int[] {3, 4, 5});
-            testDequeue(dequeue);
+            //testDequeue(dequeue);
 
             Console.WriteLine("\n\n\n");
             Console.WriteLine("Test Stack");
