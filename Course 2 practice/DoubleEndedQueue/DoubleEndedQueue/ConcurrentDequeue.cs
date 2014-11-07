@@ -28,6 +28,11 @@ namespace DoubleEndedQueue
             dequeue = new ListDequeue<T>(element);
         }
 
+        public ConcurrentDequeue(params T[] values)
+        {
+            dequeue = new ListDequeue<T>(values);
+        }
+
         public ConcurrentDequeue(IEnumerable<T> collection)
         {
             dequeue = new ListDequeue<T>(collection);

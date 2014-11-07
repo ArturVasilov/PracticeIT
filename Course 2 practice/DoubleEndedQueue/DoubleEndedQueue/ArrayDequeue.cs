@@ -13,7 +13,8 @@ namespace DoubleEndedQueue
 
         private const double ENSURE_CAPACITY = 1.5;
 
-        private const double FILLED_COEFF = 1.2;
+        private const double FILLED_COEFF = 2;
+        private const double EMPTY_COEFFICIENT = 2;
 
         private int capacity;
 
@@ -58,10 +59,10 @@ namespace DoubleEndedQueue
 
         private void ensureCapacity()
         {
-            capacity = (int)(capacity * ENSURE_CAPACITY);
-            T[] newValues = new T[capacity];
-
-            values = newValues;
+            int newCapacity = (int)(capacity * ENSURE_CAPACITY);
+            T[] newValues = new T[newCapacity];
+            copyCurrentValues(ref newValues, newCapacity);
+            capacity = newCapacity;
         }
 
         private void decreaseCapacity()
@@ -70,8 +71,37 @@ namespace DoubleEndedQueue
             {
                 return;
             }
-            capacity = max(INITIAL_CAPACITY, (int)(capacity / ENSURE_CAPACITY));
+            int newCapacity = max(INITIAL_CAPACITY, (int)(capacity / ENSURE_CAPACITY));
+            T[] newValues = new T[newCapacity];
+            copyCurrentValues(ref newValues, newCapacity);
+            capacity = newCapacity;
+        }
 
+        private void copyCurrentValues(ref T[] newValues, int newCapacity)
+        {
+            int size = this.size();
+            if (frontIndex > backIndex)
+            {
+                for (int i = 0; i < size; i++)
+                {
+                    newValues[i] = values[backIndex + 1 + i];
+                }
+            }
+            else
+            {
+                int i = 0;
+                for (; i < capacity - backIndex - 1; i++)
+                {
+                    newValues[i] = values[backIndex + 1 + i];
+                }
+                for (int j = 0; j < frontIndex; j++)
+                {
+                    newValues[i + j] = values[j];
+                }
+            }
+            frontIndex = size;
+            backIndex = newCapacity - 1;
+            this.values = newValues;
         }
 
         private int max(int a, int b)
@@ -86,6 +116,7 @@ namespace DoubleEndedQueue
                 values[0] = element;
                 backIndex = capacity - 1;
                 frontIndex = 1;
+                return;
             }
             if ((1.0 * capacity) / size() < FILLED_COEFF)
             {
@@ -110,6 +141,7 @@ namespace DoubleEndedQueue
                 values[0] = element;
                 backIndex = capacity - 1;
                 frontIndex = 1;
+                return;
             }
             if ((1.0 * capacity) / size() < FILLED_COEFF)
             {
@@ -136,11 +168,12 @@ namespace DoubleEndedQueue
             if (frontIndex == 0)
             {
                 frontIndex = capacity - 1;
-                if (capacity / size() >= 2) 
+                T value = values[frontIndex];
+                if (capacity / size() >= EMPTY_COEFFICIENT) 
                 {
                     decreaseCapacity();
                 }
-                return values[frontIndex];
+                return value;
             }
             frontIndex--;
             return values[frontIndex];
@@ -155,11 +188,12 @@ namespace DoubleEndedQueue
             if (backIndex == capacity - 1)
             {
                 backIndex = 0;
-                if (capacity / size() >= 2)
+                T value = values[backIndex];
+                if (capacity / size() >= EMPTY_COEFFICIENT)
                 {
                     decreaseCapacity();
                 }
-                return values[backIndex];
+                return value;
             }
             backIndex++;
             return values[backIndex];
@@ -221,8 +255,8 @@ namespace DoubleEndedQueue
                 {
                     builder.Append(values[i]).Append(", ");
                 }
-                builder.Append("]");
                 builder.Remove(builder.Length - 2, 2);
+                builder.Append("]");
             }
             else
             {
@@ -231,12 +265,12 @@ namespace DoubleEndedQueue
                 {
                     builder.Append(values[i]).Append(", ");
                 }
-                for (int i = backIndex + 1; i < capacity - 1; i++)
+                for (int i = capacity - 1; i > backIndex; i--)
                 {
                     builder.Append(values[i]).Append(", ");
                 }
-                builder.Append("]");
                 builder.Remove(builder.Length - 2, 2);
+                builder.Append("]");
             }
             return builder.ToString();
         }

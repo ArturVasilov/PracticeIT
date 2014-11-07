@@ -12,7 +12,7 @@ namespace DoubleEndedQueue
         {
             Console.WriteLine("Test ListDequeue");
             DEQueue<int> dequeue = new ListDequeue<int>(3, 4, 5);
-            //testDequeue(dequeue);
+            testDequeue(dequeue);
 
             Console.WriteLine("\n\n\n");
             Console.WriteLine("Test ArrayDequeue");
@@ -22,7 +22,7 @@ namespace DoubleEndedQueue
             Console.WriteLine("\n\n\n");
             Console.WriteLine("Test ConcurrentDequeue");
             dequeue = new ConcurrentDequeue<int>(new int[] {3, 4, 5});
-            //testDequeue(dequeue);
+            testDequeue(dequeue);
 
             Console.WriteLine("\n\n\n");
             Console.WriteLine("Test Stack");
@@ -47,6 +47,7 @@ namespace DoubleEndedQueue
             dequeue.addFront(3);
             Console.WriteLine(dequeue);
             dequeue.addAllBack(new int[] { 7, 8, 9, 10 });
+            dequeue.addBack(17);
             dequeue.addAllFront(new List<int>(new int[] { 11, 15, 22, 45, 72 }));
             Console.WriteLine(dequeue);
             Console.WriteLine(dequeue.peekBack() == dequeue.popBack());
