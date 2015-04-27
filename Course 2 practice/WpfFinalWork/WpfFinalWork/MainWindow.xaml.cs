@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -22,7 +23,7 @@ namespace WpfFinalWork
 
         }
 
-        private static void TryToWin(object obj)
+        private static void TryWin(object obj)
         {
             RubikCube cube = (RubikCube) obj;
             cube.Move(RubikCube.CubeScroll.RandomScroll());
@@ -95,55 +96,164 @@ namespace WpfFinalWork
         private void Field000_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             Point point = e.GetPosition(Field000);
-            Field000.Content = "X - " + point.X + "; Y - " + point.Y;
-        }
-
-        private void Field001_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Point point = e.GetPosition(Field001);
-            Field001.Content = "X - " + point.X + "; Y - " + point.Y;
+            MoveCube(0, 0, 0, point);
         }
 
         private void Field002_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             Point point = e.GetPosition(Field002);
-            Field002.Content = "X - " + point.X + "; Y - " + point.Y;
-        }
-
-        private void Field010_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Point point = e.GetPosition(Field010);
-            Field010.Content = "X - " + point.X + "; Y - " + point.Y;
-        }
-
-        private void Field011_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Point point = e.GetPosition(Field011);
-            Field011.Content = "X - " + point.X + "; Y - " + point.Y;
-        }
-
-        private void Field012_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Point point = e.GetPosition(Field012);
-            Field012.Content = "X - " + point.X + "; Y - " + point.Y;
+            MoveCube(0, 0, 2, point);
         }
 
         private void Field020_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             Point point = e.GetPosition(Field020);
-            Field020.Content = "X - " + point.X + "; Y - " + point.Y;
-        }
-
-        private void Field021_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Point point = e.GetPosition(Field021);
-            Field021.Content = "X - " + point.X + "; Y - " + point.Y;
+            MoveCube(0, 2, 0, point);
         }
 
         private void Field022_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             Point point = e.GetPosition(Field022);
-            Field022.Content = "X - " + point.X + "; Y - " + point.Y;
+            MoveCube(0, 2, 2, point);
+        }
+
+        private void Field100_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field100);
+            MoveCube(1, 0, 0, point);
+        }
+
+        private void Field102_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field102);
+            MoveCube(1, 0, 2, point);
+        }
+
+        private void Field120_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field120);
+            MoveCube(1, 2, 0, point);
+        }
+
+        private void Field122_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field122);
+            MoveCube(1, 2, 2, point);
+        }
+
+        private void Field200_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field200);
+            MoveCube(2, 0, 0, point);
+        }
+
+        private void Field202_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field202);
+            MoveCube(2, 0, 2, point);
+        }
+
+        private void Field220_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field220);
+            MoveCube(2, 2, 0, point);
+        }
+
+        private void Field222_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field222);
+            MoveCube(2, 2, 2, point);
+        }
+
+        private void Field300_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field300);
+            MoveCube(3, 0, 0, point);
+        }
+
+        private void Field302_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field302);
+            MoveCube(3, 0, 2, point);
+        }
+
+        private void Field320_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field320);
+            MoveCube(3, 2, 0, point);
+        }
+
+        private void Field322_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field422);
+            MoveCube(4, 2, 2, point);
+        }
+
+        private void Field400_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field400);
+            MoveCube(4, 0, 0, point);
+        }
+
+        private void Field402_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field402);
+            MoveCube(4, 0, 2, point);
+        }
+
+        private void Field420_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field420);
+            MoveCube(4, 2, 0, point);
+        }
+
+        private void Field422_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field422);
+            MoveCube(4, 2, 2, point);
+        }
+
+        private void Field500_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field500);
+            MoveCube(5, 0, 0, point);
+        }
+
+        private void Field502_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field502);
+            MoveCube(5, 0, 2, point);
+        }
+
+        private void Field520_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field520);
+            MoveCube(5, 2, 0, point);
+        }
+
+        private void Field522_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point = e.GetPosition(Field522);
+            MoveCube(5, 2, 2, point);
+        }
+
+        private void MoveCube(int face, int row, int column, Point point)
+        {
+            RubikCube.ScrollDirection direction;
+            if (point.Y >= 99) direction = RubikCube.ScrollDirection.Top;
+            else if (point.Y <= 33) direction = RubikCube.ScrollDirection.Bottom;
+            else if (point.X <= 66) direction = RubikCube.ScrollDirection.Left;
+            else direction = RubikCube.ScrollDirection.Right;
+
+            RubikCube.CubeScroll scroll = new RubikCube.CubeScroll(face, row, column, direction);
+            _cube.Move(scroll);
+
+            if (_cube.IsWon())
+            {
+                //TODO : game finished
+            }
+
+            DrawCube();
         }
     }
 }

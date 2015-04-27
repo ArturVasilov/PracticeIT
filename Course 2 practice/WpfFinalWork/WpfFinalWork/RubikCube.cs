@@ -100,7 +100,7 @@ namespace WpfFinalWork
         {
             Color[] colors =
             {
-                Colors.Red(), Colors.Green(), Colors.Blue(), 
+                Colors.Red(), Colors.Green(), Colors.Blue(),
                 Colors.Yellow(), Colors.Orange(), Colors.White()
             };
 
@@ -118,12 +118,10 @@ namespace WpfFinalWork
                 }
             }
 
-            
             Thread thread = new Thread(ShuffleCube);
             thread.Start(cube);
             thread.Join();
             
-
             callback(cube);
         }
 
@@ -131,13 +129,15 @@ namespace WpfFinalWork
         {
             RubikCube cube = (RubikCube) obj;
 
-            int movementCount = 1;
+            int movementCount = CubeRandom.Next(50, 100);
+            //movementCount = 2;
             do {
                 for (int i = 0; i < movementCount; i++)
                 {
                     cube.Move(CubeScroll.RandomScroll());
                 }
             } while (cube.IsWon());
+            //*/ 
         }
 
         public void Move(CubeScroll scroll)
@@ -502,7 +502,7 @@ namespace WpfFinalWork
         {
             Color[] colors =
             {
-                Colors.Red(), Colors.Green(), Colors.Blue(), 
+                Colors.Red(), Colors.Green(), Colors.Blue(),
                 Colors.Yellow(), Colors.Orange(), Colors.White()
             };
 

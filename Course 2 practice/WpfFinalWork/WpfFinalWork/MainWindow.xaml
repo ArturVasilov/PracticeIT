@@ -12,8 +12,8 @@
             <ModelVisual3D>
                 <Viewport2DVisual3D>
                     <Viewport2DVisual3D.Geometry>
-                        <MeshGeometry3D Positions="0,0,1 0,1,1 1,0,1 1,1,1" TriangleIndices="0,2,1 1,2,3"
-                                        TextureCoordinates="0,0 0,1 1,0 1,1 "/>
+                        <MeshGeometry3D Positions="0,1,0 1,1,1 1,1,0 0,1,1" TriangleIndices="1,0,3 0,1,2" 
+                                        TextureCoordinates="0,0 1,1 1,0 0,1 "/>
                     </Viewport2DVisual3D.Geometry>
                     
                     <Viewport2DVisual3D.Material>
@@ -34,15 +34,15 @@
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Button Grid.Row="0" Grid.Column="0" PreviewMouseDown="Field000_OnPreviewMouseDown" Content="000" FontSize="24" Name="Field000" BorderBrush="Black" Background="Red" BorderThickness="2"/>
-                            <Button Grid.Row="0" Grid.Column="1" PreviewMouseDown="Field001_OnPreviewMouseDown" Content="001" FontSize="24" Name="Field001" BorderBrush="Black" Background="Red" BorderThickness="2"/>
-                            <Button Grid.Row="0" Grid.Column="2" PreviewMouseDown="Field002_OnPreviewMouseDown" Content="002" FontSize="24" Name="Field002" BorderBrush="Black" Background="Red" BorderThickness="2"/>
-                            <Button Grid.Row="1" Grid.Column="0" PreviewMouseDown="Field010_OnPreviewMouseDown" Content="010" FontSize="24" Name="Field010" BorderBrush="Black" Background="Red" BorderThickness="2"/>
-                            <Button Grid.Row="1" Grid.Column="1" PreviewMouseDown="Field011_OnPreviewMouseDown" Content="011" FontSize="24" Name="Field011" BorderBrush="Black" Background="Red" BorderThickness="2"/>
-                            <Button Grid.Row="1" Grid.Column="2" PreviewMouseDown="Field012_OnPreviewMouseDown" Content="012" FontSize="24" Name="Field012" BorderBrush="Black" Background="Red" BorderThickness="2"/>
-                            <Button Grid.Row="2" Grid.Column="0" PreviewMouseDown="Field020_OnPreviewMouseDown" Content="020" FontSize="24" Name="Field020" BorderBrush="Black" Background="Red" BorderThickness="2"/>
-                            <Button Grid.Row="2" Grid.Column="1" PreviewMouseDown="Field021_OnPreviewMouseDown" Content="021" FontSize="24" Name="Field021" BorderBrush="Black" Background="Red" BorderThickness="2"/>
-                            <Button Grid.Row="2" Grid.Column="2" PreviewMouseDown="Field022_OnPreviewMouseDown" Content="022" FontSize="24" Name="Field022" BorderBrush="Black" Background="Red" BorderThickness="2"/>
+                            <Button Grid.Row="0" Grid.Column="0" PreviewMouseDown="Field000_OnPreviewMouseDown" Name="Field000" BorderBrush="Black" Background="Red" BorderThickness="2"/>
+                            <Button Grid.Row="0" Grid.Column="1" Name="Field001" BorderBrush="Black" Background="Red" BorderThickness="2"/>
+                            <Button Grid.Row="0" Grid.Column="2" PreviewMouseDown="Field002_OnPreviewMouseDown" Name="Field002" BorderBrush="Black" Background="Red" BorderThickness="2"/>
+                            <Button Grid.Row="1" Grid.Column="0" Name="Field010" BorderBrush="Black" Background="Red" BorderThickness="2"/>
+                            <Button Grid.Row="1" Grid.Column="1" Name="Field011" BorderBrush="Black" Background="Red" BorderThickness="2"/>
+                            <Button Grid.Row="1" Grid.Column="2" Name="Field012" BorderBrush="Black" Background="Red" BorderThickness="2"/>
+                            <Button Grid.Row="2" Grid.Column="0" PreviewMouseDown="Field020_OnPreviewMouseDown" Name="Field020" BorderBrush="Black" Background="Red" BorderThickness="2"/>
+                            <Button Grid.Row="2" Grid.Column="1" Name="Field021" BorderBrush="Black" Background="Red" BorderThickness="2"/>
+                            <Button Grid.Row="2" Grid.Column="2" PreviewMouseDown="Field022_OnPreviewMouseDown" Name="Field022" BorderBrush="Black" Background="Red" BorderThickness="2"/>
                         </Grid>
                     </Border>
                     
@@ -50,7 +50,7 @@
                 
                 <Viewport2DVisual3D>
                     <Viewport2DVisual3D.Geometry>
-                        <MeshGeometry3D Positions="1,1,0 1,0,0 1,0,1 1,1,1" TriangleIndices="2,0,3 0,2,1"
+                        <MeshGeometry3D Positions="0,0,0 1,0,0 1,0,1 0,0,1" TriangleIndices="1,3,0 3,1,2" 
                                         TextureCoordinates="0,1 1,1 1,0 0,0 "/>
                     </Viewport2DVisual3D.Geometry>
                     <Viewport2DVisual3D.Material>
@@ -71,133 +71,61 @@
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Button Grid.Row="0" Grid.Column="0" Name="Field100" BorderBrush="Black" Background="Green" BorderThickness="2"/>
+                            <Button Grid.Row="0" Grid.Column="0" PreviewMouseDown="Field100_OnPreviewMouseDown" Name="Field100" BorderBrush="Black" Background="Green" BorderThickness="2"/>
                             <Button Grid.Row="0" Grid.Column="1" Name="Field101" BorderBrush="Black" Background="Green" BorderThickness="2"/>
-                            <Button Grid.Row="0" Grid.Column="2" Name="Field102" BorderBrush="Black" Background="Green" BorderThickness="2"/>
+                            <Button Grid.Row="0" Grid.Column="2" PreviewMouseDown="Field102_OnPreviewMouseDown" Name="Field102" BorderBrush="Black" Background="Green" BorderThickness="2"/>
                             <Button Grid.Row="1" Grid.Column="0" Name="Field110" BorderBrush="Black" Background="Green" BorderThickness="2"/>
                             <Button Grid.Row="1" Grid.Column="1" Name="Field111" BorderBrush="Black" Background="Green" BorderThickness="2"/>
                             <Button Grid.Row="1" Grid.Column="2" Name="Field112" BorderBrush="Black" Background="Green" BorderThickness="2"/>
-                            <Button Grid.Row="2" Grid.Column="0" Name="Field120" BorderBrush="Black" Background="Green" BorderThickness="2"/>
+                            <Button Grid.Row="2" Grid.Column="0" PreviewMouseDown="Field120_OnPreviewMouseDown" Name="Field120" BorderBrush="Black" Background="Green" BorderThickness="2"/>
                             <Button Grid.Row="2" Grid.Column="1" Name="Field121" BorderBrush="Black" Background="Green" BorderThickness="2"/>
-                            <TextBox Grid.Row="2" Grid.Column="2" Name="Field122" BorderBrush="Black" Background="Green" BorderThickness="2"></TextBox>
+                            <Button Grid.Row="2" Grid.Column="2" PreviewMouseDown="Field122_OnPreviewMouseDown" Name="Field122" BorderBrush="Black" Background="Green" BorderThickness="2"/>
                         </Grid>
                     </Border>
                     
-                </Viewport2DVisual3D>
-                
-                <Viewport2DVisual3D>
-                    <Viewport2DVisual3D.Geometry>
-                        <MeshGeometry3D Positions="1,1,0 1,0,0 0,0,0 0,1,0" TriangleIndices="2,3,0 0,1,2" TextureCoordinates="0,1 1,1 1,0 0,0 "/>
-                    </Viewport2DVisual3D.Geometry>
-                    <Viewport2DVisual3D.Material>
-                        <MaterialGroup>
-                            <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="True"/>
-                        </MaterialGroup>
-                    </Viewport2DVisual3D.Material>
-
-                    <Border Width="400" Height="400">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Button Grid.Row="0" Grid.Column="0" Name="Field200" BorderBrush="Black" Background="Blue" BorderThickness="2"/>
-                            <Button Grid.Row="0" Grid.Column="1" Name="Field201" BorderBrush="Black" Background="Blue" BorderThickness="2"/>
-                            <Button Grid.Row="0" Grid.Column="2" Name="Field202" BorderBrush="Black" Background="Blue" BorderThickness="2"/>
-                            <Button Grid.Row="1" Grid.Column="0" Name="Field210" BorderBrush="Black" Background="Blue" BorderThickness="2"/>
-                            <Button Grid.Row="1" Grid.Column="1" Name="Field211" BorderBrush="Black" Background="Blue" BorderThickness="2"/>
-                            <Button Grid.Row="1" Grid.Column="2" Name="Field212" BorderBrush="Black" Background="Blue" BorderThickness="2"/>
-                            <Button Grid.Row="2" Grid.Column="0" Name="Field220" BorderBrush="Black" Background="Blue" BorderThickness="2"/>
-                            <Button Grid.Row="2" Grid.Column="1" Name="Field221" BorderBrush="Black" Background="Blue" BorderThickness="2"/>
-                            <Button Grid.Row="2" Grid.Column="2" Name="Field222" BorderBrush="Black" Background="Blue" BorderThickness="2"/>
-                        </Grid>
-                    </Border>
-
-                </Viewport2DVisual3D>
-                
-                <Viewport2DVisual3D>
-                    <Viewport2DVisual3D.Geometry>
-                        <MeshGeometry3D Positions="0,1,0 1,1,1 1,1,0 0,1,1" TriangleIndices="1,0,3 0,1,2" TextureCoordinates="1,0 0,1 0,0 1,1 "/>
-                    </Viewport2DVisual3D.Geometry>
-                    
-                    <Viewport2DVisual3D.Material>
-                        <MaterialGroup>
-                            <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="True"/>
-                        </MaterialGroup>
-                    </Viewport2DVisual3D.Material>
-
-                    <Border Width="400" Height="400">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Button Grid.Row="0" Grid.Column="0" Name="Field300" BorderBrush="Black" Background="#FFDC00" BorderThickness="2"/>
-                            <Button Grid.Row="0" Grid.Column="1" Name="Field301" BorderBrush="Black" Background="#FFDC00" BorderThickness="2"/>
-                            <Button Grid.Row="0" Grid.Column="2" Name="Field302" BorderBrush="Black" Background="#FFDC00" BorderThickness="2"/>
-                            <Button Grid.Row="1" Grid.Column="0" Name="Field310" BorderBrush="Black" Background="#FFDC00" BorderThickness="2"/>
-                            <Button Grid.Row="1" Grid.Column="1" Name="Field311" BorderBrush="Black" Background="#FFDC00" BorderThickness="2"/>
-                            <Button Grid.Row="1" Grid.Column="2" Name="Field312" BorderBrush="Black" Background="#FFDC00" BorderThickness="2"/>
-                            <Button Grid.Row="2" Grid.Column="0" Name="Field320" BorderBrush="Black" Background="#FFDC00" BorderThickness="2"/>
-                            <Button Grid.Row="2" Grid.Column="1" Name="Field321" BorderBrush="Black" Background="#FFDC00" BorderThickness="2"/>
-                            <Button Grid.Row="2" Grid.Column="2" Name="Field322" BorderBrush="Black" Background="#FFDC00" BorderThickness="2"/>
-                        </Grid>
-                    </Border>
-
-                </Viewport2DVisual3D>
-                
-                <Viewport2DVisual3D>
-                    <Viewport2DVisual3D.Geometry>
-                        <MeshGeometry3D Positions="0,0,0 1,0,0 1,0,1 0,0,1" TriangleIndices="1,3,0 3,1,2" TextureCoordinates="0,0 0,1 1,1 1,0 "/>
-                    </Viewport2DVisual3D.Geometry>
-                    <Viewport2DVisual3D.Material>
-                        <MaterialGroup>
-                            <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="True"/>
-                        </MaterialGroup>
-                    </Viewport2DVisual3D.Material>
-
-                    <Border Width="400" Height="400">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Button Grid.Row="0" Grid.Column="0" Name="Field400" BorderBrush="Black" Background="#FF6C00" BorderThickness="2"/>
-                            <Button Grid.Row="0" Grid.Column="1" Name="Field401" BorderBrush="Black" Background="#FF6C00" BorderThickness="2"/>
-                            <Button Grid.Row="0" Grid.Column="2" Name="Field402" BorderBrush="Black" Background="#FF6C00" BorderThickness="2"/>
-                            <Button Grid.Row="1" Grid.Column="0" Name="Field410" BorderBrush="Black" Background="#FF6C00" BorderThickness="2"/>
-                            <Button Grid.Row="1" Grid.Column="1" Name="Field411" BorderBrush="Black" Background="#FF6C00" BorderThickness="2"/>
-                            <Button Grid.Row="1" Grid.Column="2" Name="Field412" BorderBrush="Black" Background="#FF6C00" BorderThickness="2"/>
-                            <Button Grid.Row="2" Grid.Column="0" Name="Field420" BorderBrush="Black" Background="#FF6C00" BorderThickness="2"/>
-                            <Button Grid.Row="2" Grid.Column="1" Name="Field421" BorderBrush="Black" Background="#FF6C00" BorderThickness="2"/>
-                            <Button Grid.Row="2" Grid.Column="2" Name="Field422" BorderBrush="Black" Background="#FF6C00" BorderThickness="2"/>
-                        </Grid>
-                    </Border>
-
                 </Viewport2DVisual3D>
                 
                 <Viewport2DVisual3D>
                     <Viewport2DVisual3D.Geometry>
                         <MeshGeometry3D Positions="0,0,0 0,1,1 0,1,0 0,0,1" TriangleIndices="1,0,3 0,1,2" 
-                                        TextureCoordinates="0,0 1,1 0,1 1,0"/>
+                                        TextureCoordinates="0,1 1,0 0,0 1,1"/>
+                    </Viewport2DVisual3D.Geometry>
+                    <Viewport2DVisual3D.Material>
+                        <MaterialGroup>
+                            <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="True"/>
+                        </MaterialGroup>
+                    </Viewport2DVisual3D.Material>
+
+                    <Border Width="400" Height="400">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" Grid.Column="0" PreviewMouseDown="Field200_OnPreviewMouseDown" Name="Field200" BorderBrush="Black" Background="White" BorderThickness="2"/>
+                            <Button Grid.Row="0" Grid.Column="1" Name="Field201" BorderBrush="Black" Background="White" BorderThickness="2"/>
+                            <Button Grid.Row="0" Grid.Column="2" PreviewMouseDown="Field202_OnPreviewMouseDown" Name="Field202" BorderBrush="Black" Background="White" BorderThickness="2"/>
+                            <Button Grid.Row="1" Grid.Column="0" FontSize="24" Name="Field210" BorderBrush="Black" Background="White" BorderThickness="2"/>
+                            <Button Grid.Row="1" Grid.Column="1" FontSize="24" Name="Field211" BorderBrush="Black" Background="White" BorderThickness="2"/>
+                            <Button Grid.Row="1" Grid.Column="2" FontSize="24" Name="Field212" BorderBrush="Black" Background="White" BorderThickness="2"/>
+                            <Button Grid.Row="2" Grid.Column="0" PreviewMouseDown="Field220_OnPreviewMouseDown" Name="Field220" BorderBrush="Black" Background="White" BorderThickness="2"/>
+                            <Button Grid.Row="2" Grid.Column="1" FontSize="24" Name="Field221" BorderBrush="Black" Background="White" BorderThickness="2"/>
+                            <Button Grid.Row="2" Grid.Column="2" PreviewMouseDown="Field222_OnPreviewMouseDown" Name="Field222" BorderBrush="Black" Background="White" BorderThickness="2"/>
+                        </Grid>
+                    </Border>
+
+                </Viewport2DVisual3D>
+                
+                <Viewport2DVisual3D>
+                    <Viewport2DVisual3D.Geometry>
+                        <MeshGeometry3D Positions="0,0,1 0,1,1 1,0,1 1,1,1" TriangleIndices="1,2,3 0,2,1"
+                                        TextureCoordinates="0,1 0,0 1,1 1,0 "/>
                     </Viewport2DVisual3D.Geometry>
                     
                     <Viewport2DVisual3D.Material>
@@ -218,15 +146,90 @@
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Button Grid.Row="0" Grid.Column="0" Name="Field500" BorderBrush="Black" Background="White" BorderThickness="2"/>
-                            <Button Grid.Row="0" Grid.Column="1" Name="Field501" BorderBrush="Black" Background="White" BorderThickness="2"/>
-                            <Button Grid.Row="0" Grid.Column="2" Name="Field502" BorderBrush="Black" Background="White" BorderThickness="2"/>
-                            <Button Grid.Row="1" Grid.Column="0" Name="Field510" BorderBrush="Black" Background="White" BorderThickness="2"/>
-                            <Button Grid.Row="1" Grid.Column="1" Name="Field511" BorderBrush="Black" Background="White" BorderThickness="2"/>
-                            <Button Grid.Row="1" Grid.Column="2" Name="Field512" BorderBrush="Black" Background="White" BorderThickness="2"/>
-                            <Button Grid.Row="2" Grid.Column="0" Name="Field520" BorderBrush="Black" Background="White" BorderThickness="2"/>
-                            <Button Grid.Row="2" Grid.Column="1" Name="Field521" BorderBrush="Black" Background="White" BorderThickness="2"/>
-                            <Button Grid.Row="2" Grid.Column="2" Name="Field522" BorderBrush="Black" Background="White" BorderThickness="2"/>
+                            <Button Grid.Row="0" Grid.Column="0" PreviewMouseDown="Field300_OnPreviewMouseDown" Name="Field300" BorderBrush="Black" Background="#FFDC00" BorderThickness="2"/>
+                            <Button Grid.Row="0" Grid.Column="1" Name="Field301" BorderBrush="Black" Background="#FFDC00" BorderThickness="2"/>
+                            <Button Grid.Row="0" Grid.Column="2" PreviewMouseDown="Field302_OnPreviewMouseDown" Name="Field302" BorderBrush="Black" Background="#FFDC00" BorderThickness="2"/>
+                            <Button Grid.Row="1" Grid.Column="0" Name="Field310" BorderBrush="Black" Background="#FFDC00" BorderThickness="2"/>
+                            <Button Grid.Row="1" Grid.Column="1" Name="Field311" BorderBrush="Black" Background="#FFDC00" BorderThickness="2"/>
+                            <Button Grid.Row="1" Grid.Column="2" Name="Field312" BorderBrush="Black" Background="#FFDC00" BorderThickness="2"/>
+                            <Button Grid.Row="2" Grid.Column="0" PreviewMouseDown="Field320_OnPreviewMouseDown" Name="Field320" BorderBrush="Black" Background="#FFDC00" BorderThickness="2"/>
+                            <Button Grid.Row="2" Grid.Column="1" Name="Field321" BorderBrush="Black" Background="#FFDC00" BorderThickness="2"/>
+                            <Button Grid.Row="2" Grid.Column="2" PreviewMouseDown="Field322_OnPreviewMouseDown" Name="Field322" BorderBrush="Black" Background="#FFDC00" BorderThickness="2"/>
+                        </Grid>
+                    </Border>
+
+                </Viewport2DVisual3D>
+                
+                <Viewport2DVisual3D>
+                    <Viewport2DVisual3D.Geometry>
+                        <MeshGeometry3D Positions="1,1,0 1,0,0 1,0,1 1,1,1" TriangleIndices="2,0,3 0,2,1"
+                                        TextureCoordinates="1,0 1,1 0,1 0,0 "/>
+                    </Viewport2DVisual3D.Geometry>
+                    <Viewport2DVisual3D.Material>
+                        <MaterialGroup>
+                            <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="True"/>
+                        </MaterialGroup>
+                    </Viewport2DVisual3D.Material>
+
+                    <Border Width="400" Height="400">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" Grid.Column="0" PreviewMouseDown="Field400_OnPreviewMouseDown" Name="Field400" BorderBrush="Black" Background="#FF6C00" BorderThickness="2"/>
+                            <Button Grid.Row="0" Grid.Column="1" Name="Field401" BorderBrush="Black" Background="#FF6C00" BorderThickness="2"/>
+                            <Button Grid.Row="0" Grid.Column="2" PreviewMouseDown="Field402_OnPreviewMouseDown" Name="Field402" BorderBrush="Black" Background="#FF6C00" BorderThickness="2"/>
+                            <Button Grid.Row="1" Grid.Column="0" Name="Field410" BorderBrush="Black" Background="#FF6C00" BorderThickness="2"/>
+                            <Button Grid.Row="1" Grid.Column="1" Name="Field411" BorderBrush="Black" Background="#FF6C00" BorderThickness="2"/>
+                            <Button Grid.Row="1" Grid.Column="2" Name="Field412" BorderBrush="Black" Background="#FF6C00" BorderThickness="2"/>
+                            <Button Grid.Row="2" Grid.Column="0" PreviewMouseDown="Field420_OnPreviewMouseDown" Name="Field420" BorderBrush="Black" Background="#FF6C00" BorderThickness="2"/>
+                            <Button Grid.Row="2" Grid.Column="1" Name="Field421" BorderBrush="Black" Background="#FF6C00" BorderThickness="2"/>
+                            <Button Grid.Row="2" Grid.Column="2" PreviewMouseDown="Field422_OnPreviewMouseDown" Name="Field422" BorderBrush="Black" Background="#FF6C00" BorderThickness="2"/>
+                        </Grid>
+                    </Border>
+
+                </Viewport2DVisual3D>
+                
+                <Viewport2DVisual3D>
+                    <Viewport2DVisual3D.Geometry>
+                        <MeshGeometry3D Positions="1,1,0 1,0,0 0,0,0 0,1,0" TriangleIndices="2,3,0 0,1,2" 
+                                        TextureCoordinates="0,0 0,1 1,1 1,0 "/>
+                    </Viewport2DVisual3D.Geometry>
+                    
+                    <Viewport2DVisual3D.Material>
+                        <MaterialGroup>
+                            <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="True"/>
+                        </MaterialGroup>
+                    </Viewport2DVisual3D.Material>
+
+                    <Border Width="400" Height="400">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" Grid.Column="0" PreviewMouseDown="Field500_OnPreviewMouseDown" Name="Field500" BorderBrush="Black" Background="Blue" BorderThickness="2"/>
+                            <Button Grid.Row="0" Grid.Column="1" Name="Field501" BorderBrush="Black" Background="Blue" BorderThickness="2"/>
+                            <Button Grid.Row="0" Grid.Column="2" PreviewMouseDown="Field502_OnPreviewMouseDown" Name="Field502" BorderBrush="Black" Background="Blue" BorderThickness="2"/>
+                            <Button Grid.Row="1" Grid.Column="0" Name="Field510" BorderBrush="Black" Background="Blue" BorderThickness="2"/>
+                            <Button Grid.Row="1" Grid.Column="1" Name="Field511" BorderBrush="Black" Background="Blue" BorderThickness="2"/>
+                            <Button Grid.Row="1" Grid.Column="2" Name="Field512" BorderBrush="Black" Background="Blue" BorderThickness="2"/>
+                            <Button Grid.Row="2" Grid.Column="0" PreviewMouseDown="Field520_OnPreviewMouseDown" Name="Field520" BorderBrush="Black" Background="Blue" BorderThickness="2"/>
+                            <Button Grid.Row="2" Grid.Column="1" Name="Field521" BorderBrush="Black" Background="Blue" BorderThickness="2"/>
+                            <Button Grid.Row="2" Grid.Column="2" PreviewMouseDown="Field522_OnPreviewMouseDown" Name="Field522" BorderBrush="Black" Background="Blue" BorderThickness="2"/>
                         </Grid>
                     </Border>
 
