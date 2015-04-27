@@ -1,0 +1,40 @@
+﻿<Window x:Class="Lesson270215.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Viewbox>
+        <TabControl HorizontalAlignment="Left" Height="310" Margin="0,0,0,0" VerticalAlignment="Top" Width="510">
+            <TabItem Header="First tab">
+                <Canvas Background="LawnGreen" >
+                    <Button FontSize="32" Canvas.Left="2" Canvas.Top="2">Left top</Button>
+                    <Button FontSize="32" Canvas.Right="2" Canvas.Top="2" >Right top</Button>
+                    <Button FontSize="32" Canvas.Left="2" Canvas.Bottom="2">Left bottom</Button>
+                    <Button FontSize="32" Canvas.Right="2" Canvas.Bottom="2" >Right bottom</Button>
+                </Canvas>
+            </TabItem>
+            <TabItem Header="Second tab">
+                <Canvas Background="Indigo" >
+                    <Border BorderBrush="GreenYellow" BorderThickness="5" CornerRadius="3,3,3,3" Height="174" Width="245" Canvas.Left="125" Canvas.Top="22">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal" Background="Aqua" Margin="2,2,2,2">
+                                <Button Margin="2, 2, 2, 2" Height="26" Width="73">One</Button>
+                                <Button Margin="2, 2, 2, 2" Height="26" Width="73">Two</Button>
+                                <Button Margin="2, 2, 2, 2" Height="26" Width="73">Three</Button>
+                            </StackPanel>
+
+                            <StackPanel Orientation="Vertical" Background="Chocolate" Margin="2, 10, 2, 2">
+                                <Button Margin="2, 2, 2, 2">One</Button>
+                                <Button Margin="2, 2, 2, 2">Two</Button>
+                                <Button Margin="2, 2, 2, 2">Three</Button>
+                            </StackPanel>
+                            <TextBlock TextWrapping="Wrap" Background="White" 
+                                       Text="Some text" Margin="4,10,4,4" TextAlignment="Center"
+                                       FontSize="25"/>
+                        </StackPanel>
+                    </Border>
+                </Canvas>
+            </TabItem>
+        </TabControl>
+    </Viewbox>
+
+</Window>
